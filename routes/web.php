@@ -1,22 +1,26 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::redirect('/', 'login');
 
-Route::get('/', function () {
-    return view('welcome');
+// authentication related
+Auth::routes(['register' => false]);
+
+Route::post('/passwordless', 'Auth\LoginController@passwordless')->name('passwordless.login');
+Route::view('/passwordless/sent', 'auth.passwordless.sent')->name('passwordless.sent');
+Route::get('/passwordless/link/{user}', 'Auth\LoginController@link')->name('passwordless.link');
+Route::view('/logout', 'auth.logout')->name('logout');
+
+//protected routes (must be logged in)
+Route::middleware(['auth', 'nocache'])->group(function () {
+
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::name('admin.')->group(function () {
+        Route::resource('admin/users', 'Admin\UserController');
+        Route::resource('admin/roles', 'Admin\RoleController');
+    });
+
 });
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
