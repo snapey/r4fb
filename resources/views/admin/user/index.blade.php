@@ -21,7 +21,7 @@
             </thead>
             <tbody>
                 @foreach($users as $user)
-                <tr class="{{ $loop->index %2==0 ? 'bg-indigo-100' :'' }} align-center">
+                <tr class="{{ $loop->index %2==0 ? 'bg-teal-500 bg-opacity-10' :'' }} align-center">
                     <td class="px-1"><a class="hover:underline hover:text-blue-800 hover:bg-yellow-200 px-4 py-1 rounded hover:shadow" 
                             href="{{ route('admin.users.edit',$user) }}">{{ $user->name }}</a></td>
                     <td class="px-4 py-2">{{ $user->email }}</td>

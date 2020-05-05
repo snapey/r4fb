@@ -101,7 +101,7 @@
                         <div class="flex flex-wrap content-start mb-6 w-1/3 pl-4">
                             <label for="mobile" class="block  text-sm font-bold mb-2">Mobile: <span class="text-xs font-normal">(for notifications)</span></label>
                         
-                            <input id="mobile" type="text" required name="mobile" value="{{ old('mobile', $user->mobile) }}"
+                            <input id="mobile" type="text" name="mobile" value="{{ old('mobile', $user->mobile) }}"
                                 class="text-base font-mono shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline @error('mobile') border-red-500 @enderror">
                             @error('mobile')
                             <p class="text-red-500 text-xs italic mt-4">{{ $message }}</p>

@@ -2,68 +2,68 @@
     <ul>
         <a href="{{ route('home') }}">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('home*')) ? 'bg-blue-100' : '' }}">Dashboard</li>
+            {{ (request()->is('home*')) ? 'bg-teal-100' : '' }}">Dashboard</li>
         </a>
         <li class="shadow-inner border-gray-400 border-t text-gray-600 font-bold my-2 pt-2 pb-2 pl-4 text-sm">Operational:</li>
 
         <a href="#">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('foodbanks*')) ? 'bg-blue-100' : '' }}">Orders</li>
+            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">Orders</li>
         </a>
         <a href="#">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('foodbanks*')) ? 'bg-blue-100' : '' }}">Requests</li>
+            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">Requests</li>
         </a>
         <a href="#">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('foodbanks*')) ? 'bg-blue-100' : '' }}">Receipts</li>
+            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">Receipts</li>
         </a>
         <a href="#">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('foodbanks*')) ? 'bg-blue-100' : '' }}">Allocations</li>
+            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">Allocations</li>
         </a>
         <a href="#">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('foodbanks*')) ? 'bg-blue-100' : '' }}">Shipments</li>
+            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">Shipments</li>
         </a>
 
         <li class="shadow-inner border-gray-400 border-t text-gray-600 font-bold my-2 pt-2 pb-2 pl-4 text-sm">Master Data:</li>
 
-        <a href="#">
+        <a href="{{ route('admin.foodbanks.index')}}">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('foodbanks*')) ? 'bg-blue-100' : '' }}">Foodbanks</li>
+            {{ (request()->is('admin/foodbanks*')) ? 'bg-teal-100' : '' }}">Foodbanks</li>
         </a>
 
         
         <a href="#">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('foodbanks*')) ? 'bg-blue-100' : '' }}">Contacts</li>
+            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">Contacts</li>
         </a>
 
         <a href="#">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('foodbanks*')) ? 'bg-blue-100' : '' }}">Clubs</li>
+            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">Clubs</li>
         </a>
 
         <a href="#">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-                {{ (request()->is('foodbanks*')) ? 'bg-blue-100' : '' }}">Suppliers</li>
+                {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">Suppliers</li>
         </a>
 
         <a href="#">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('foodbanks*')) ? 'bg-blue-100' : '' }}">Shippers</li>
+            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">Shippers</li>
         </a>
 
         <li class="shadow-inner border-gray-400 border-t text-gray-600 font-bold my-2 pt-2 pb-2 pl-4 text-sm">Administration:</li>
 
         <a href="{{ route('admin.users.index') }}">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('admin/users*')) ? 'bg-blue-100' : '' }}">Users</li>
+            {{ (request()->is('admin/users*')) ? 'bg-teal-100' : '' }}">Users</li>
         </a>
         <a href="{{ route('admin.roles.index') }}">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('admin/roles*')) ? 'bg-blue-100' : '' }}">Roles</li>
+            {{ (request()->is('admin/roles*')) ? 'bg-teal-100' : '' }}">Roles</li>
         </a>
     </ul>
 </div>

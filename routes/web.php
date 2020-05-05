@@ -18,6 +18,8 @@ Route::middleware(['auth', 'nocache'])->group(function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
+    Route::get('admin/foodbanks','Admin\FoodbankController@index')->name('admin.foodbanks.index');
+
     Route::name('admin.')->group(function () {
         Route::resource('admin/users', 'Admin\UserController');
         Route::resource('admin/roles', 'Admin\RoleController');

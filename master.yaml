@@ -1,0 +1,106 @@
+models:
+  Foodbank:
+    name: string:200
+    charity: string:10 nullable
+    organisation: string:100 nullable
+    softDeletes
+    relationships:
+      belongsTo: User
+      hasMany: Note, Club
+
+  Address:
+    address1: string:200
+    address2: string:200 nullable
+    address3: string:200 nullable
+    address4: string:200 nullable
+    postcode: string:200
+    latitude: string:10 nullable
+    longitude: string:10 nullable
+    phone_number: string:15 nullable
+    addressable_id: UnsignedBigInteger
+    addressable_type: string:20
+    softDeletes
+    relationships:
+      belongsTo: User
+      hasMany: Note
+
+  DistributionPoint:
+    name: string:100
+    softDeletes
+    relationships:
+      belongsTo: User
+      hasOne: Address
+      hasMany: Hour, Note
+
+  Hour:
+    opens: time
+    closes: time
+    day: integer
+    accessible_id: unsignedBigInteger
+    accessible_type: string:20
+    relationships:
+      belongsTo: User
+
+  Contact:
+    forenames: string
+    surname: string:30
+    phone1: string nullable
+    phone2: string nullable
+    email1: string nullable
+    email2: string nullable
+    softDeletes
+    relationships:
+      belongsTo: User
+      hasMany: Note
+
+  ContactTarget:
+    contactable_id: unsignedBigInteger
+    contactable_type: string:30
+    relationships:
+      belongsTo: Contact
+
+  Club:
+    name: string:50
+    areas: string:200 nullable
+    group: string:20 nullable
+    softDeletes
+    relationships:
+      hasMany: Contact, Foodbank, Note
+
+  Supplier:
+    name: string:50
+    account: string:20 nullable
+    phone: string:20 nullable
+    fax: string:20 nullable
+    softDeletes
+    relationships:
+      hasMany: Contact, Address
+      belongsTo: User
+
+  Shipper:
+    name: string:50
+    modes: string:50 nullable
+    relationships:
+      hasMany: Contact, Address, Note
+      belongsTo: User
+
+  Item:
+    code: string:30
+    sku: string:30 nullable
+    uom: string:10 nullable
+    weight: integer nullable
+    description: string:100 nullable
+    durability: string:20 nullable
+    generic: boolean
+    relationships:
+      hasMany: Supplier, Costs
+
+  Note:
+    memo: memo
+    state: string:10 nullable
+    pinned: boolean default:0
+    notable_id: unsignedBigInteger
+    notable_type: string:30
+    softDeletes
+    relationships:
+      belongsTo: User
