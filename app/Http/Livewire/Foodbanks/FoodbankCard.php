@@ -10,8 +10,6 @@ use Livewire\Component;
 class FoodbankCard extends Component
 {
     public $foodbank_id;
-    public $newnote = '';
-    public $dirtyNote = false;
     public $attr;
     public $editing;
     public $confirming;
@@ -112,25 +110,6 @@ class FoodbankCard extends Component
         ]);
 
     }
-    public function updatedNewnote()
-    {
-        $this->dirtyNote = strlen($this->newnote) > 10;     //must type more than 10 characters
-    }
-
-    public function saveNote()
-    {
-        if ($this->dirtyNote) {
-            Note::create([
-                'notable_id' => $this->foodbank_id,
-                'notable_type' => Foodbank::class,
-                'memo' => $this->newnote,
-                'user_id' => Auth::id(),
-            ]);
-            $this->newnote = '';
-            $this->dirtyNote = false;
-        }
-    }
-
 
     public function confirmDelete()
     {
