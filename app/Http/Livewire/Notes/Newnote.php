@@ -40,6 +40,8 @@ class Newnote extends Component
             ]);
             $this->newnote = '';
             $this->dirtyNote = false;
+        
+            $this->emit('noteAdded');
         }
     }
 

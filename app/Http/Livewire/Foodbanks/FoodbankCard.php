@@ -13,14 +13,15 @@ class FoodbankCard extends Component
     public $attr;
     public $editing;
     public $confirming;
-
+    
     public $name;
     public $charity;
     public $organisation;
     public $location;
     public $email;
     public $website;
-
+    
+    protected $listeners = ['noteAdded'];
 
     public function mount($id)
     {
@@ -32,6 +33,12 @@ class FoodbankCard extends Component
 
         }
     }
+
+
+    public function noteAdded()
+    {
+    }
+
 
     public function render()
     {
