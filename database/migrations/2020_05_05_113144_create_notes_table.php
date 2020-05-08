@@ -15,6 +15,7 @@ class CreateNotesTable extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
             $table->string('memo');
             $table->string('state', 10)->nullable();
             $table->boolean('pinned')->default();

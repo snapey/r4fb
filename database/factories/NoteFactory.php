@@ -7,10 +7,11 @@ use Faker\Generator as Faker;
 
 $factory->define(Note::class, function (Faker $faker) {
     return [
-        'memo' => $faker->word,
-        'state' => $faker->word,
-        'pinned' => $faker->boolean,
-        'notable_id' => $faker->randomNumber(1, 20),
-        'notable_type' => $faker->word,
+        'memo' => $faker->catchphrase,
+        'state' => null,
+        'user_id' => $faker->numberBetween(1,10),
+        'pinned' => $faker->boolean(10),
+        'notable_id' => $faker->numberBetween(1,20),
+        'notable_type' => 'App\Foodbank',
     ];
 });

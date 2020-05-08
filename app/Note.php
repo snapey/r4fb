@@ -14,13 +14,7 @@ class Note extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'memo',
-        'state',
-        'pinned',
-        'notable_id',
-        'notable_type',
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be cast to native types.
@@ -37,5 +31,10 @@ class Note extends Model
     public function user()
     {
         return $this->belongsTo(\App\User::class);
+    }
+
+    public function getRecentlyUpdatedAttribute()
+    {
+        return $this->updated_at > now()->subseconds(60);
     }
 }

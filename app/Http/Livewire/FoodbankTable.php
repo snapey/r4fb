@@ -12,12 +12,14 @@ class FoodbankTable extends TableComponent
     public $thead_class = 'text-left';
     public $checkbox=false;
     public $clickable_row = true;
-    public $clicktarget;
+    public $header_view = 'admin.foodbanks._header';
+
 
     public function mount() 
     {
         $this->setTableProperties();
-        $this->clicktarget = route('admin.foodbanks.index');
+        $this->sort_attribute = 'name';
+        $this->sort_direction = 'asc';
     }
 
     public function query()
@@ -25,6 +27,10 @@ class FoodbankTable extends TableComponent
         return Foodbank::query();
     }
 
+    public function rowClick($id)
+    {
+        return redirect(route('admin.foodbanks.show',$id));
+    }
 
     public function columns()
     {

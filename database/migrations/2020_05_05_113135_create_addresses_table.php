@@ -20,9 +20,9 @@ class CreateAddressesTable extends Migration
             $table->string('address3', 200)->nullable();
             $table->string('address4', 200)->nullable();
             $table->string('postcode', 200);
-            $table->string('latitude', 10)->nullable();
-            $table->string('longitude', 10)->nullable();
-            $table->string('phone_number', 15)->nullable();
+            $table->string('latitude', 12)->nullable();
+            $table->string('longitude', 12)->nullable();
+            $table->string('phone_number', 20)->nullable();
             $table->unsignedBigInteger('addressable_id');
             $table->string('addressable_type', 20);
             $table->softDeletes();

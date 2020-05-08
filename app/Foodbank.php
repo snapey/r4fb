@@ -11,11 +11,7 @@ class Foodbank extends Model
 
     protected $appends = ['updatedForHumans'];
 
-    protected $fillable = [
-        'name',
-        'charity',
-        'organisation',
-    ];
+    protected $guarded = [];
 
     protected $casts = [
         'id' => 'integer',
@@ -27,11 +23,6 @@ class Foodbank extends Model
         return $this->belongsTo(\App\User::class);
     }
 
-    public function notes()
-    {
-        return $this->hasMany(\App\Note::class);
-    }
-
     public function clubs()
     {
         return $this->hasMany(\App\Club::class);
@@ -40,5 +31,22 @@ class Foodbank extends Model
     public function getUpdatedForHumansAttribute()
     {
         return $this->updated_at->diffForHumans();
+    }
+
+    public function addresses()
+    {
+        return $this->morphMany('App\Address', 'addressable');
+    }
+
+    public function notes()
+    {
+        return $this->morphMany('App\Note', 'notable')->latest();
+    }
+
+    public function contacts()
+    {
+        return $this->morphToMany('App\Contact', 'contactable')
+                    ->withPivot('relationship')
+                    ->as('contactable');
     }
 }

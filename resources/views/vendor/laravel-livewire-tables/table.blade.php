@@ -1,10 +1,10 @@
 <div>
-    <div class="flex my-3">
+    <div class="flex items-center justify-between my-3">
         <div class="flex items-center">
             <div class="">
                 <span class="">Search:</span>
             </div>
-            <input type="search" class="ml-4 py-2 px-4 bg-gray-200 hover:border-gray-300  focus:border-gray-300 rounded"  wire:model="search">
+            <input type="search" class="px-4 py-2 ml-4 bg-gray-200 rounded hover:border-gray-300 focus:border-gray-300"  wire:model="search">
         </div>
     @if($header_view)
         <div class="">
@@ -33,9 +33,20 @@
                                     {{ $column->heading }}
 
                                     @if($sort_attribute == $column->attribute)
-                                        <i class="fa fa-sort-amount-{{ $sort_direction == 'asc' ? 'up-alt' : 'down' }}"></i>
+                                        @if($sort_direction == 'desc')
+                                            <svg class="inline-block h-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"></path>
+                                            </svg>
+                                        @else
+                                            <svg class="inline-block h-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"viewBox="0 0 24 24">
+                                                <path d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4"></path>
+                                            </svg>
+                                        @endif
                                     @else
-                                        <i class="fa fa-sort-amount-up-alt" style="opacity: .35;"></i>
+                                        <svg class="inline-block h-5 text-gray-400" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                stroke="currentColor" viewBox="0 0 24 24">
+                                                <path d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4"></path>
+                                        </svg>
                                     @endif
                                 </span>
                             @else
@@ -53,11 +64,12 @@
                 @foreach($models as $model)
 
                     <tr class="{{ $loop->index %2==0 ? 'bg-teal-500 bg-opacity-10' :'' }} 
-                            @if($this->clickable_row) hover:bg-yellow-200 cursor-pointer 
+                            @if($this->clickable_row) 
+                                hover:bg-yellow-200 cursor-pointer 
                             @endif 
                             align-center {{ $this->trClass($model) }}"
                             @if($this->clickable_row)
-                            onclick="window.location='{{ $this->clicktarget }}/{{$model->id}}';"
+                            wire:click="rowClick({{$model->id}})"
                             @endif
                         >
                         @if($checkbox && $checkbox_side == 'left')

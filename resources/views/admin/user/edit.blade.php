@@ -4,19 +4,19 @@
 @endsection
 
 @section('content')
-<div class="flex items-center text-gray-700 text-sm">
-    <div class="w-full mx-4 lg:w-2/3 lg:mx-auto">
+<div class="flex items-center text-sm text-gray-700">
+    <div class="w-full mx-4 lg:w-5/6 lg:mx-auto">
 
         @if (session('status'))
-        <div class="text-sm border border-t-8 rounded text-green-700 border-green-600 bg-green-100 px-3 py-4 mb-4"
+        <div class="px-3 py-4 mb-4 text-sm text-green-700 bg-green-100 border border-t-8 border-green-600 rounded"
             role="alert">
             {{ session('status') }}
         </div>
         @endif
 
-        <div class="bg-white border border-2 rounded shadow-md mb-12">
+        <div class="mb-12 bg-white border border-2 rounded shadow-md">
 
-            <div class="bg-gray-200 py-6 px-6 mb-0 flex items-center justify-between">
+            <div class="flex items-center justify-between px-6 py-6 mb-0 bg-gray-200">
                 @if($user->exists)
                     <h1 class="text-lg font-bold text-gray-800">Edit User: {{ $user->name }}</h1>
 
@@ -25,7 +25,7 @@
                             onsubmit="return confirm('Are you sure you want to delete this User?');">
                             @csrf @method('delete')
                             <button
-                                class="w-48 -mt-2 py-2 text-sm rounded shadow bg-gray-500 hover:bg-red-800 font-bold text-white"
+                                class="w-48 py-2 -mt-2 text-sm font-bold text-white bg-gray-500 rounded shadow hover:bg-red-800"
                                 type="submit">- Delete User</button>
                         </form>
                     @endcan
@@ -36,7 +36,7 @@
 
             </div>
 
-            <div class="w-full p-6 flex">
+            <div class="flex w-full p-6">
             @if($user->exists)
                 <form class="flex flex-col w-full" method="POST" action="{{ route('admin.users.update',$user) }}">
                     @method('put')
@@ -46,25 +46,25 @@
                     @csrf
                     <div class="flex w-full">
                         {{-- form input element --}}
-                        <div class="flex flex-wrap content-start mb-6 w-1/3 text-base">
-                            <label for="name" class="block  text-sm font-bold mb-2">User Name:</label>
+                        <div class="flex flex-wrap content-start w-1/3 mb-6 text-base">
+                            <label for="name" class="block mb-2 text-sm font-bold">User Name:</label>
 
                             <input id="name" type="text" required name="name" value="{{ old('name', $user->name) }}"
                                 class="text-base font-mono shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline @error('name') border-red-500 @enderror">
                             @error('name')
-                            <p class="text-red-500 text-xs italic mt-4">{{ $message }}</p>
+                            <p class="mt-4 text-xs italic text-red-500">{{ $message }}</p>
                             @enderror
                         </div>
 
                         {{-- form input element --}}
-                        <div class="flex flex-wrap content-start mb-6 w-2/3 ml-4 text-base">
-                            <label for="email" class="block  text-sm font-bold mb-2">Email:</label>
+                        <div class="flex flex-wrap content-start w-2/3 mb-6 ml-4 text-base">
+                            <label for="email" class="block mb-2 text-sm font-bold">Email:</label>
 
                             <input id="email" type="text" required name="email"
                                 value="{{ old('email', $user->email) }}"
                                 class="text-base font-mono shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline @error('email') border-red-500 @enderror">
                             @error('email')
-                            <p class="text-red-500 text-xs italic mt-4">{{ $message }}</p>
+                            <p class="mt-4 text-xs italic text-red-500">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
@@ -72,39 +72,39 @@
                     <div class="flex w-full">
 
                         {{-- form input element --}}
-                        <div class="flex flex-wrap content-start mb-6 w-1/3">
+                        <div class="flex flex-wrap content-start w-1/3 mb-6">
                             <label for="password"
-                                class="block  text-sm font-bold mb-2">Password:</label>
+                                class="block mb-2 text-sm font-bold">Password:</label>
 
                             <input id="password" type="text" name="password" value="{{ old('password') }}"
                                 class="text-base font-mono shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline @error('password') border-red-500 @enderror">
                             @error('password')
-                            <p class="text-red-500 text-xs italic mt-4">{{ $message }}</p>
+                            <p class="mt-4 text-xs italic text-red-500">{{ $message }}</p>
                             @enderror
                         </div>
 
                         {{-- form input element --}}
-                        <div class="flex flex-wrap content-start mb-6 w-1/3 rounded shadow pt-3 ml-4 mt-5 border">
+                        <div class="flex flex-wrap content-start w-1/3 pt-3 mt-5 mb-6 ml-4 border rounded shadow">
                             <label for="passwordless"
-                                class="block text-sm font-bold mb-2 pl-4">Login without password?</label>
+                                class="block pl-4 mb-2 text-sm font-bold">Login without password?</label>
 
                             <input id="passwordless" type="checkbox" name="passwordless" value="1"
                                 class="ml-4 focus:outline-none focus:shadow-outline @error('passwordless') border-red-500 @enderror"
                                 @if($user->passwordless) checked @endif
                             >
                             @error('passwordless')
-                            <p class="text-red-500 text-xs italic mt-4">{{ $message }}</p>
+                            <p class="mt-4 text-xs italic text-red-500">{{ $message }}</p>
                             @enderror
                         </div>
 
                         {{-- form input element --}}
-                        <div class="flex flex-wrap content-start mb-6 w-1/3 pl-4">
-                            <label for="mobile" class="block  text-sm font-bold mb-2">Mobile: <span class="text-xs font-normal">(for notifications)</span></label>
+                        <div class="flex flex-wrap content-start w-1/3 pl-4 mb-6">
+                            <label for="mobile" class="block mb-2 text-sm font-bold">Mobile: <span class="text-xs font-normal">(for notifications)</span></label>
                         
                             <input id="mobile" type="text" name="mobile" value="{{ old('mobile', $user->mobile) }}"
                                 class="text-base font-mono shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline @error('mobile') border-red-500 @enderror">
                             @error('mobile')
-                            <p class="text-red-500 text-xs italic mt-4">{{ $message }}</p>
+                            <p class="mt-4 text-xs italic text-red-500">{{ $message }}</p>
                             @enderror
                         </div>
 

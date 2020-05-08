@@ -73,13 +73,13 @@
 
  /* purgecss start ignore */
 .livewire-pagination {
-     @apply inline-block w-auto ml-auto float-right;
+     @apply inline-block float-right w-auto ml-auto;
 }
 ul.pagination {
-    @apply flex border border-gray-200 rounded font-mono;
+    @apply flex font-mono border border-gray-200 rounded;
 }
 .page-link {
-    @apply block bg-white text-teal-800 border-r border-gray-200 outline-none py-2 w-48 text-sm text-center;
+    @apply block w-48 py-2 text-sm text-center text-teal-800 bg-white border-r border-gray-200 outline-none;
 }
 .page-link:last-child {
     @apply border-0;
@@ -88,12 +88,17 @@ ul.pagination {
     @apply hidden;
 }
 .page-link:hover {
-    @apply bg-blue-700 text-white border-blue-700;
+    @apply text-white bg-blue-700 border-blue-700;
 }
 .page-item.active .page-link {
-    @apply bg-blue-700 text-white border-blue-700;
+    @apply text-white bg-blue-700 border-blue-700;
 }
 .page-item.disabled .page-link {
-    @apply bg-white text-gray-300 border-gray-200;
+    @apply text-gray-300 bg-white border-gray-200;
 }
+
+.form-text {
+    @apply w-full px-3 py-2 font-mono text-base leading-tight border rounded shadow appearance-none;        
+}
+
 /* purgecss end ignore */

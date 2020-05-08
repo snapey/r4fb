@@ -19,6 +19,8 @@ Route::middleware(['auth', 'nocache'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::get('admin/foodbanks','Admin\FoodbankController@index')->name('admin.foodbanks.index');
+    Route::get('admin/foodbanks/create','Admin\FoodbankController@create')->name('admin.foodbanks.create');
+    Route::get('admin/foodbanks/{foodbank}','Admin\FoodbankController@show')->name('admin.foodbanks.show');
 
     Route::name('admin.')->group(function () {
         Route::resource('admin/users', 'Admin\UserController');
