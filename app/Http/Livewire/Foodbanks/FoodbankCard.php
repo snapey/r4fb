@@ -21,7 +21,11 @@ class FoodbankCard extends Component
     public $email;
     public $website;
     
-    protected $listeners = ['noteAdded'];
+    protected $listeners = [
+        'noteAdded' => 'redo',
+        'contactsUpdated' =>  'redo',
+        'contactDetached' => 'redo',
+    ];
 
     public function mount($id)
     {
@@ -35,10 +39,10 @@ class FoodbankCard extends Component
     }
 
 
-    public function noteAdded()
+    public function redo()
     {
+        dump('redo');
     }
-
 
     public function render()
     {
@@ -50,6 +54,7 @@ class FoodbankCard extends Component
             $foodbank = new Foodbank;
         } else {
             $foodbank = Foodbank::with(['addresses', 'contacts', 'notes.user'])->find($this->foodbank_id);
+            dump('refresj foodbank');
         }
 
         if(!$this->editing) {

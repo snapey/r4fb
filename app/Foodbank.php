@@ -9,6 +9,8 @@ class Foodbank extends Model
 {
     use SoftDeletes;
 
+    const NAME = 'Foodbank'; 
+
     protected $appends = ['updatedForHumans'];
 
     protected $guarded = [];
@@ -46,7 +48,7 @@ class Foodbank extends Model
     public function contacts()
     {
         return $this->morphToMany('App\Contact', 'contactable')
-                    ->withPivot('relationship')
-                    ->as('contactable');
+                    ->withPivot('relationship');
     }
+
 }

@@ -18,7 +18,7 @@ class CreateContactablesTable extends Migration
             $table->unsignedBigInteger('contact_id');
             $table->unsignedBigInteger('contactable_id');
             $table->string('contactable_type', 30);
-            $table->string('relationship',50);
+            $table->string('relationship',50)->nullable();
             $table->timestamps();
         });
     }

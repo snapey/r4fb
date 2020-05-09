@@ -19,8 +19,9 @@
 
         <div class="w-1/4 bg-gray-100">
             @foreach($foodbank->contacts as $contact)
-                @livewire('contacts.contact-card', compact('contact'), key($loop->index))
+                @livewire('contacts.contact-card', ['contact' => $contact], key($contact->id))
             @endforeach
+            @livewire('contacts.newcontact', ['model' => $foodbank] )
         </div>
 
     </div>
