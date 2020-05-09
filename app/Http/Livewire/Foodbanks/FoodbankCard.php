@@ -41,7 +41,6 @@ class FoodbankCard extends Component
 
     public function redo()
     {
-        dump('redo');
     }
 
     public function render()
@@ -54,7 +53,6 @@ class FoodbankCard extends Component
             $foodbank = new Foodbank;
         } else {
             $foodbank = Foodbank::with(['addresses', 'contacts', 'notes.user'])->find($this->foodbank_id);
-            dump('refresj foodbank');
         }
 
         if(!$this->editing) {

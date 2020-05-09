@@ -23,7 +23,6 @@ class Modal extends Component
 
     public function mount($model,$contactable)
     {
-        // dump($model);
         $this->model_id = $model->id;
         $this->model_name = get_class($model);
 
