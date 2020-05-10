@@ -46,7 +46,7 @@ class Contact extends Model
 
     public function notes()
     {
-        return $this->hasMany(\App\Note::class);
+        return $this->morphMany('App\Note', 'notable')->latest();
     }
 
     /** 
@@ -55,5 +55,25 @@ class Contact extends Model
     public function contactables()
     {
         return $this->hasMany(Contactable::class);
+    }
+
+    public function foodbanks()
+    {
+        return $this->morphedByMany('App\Foodbank', 'contactable')->withPivot('relationship');
+    }
+
+    public function clubs()
+    {
+        return $this->morphedByMany('App\Club', 'contactable')->withPivot('relationship');
+    }
+
+    public function shippers()
+    {
+        return $this->morphedByMany('App\Shipper', 'contactable')->withPivot('relationship');
+    }
+
+    public function suppliers()
+    {
+        return $this->morphedByMany('App\Supplier', 'contactable')->withPivot('relationship');
     }
 }

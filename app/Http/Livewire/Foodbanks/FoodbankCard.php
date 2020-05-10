@@ -40,9 +40,7 @@ class FoodbankCard extends Component
     }
 
 
-    public function redo()
-    {
-    }
+    public function redo(){}
 
     public function render()
     {
