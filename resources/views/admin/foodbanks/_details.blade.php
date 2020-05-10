@@ -1,4 +1,4 @@
-<div class="flex flex-col p-4 m-4 space-y-2 bg-white border border-gray-300 rounded">
+<div class="flex flex-col py-4 pr-4 m-4 space-y-2 bg-white border border-gray-300 rounded">
     <div class="flex flex-row items-center">
         <label class="flex-1 inline-block w-3/12 pl-3 text-sm font-bold" for="name">Name:</label>
         <input

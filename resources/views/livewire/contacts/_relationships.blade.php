@@ -1,14 +1,14 @@
 {{-- relationships ---------------------------------------------------- --}}
 
-<div>
-    <h2 class="py-2 text-xl font-bold">
-        Relationships
+<div class="mt-2 mr-4">
+    <h2 class="py-2 text-xl font-bold border-t-2 border-gray-400">
+        Relationships <span class="pl-4 text-xs font-normal text-gray-600">Create relationships from the other record</span>
     </h2>
-    <table class="text-sm bg-white border-t-2 border-gray-400">
+    <table class="text-sm bg-white ">
 
         @foreach($contact->foodbanks as $foodbank)
         <tr>
-            <td class="py-2 ">Foodbank</td>
+            <td class="px-4 py-2 ">Foodbank</td>
             <td class="px-4 py-2">
                 <a class="text-indigo-700 underline" href="{{ route('admin.foodbanks.show',$foodbank->id)}}">{{ $foodbank->name}}</a>
             </td>

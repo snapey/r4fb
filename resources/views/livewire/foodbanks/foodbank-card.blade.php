@@ -3,7 +3,7 @@
     <div class="flex flex-row border-t-2 border-gray-400" wire:poll.20s>
 
         <div class="w-3/4 my-4 border-r-2 border-gray-400">
-        <h2 class="mx-4 text-xl font-bold">{{ $name }}</h2>
+        <h2 class="text-xl font-bold ">{{ $name }}</h2>
 
             @include('admin.foodbanks._details')
             
