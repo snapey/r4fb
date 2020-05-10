@@ -1,4 +1,4 @@
-<div class="flex flex-col p-4 m-4 space-y-2 space-y-4 bg-white border border-gray-300 rounded">
+<div class="flex flex-col p-4 m-4 space-y-2 bg-white border border-gray-300 rounded">
     <div class="flex flex-row items-center">
         <label class="flex-1 inline-block w-3/12 pl-3 text-sm font-bold" for="name">Name:</label>
         <input
@@ -81,6 +81,17 @@
         <div class="w-6/12"></div>
     </div>
     @error('charity')
+    <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
+    @enderror
+
+    <div class="flex flex-row items-center">
+        <label class="flex-1 inline-block w-3/12 pl-3 text-sm font-bold" for="name">Open Hours:</label>
+        <input
+            class="inline-block w-8/12 px-2 py-1 mr-4 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
+            wire:model.lazy="hours" name="hours" type="text" @if(!$editing) disabled @endif />
+        <div class="w-1/12"></div>
+    </div>
+    @error('hours')
     <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
     @enderror
 </div>

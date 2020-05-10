@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Foodbanks;
 
 use App\Foodbank;
 use Kdion4891\LaravelLivewireTables\Column;
