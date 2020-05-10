@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\ModelTraits\EncryptableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Contact extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, EncryptableTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -22,6 +23,11 @@ class Contact extends Model
         'email1',
         'email2',
     ];
+
+    public $encryptable = [
+        'forenames', 'phone1', 'phone2', 'email1', 'email2'
+    ];
+
 
     /**
      * The attributes that should be cast to native types.
