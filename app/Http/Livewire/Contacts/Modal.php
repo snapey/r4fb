@@ -20,10 +20,12 @@ class Modal extends Component
     public $email1;
     public $email2;
     public $contactable;
+    public $exists;
 
     public function mount($model,$contactable)
     {
         $this->model_id = $model->id;
+        $this->exists = $model->id;
         $this->model_name = get_class($model);
 
         $this->forenames = $model->forenames;

@@ -8,4 +8,9 @@ class Contactable extends Pivot
 {
     protected $table='contactables';
     protected $guarded=[];
+
+    public function contact()
+    {
+        return $this->belongsTo(Contact::class);
+    }   
 }

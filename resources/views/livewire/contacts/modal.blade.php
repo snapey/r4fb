@@ -39,7 +39,7 @@
                         <label class="flex-1 inline-block w-3/12 text-sm font-bold" for="fornames">Forenames:</label>
                         <input {{ !$editing ? 'disabled': '' }}
                             class="inline-block w-9/12 px-2 py-1 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
-                            wire:model="forenames" name="forenames" type="text" />
+                            wire:model.lazy="forenames" name="forenames" type="text" />
                     </div>
                     @error('forenames')
                     <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
@@ -49,17 +49,19 @@
                         <label class="flex-1 inline-block w-3/12 text-sm font-bold" for="surname">Surname:</label>
                         <input {{ !$editing ? 'disabled': '' }}
                             class="inline-block w-9/12 px-2 py-1 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
-                            wire:model="surname" name="surname" type="text" />
+                            wire:model.lazy="surname" name="surname" type="text" />
                     </div>
                     @error('surname')
                     <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
                     @enderror
+
+                    @include('admin.contacts._candidates')
     
                     <div class="flex flex-row items-center">
                         <label class="flex-1 inline-block w-3/12 text-sm font-bold" for="phone1">Phone:</label>
                         <input {{ !$editing ? 'disabled': '' }}
                             class="inline-block w-9/12 px-2 py-1 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
-                            wire:model="phone1" name="phone1" type="text" />
+                            wire:model.lazy="phone1" name="phone1" type="text" />
                     </div>
                     @error('phone1')
                     <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
@@ -69,7 +71,7 @@
                         <label class="flex-1 inline-block w-3/12 text-sm font-bold" for="phone2">Alt. Phone:</label>
                         <input {{ !$editing ? 'disabled': '' }}
                             class="inline-block w-9/12 px-2 py-1 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
-                            wire:model="phone2" name="phone2" type="text" />
+                            wire:model.lazy="phone2" name="phone2" type="text" />
                     </div>
                     @error('phone2')
                     <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
@@ -79,7 +81,7 @@
                         <label class="flex-1 inline-block w-3/12 text-sm font-bold" for="email1">Email:</label>
                         <input {{ !$editing ? 'disabled': '' }}
                             class="inline-block w-9/12 px-2 py-1 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
-                            wire:model="email1" name="email1" type="text" />
+                            wire:model.lazy="email1" name="email1" type="text" />
                     </div>
                     @error('email1')
                     <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
@@ -89,7 +91,7 @@
                         <label class="flex-1 inline-block w-3/12 text-sm font-bold" for="email2">Alt. Email:</label>
                         <input {{ !$editing ? 'disabled': '' }}
                             class="inline-block w-9/12 px-2 py-1 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
-                            wire:model="email2" name="email2" type="text" />
+                            wire:model.lazy="email2" name="email2" type="text" />
                     </div>
                     @error('email2')
                     <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
@@ -99,7 +101,7 @@
                         <label class="flex-1 inline-block w-3/12 text-sm font-bold" for="relationship">Relationship:</label>
                         <input {{ !$editing ? 'disabled': '' }} placeholder="What is the relationship"
                             class="inline-block w-9/12 px-2 py-1 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
-                            wire:model="contactable.relationship" name="relationship" type="text" />
+                            wire:model.lazy="contactable.relationship" name="relationship" type="text" />
                     </div>
                     @error('relationship')
                     <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
@@ -110,7 +112,7 @@
                 <!--Footer-->
                 <div  x-data="{ deleteMessage:false }">
                     <div class="flex justify-end mt-3 space-x-4 border-t border-gray-300">
-                        @if($surname)
+                        @if($exists)
                             <button x-on:click="deleteMessage=true"
                                 class="w-24 py-2 mt-4 text-xs font-bold text-center text-gray-700 border border-gray-400 rounded hover:bg-red-600 hover:text-white ">
                                 Delete

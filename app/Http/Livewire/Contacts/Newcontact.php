@@ -22,6 +22,9 @@ class Newcontact extends Component
 
     public $contactable;
 
+    public $candidates = null;
+    public $exists = null;
+
     public function mount($model)
     {
         $this->model_id = $model->id;
@@ -61,14 +64,17 @@ class Newcontact extends Component
 
     public function save()
     {
-        $contact = Contact::create([
-            'forenames' => $this->forenames,
-            'surname' => $this->surname,
-            'phone1' => $this->phone1,
-            'phone2' => $this->phone2,
-            'email1' => $this->email1,
-            'email2' => $this->email2,
-        ]);
+        $contact = Contact::updateOrCreate(
+            ['id' => $this->exists],
+            [
+                'forenames' => $this->forenames,
+                'surname' => $this->surname,
+                'phone1' => $this->phone1,
+                'phone2' => $this->phone2,
+                'email1' => $this->email1,
+                'email2' => $this->email2,
+            ]
+        );
 
         Contactable::create([
             'contact_id' => $contact->id,
@@ -92,6 +98,35 @@ class Newcontact extends Component
         $this->email1 = null;
         $this->email2 = null;
         $this->contactable['relationship'] = null;
+        $this->candidates = null;
+        $this->exists = null;
+
+    }
+
+    // functionality to handle typing in a surname and having it offer others contacts
+    // as candidates for this contact.  The user can dismiss or pick one. Then it 
+    // becomes a case of using the selected contact but creating a new relationship
+
+    public function updatedSurname()
+    {
+        $this->candidates = Contact::query()
+            ->where('surname',$this->surname)
+            ->get();
+    }
+
+    public function selectContact($id)
+    {
+        $contact = Contact::findOrFail($id);
+
+        $this->forenames = $contact->forenames;
+        $this->surname = $contact->surname;
+        $this->phone1 = $contact->phone1;
+        $this->phone2 = $contact->phone2;
+        $this->email1 = $contact->email1;
+        $this->email2 = $contact->email2;
+
+        $this->exists = $id;
+
     }
 
 }

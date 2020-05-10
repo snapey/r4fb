@@ -42,4 +42,12 @@ class Contact extends Model
     {
         return $this->hasMany(\App\Note::class);
     }
+
+    /** 
+     * related models
+     */
+    public function contactables()
+    {
+        return $this->hasMany(Contactable::class);
+    }
 }
