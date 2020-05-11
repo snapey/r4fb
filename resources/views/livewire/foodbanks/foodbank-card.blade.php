@@ -12,6 +12,8 @@
 
             @include('admin.foodbanks._details')
             
+            @include('admin.addresses.card',['addresses'=>$foodbank->addresses])
+            
             <h2 class="pt-2 mx-4 my-3 text-xl font-bold border-t-2 border-gray-400">Notes</h2>
         
             <div class="flex flex-col mx-4 space-y-2">

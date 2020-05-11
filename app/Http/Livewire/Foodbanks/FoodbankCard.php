@@ -13,6 +13,8 @@ class FoodbankCard extends Component
     public $attr;
     public $editing;
     public $confirming;
+    public $addressShowing;
+    public $createAddress;
     
     public $name;
     public $charity;
@@ -27,6 +29,7 @@ class FoodbankCard extends Component
         'noteAdded' => 'redo',
         'contactsUpdated' =>  'redo',
         'contactDetached' => 'redo',
+        'closeAddressModal'
     ];
 
     public function mount($id)
@@ -42,6 +45,12 @@ class FoodbankCard extends Component
 
 
     public function redo(){}
+
+    public function closeAddressModal()
+    {
+        $this->addressShowing = false;
+        $this->createAddress = false;
+    }
 
     public function render()
     {
@@ -139,5 +148,17 @@ class FoodbankCard extends Component
         $model->delete();
 
         $this->redirect(route('admin.foodbanks.index'));
+    }
+
+    // functions to deal with the showing of the address edit card
+    
+    public function showAddress($address)
+    {
+        $this->addressShowing = $address;
+    }
+
+    public function newAddress()
+    {
+        $this->createAddress=true;
     }
 }
