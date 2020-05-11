@@ -28,15 +28,15 @@ Route::middleware(['auth', 'nocache'])->group(function () {
 
     Route::get('admin/clubs', 'Admin\ClubController@index')->name('admin.clubs.index');
     Route::get('admin/clubs/create', 'Admin\ClubController@create')->name('admin.clubs.create');
-    Route::get('admin/clubs/{contact}', 'Admin\ClubController@show')->name('admin.clubs.show');
+    Route::get('admin/clubs/{club}', 'Admin\ClubController@show')->name('admin.clubs.show');
 
     Route::get('admin/suppliers', 'Admin\SupplierController@index')->name('admin.suppliers.index');
     Route::get('admin/suppliers/create', 'Admin\SupplierController@create')->name('admin.suppliers.create');
-    Route::get('admin/suppliers/{contact}', 'Admin\SupplierController@show')->name('admin.suppliers.show');
+    Route::get('admin/suppliers/{supplier}', 'Admin\SupplierController@show')->name('admin.suppliers.show');
 
     Route::get('admin/shippers', 'Admin\ShipperController@index')->name('admin.shippers.index');
     Route::get('admin/shippers/create', 'Admin\ShipperController@create')->name('admin.shippers.create');
-    Route::get('admin/shippers/{contact}', 'Admin\ShipperController@show')->name('admin.shippers.show');
+    Route::get('admin/shippers/{shipper}', 'Admin\ShipperController@show')->name('admin.shippers.show');
 
     Route::name('admin.')->group(function () {
         Route::resource('admin/users', 'Admin\UserController');

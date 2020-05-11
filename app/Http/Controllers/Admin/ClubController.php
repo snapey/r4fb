@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Contact;
+use App\Club;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
@@ -11,17 +11,17 @@ class ClubController extends Controller
 {
     public function index()
     {
-        return view('admin.contacts.index');
+        return view('admin.clubs.index');
     }
 
-    public function show(Contact $contact)
+    public function show(Club $club)
     {
-        return view('admin.contacts.show')->withContact($contact);
+        return view('admin.clubs.show')->withClub($club);
     }
 
     public function create()
     {
-        return $this->show(new Contact);
+        return $this->show(new Club);
     }
 
 }

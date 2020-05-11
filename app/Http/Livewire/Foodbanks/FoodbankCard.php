@@ -134,8 +134,10 @@ class FoodbankCard extends Component
 
     public function kill()
     {
-        Foodbank::destroy($this->foodbank_id);
-        $this->redirect(route('admin.foodbanks.index'));
+        $model = Foodbank::find($this->foodbank_id);
+        $model->contacts()->detach();
+        $model->delete();
 
+        $this->redirect(route('admin.foodbanks.index'));
     }
 }

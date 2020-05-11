@@ -22,7 +22,8 @@ class Permission extends SP
 
             'Foodbanks.add',    // can create new foodbanks
 
-            'Contacts.add'      // can create new contacts
+            'Contacts.add',     // can create new contacts
+            'Clubs.add',        // can create new clubs
         ]);
     }
 }

@@ -37,7 +37,31 @@ class ContactTable extends TableComponent
             Column::make('Surname','surname')->searchable()->sortable(),
             Column::make('Forenames','forenames'),
             Column::make('Phone','phone1'),
+            Column::make('Alt.Phone','phone2'),
             Column::make('Email','email1'),
         ];
+    }
+
+
+    public function thClass($attribute)
+    {
+        if ($attribute == 'surname') return 'w-2/12';
+        if ($attribute == 'forenames') return 'w-2/12';
+        if ($attribute == 'phone1') return 'w-2/12';
+        if ($attribute == 'phone2') return 'w-2/12';
+        if ($attribute == 'email1') return 'w-4/12';
+
+        return null;
+    }
+
+    public function tdClass($attribute, $value)
+    {
+        if ($attribute == 'surname') return 'w-2/12';
+        if ($attribute == 'forenames') return 'w-2/12';
+        if ($attribute == 'phone1') return 'w-2/12';
+        if ($attribute == 'phone2') return 'w-2/12';
+        if ($attribute == 'email1') return 'w-4/12 overflow-hidden';
+
+        return null;
     }
 }

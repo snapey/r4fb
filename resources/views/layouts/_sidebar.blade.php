@@ -40,7 +40,7 @@
             {{ (request()->is('admin/contacts*')) ? 'bg-teal-100' : '' }}">Contacts</li>
         </a>
 
-        <a href="#">
+        <a href="{{ route('admin.clubs.index')}}">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
             {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">Clubs</li>
         </a>

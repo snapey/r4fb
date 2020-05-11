@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         factory(App\Contact::class, 20)->create();
         factory(App\Contactable::class, 30)->create();
         factory(App\Note::class, 30)->create();
+        factory(App\Club::class, 30)->create();
 
     }
 }

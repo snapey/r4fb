@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Contacts;
 
 use App\Contact;
 use App\Contactable;
-use App\Foodbank;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Livewire\Component;
 

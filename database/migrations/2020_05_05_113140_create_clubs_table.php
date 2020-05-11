@@ -18,6 +18,7 @@ class CreateClubsTable extends Migration
             $table->string('name', 50);
             $table->string('areas', 200)->nullable();
             $table->string('group', 20)->nullable();
+            $table->string('district', 4)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

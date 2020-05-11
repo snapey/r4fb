@@ -1,7 +1,7 @@
-@extends('layouts.app',[$title='Contact | '])
+@extends('layouts.app',[$title='Club | '])
 
 @section('content')
 
-    @livewire('contacts.contact-main-card',compact('contact'))
+    @livewire('clubs.club-card',['club' => $club])
     
 @endsection
