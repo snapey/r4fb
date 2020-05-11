@@ -1,5 +1,5 @@
 <div>
-    <div wire:click="showModal" class="px-4 py-2 m-4 overflow-hidden bg-white rounded shadow">
+    <div wire:click="showModal" class="px-4 py-2 m-4 overflow-hidden bg-white rounded shadow cursor-pointer">
         <ul class="space-y-2">
             <li>{{ $contact->forenames }} {{ $contact->surname }}</li>
             <li>{{ $contact->phone1}}</li>

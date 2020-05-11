@@ -1,6 +1,11 @@
 <div wire:poll.20s class="px-4 pb-4 bg-gray-100">
 
-    <h2 class="pt-2 my-2 text-xl font-bold text-teal-800 ">CONTACT</h2>
+    <div class="flex flex-row items-center justify-between pt-2 mx-4 my-2">
+        <h2 class="text-xl font-bold text-teal-800 ">CONTACT</h2>
+        <a href="{{ route('admin.contacts.index')}}" class="px-4 py-1 text-sm border rounded hover:bg-gray-300">Return to
+            Index</a>
+    </div>
+
     <div class="pt-4 border-t-2 border-gray-400">
         <h2 class="mb-4 text-xl font-bold">{{ $forenames }} {{ $surname}}</h2>
     </div>
