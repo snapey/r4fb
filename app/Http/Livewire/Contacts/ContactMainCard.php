@@ -67,6 +67,15 @@ class ContactMainCard extends Component
 
     public function save()
     {
+        $this->validate([
+            'forenames' => 'max:200',
+            'surname' => 'required | max:200',
+            'phone1' => 'max:200',
+            'phone2' => 'max:200',
+            'email1' => 'nullable | email | max:200',
+            'email2' => 'nullable | email | max:200'
+        ]);
+
         $contact = Contact::UpdateOrCreate(
             ['id' => $this->model_id],
             [
