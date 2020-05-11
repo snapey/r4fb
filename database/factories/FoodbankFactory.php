@@ -12,6 +12,7 @@ $factory->define(Foodbank::class, function (Faker $faker) {
         'charity' => $faker->randomNumber(8),
         'organisation' => $faker->boolean(50) ? $faker->company : null,
         'website' => $faker->boolean(50) ? $faker->url : null,
+        'facebook' => $faker->boolean(50) ? $faker->url : null,
         'email' => $faker->boolean(50) ? $faker->companyEmail : null,
         'updated_at' => $faker->dateTimeThisMonth(),
     ];

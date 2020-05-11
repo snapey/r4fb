@@ -20,6 +20,7 @@ class FoodbankCard extends Component
     public $location;
     public $email;
     public $website;
+    public $facebook;
     public $hours;
     
     protected $listeners = [
@@ -70,6 +71,7 @@ class FoodbankCard extends Component
             $this->location = $foodbank->location;
             $this->email = $foodbank->email;
             $this->website = $foodbank->website;
+            $this->facebook = $foodbank->facebook;
             $this->hours = $foodbank->hours;
     }
 
@@ -108,6 +110,7 @@ class FoodbankCard extends Component
             'location' => 'max:100',
             'email' => 'nullable|email|max:100',
             'website' => 'max:100',
+            'facebook' => 'max:100',
             'hours' => 'max:200',
         ]);
 
@@ -118,6 +121,7 @@ class FoodbankCard extends Component
             'location' => $this->location,
             'email' => $this->email,
             'website' => $this->website,
+            'facebook' => $this->facebook,
             'hours' => $this->hours,
         ]);
 

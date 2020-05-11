@@ -62,6 +62,7 @@
     @error('website')
     <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
     @enderror
+    
     <div class="flex flex-row items-center">
         <label class="flex-1 inline-block w-3/12 pl-3 text-sm font-bold" for="name">Email:</label>
         <input
@@ -70,6 +71,17 @@
         <div class="w-1/12"></div>
     </div>
     @error('email')
+    <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
+    @enderror
+
+    <div class="flex flex-row items-center">
+        <label class="flex-1 inline-block w-3/12 pl-3 text-sm font-bold" for="name">Facebook:</label>
+        <input
+            class="inline-block w-8/12 px-2 py-1 mr-4 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
+            wire:model.lazy="facebook" name="facebook" type="text" @if(!$editing) disabled @endif />
+        <div class="w-1/12"></div>
+    </div>
+    @error('facebook')
     <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
     @enderror
 
