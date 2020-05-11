@@ -19,6 +19,10 @@ class Permission extends SP
 
             'Roles.manage',     // can perform all role and permission maintenance but scoped to their own roles and permissions
             'Roles.manage.all', // can perform all role and permission maintenance
+
+            'Foodbanks.add',    // can create new foodbanks
+
+            'Contacts.add'      // can create new contacts
         ]);
     }
 }

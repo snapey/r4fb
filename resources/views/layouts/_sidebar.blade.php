@@ -31,7 +31,7 @@
 
         <a href="{{ route('admin.foodbanks.index')}}">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('admin/foodbanks*')) ? 'bg-teal-100' : '' }}">Foodbanks</li>
+            {{ (request()->is('admin/foodbanks*')) ? 'bg-teal-100' : '' }}">Food Banks</li>
         </a>
 
         

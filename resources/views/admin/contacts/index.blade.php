@@ -4,9 +4,9 @@
 
 <div class="container mx-auto text-sm text-gray-700" x-data="{ effectivePermissions: false }">
     <div class="flex items-center justify-between w-full">
-        <h1 class="px-4 text-2xl font-bold">Contacts</h1>
-        @can('contacts.add')
-            <a href="{{ route('admin.contacts.create') }}"><button class="w-48 positive-button">+ Add new Contact</button></a>
+        <h1 class="text-xl font-bold text-teal-800">CONTACTS</h1>
+        @can('Contacts.add')
+            <a href="{{ route('admin.contacts.create') }}"><button class="w-48 positive-button">+ Add new contact</button></a>
         @endcan
     </div>
     
