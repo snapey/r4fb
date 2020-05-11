@@ -9,22 +9,10 @@ class Club extends Model
 {
     use SoftDeletes;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name',
-        'areas',
-        'group',
-    ];
+    const NAME = 'Club'; 
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
+    protected $guarded=[];
+
     protected $casts = [
         'id' => 'integer',
     ];
@@ -32,16 +20,17 @@ class Club extends Model
 
     public function contacts()
     {
-        return $this->hasMany(\App\Contact::class);
+        return $this->morphToMany(Contact::class, 'contactable')
+            ->withPivot('relationship');
     }
 
     public function foodbanks()
     {
-        return $this->hasMany(\App\Foodbank::class);
+        return $this->hasMany(Foodbank::class);
     }
 
     public function notes()
     {
-        return $this->hasMany(\App\Note::class);
+        return $this->morphMany(Note::class, 'notable')->latest();
     }
 }
