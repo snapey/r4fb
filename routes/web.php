@@ -11,7 +11,7 @@ Auth::routes(['register' => false]);
 Route::post('/passwordless', 'Auth\LoginController@passwordless')->name('passwordless.login');
 Route::view('/passwordless/sent', 'auth.passwordless.sent')->name('passwordless.sent');
 Route::get('/passwordless/link/{user}', 'Auth\LoginController@link')->name('passwordless.link');
-// Route::view('/logout', 'auth.logout')->name('logout');
+Route::view('/logout', 'auth.logout')->name('logoutview');
 
 //protected routes (must be logged in)
 Route::middleware(['auth', 'nocache'])->group(function () {
