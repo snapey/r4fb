@@ -11,7 +11,9 @@
         <h2 class="mx-4 text-xl font-bold ">{{ $name }}</h2>
 
             @include('admin.foodbanks._details')
-            
+
+        {{--don't show if new foodbank --}}
+        @if($foodbank_id)
             @include('admin.addresses.card',['addresses'=>$foodbank->addresses])
             
             <h2 class="pt-2 mx-4 my-3 text-xl font-bold border-t-2 border-gray-400">Notes</h2>
@@ -22,15 +24,18 @@
                     @livewire('notes.note-card', compact('note'), key($note->id))
                 @endforeach
             </div>
+        @endif
         </div>
 
-        <div class="w-1/4 bg-gray-100">
-            @foreach($foodbank->contacts as $contact)
-                @livewire('contacts.contact-card', ['contact' => $contact], key($contact->id))
-            @endforeach
-            @livewire('contacts.newcontact', ['model' => $foodbank] )
-        </div>
-
+        {{-- don't show if new foodbank --}}
+        @if($foodbank_id)
+            <div class="w-1/4 bg-gray-100">
+                @foreach($foodbank->contacts as $contact)
+                    @livewire('contacts.contact-card', ['contact' => $contact], key($contact->id))
+                @endforeach
+                @livewire('contacts.newcontact', ['model' => $foodbank] )
+            </div>
+        @endif
     </div>
 
     <script>
