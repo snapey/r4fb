@@ -6,7 +6,7 @@
     <div class="flex items-center justify-between w-full">
         <h1 class="text-xl font-bold text-teal-800">FOOD BANKS</h1>
         @can('Foodbanks.add')
-            <a href="{{ route('admin.users.create') }}"><button class="w-48 positive-button">+ Add new food bank</button></a>
+            <a href="{{ route('admin.foodbanks.create') }}"><button class="w-48 positive-button">+ Add new food bank</button></a>
         @endcan
     </div>
     
