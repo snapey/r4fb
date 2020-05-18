@@ -48,7 +48,7 @@ class AddressModal extends Component
         $this->address3     = $address->address3;
         $this->address4     = $address->address4;
         $this->postcode     = $address->postcode;
-        $this->phone_number = $address->phone;
+        $this->phone_number = $address->phone_number;
         $this->latitude     = $address->latitude;
         $this->longitude    = $address->longitude;
 
@@ -71,7 +71,7 @@ class AddressModal extends Component
             'address2' => 'max:200',
             'address3' => 'max:200',
             'address4' => 'max:200',
-            'postcode' => 'max:200',
+            'postcode' => 'required | max:200',
             'phone_number' => 'max:20',
             'latitude' => 'max:12',
             'longitude' => 'max:12',
