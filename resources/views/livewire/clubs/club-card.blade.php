@@ -12,7 +12,7 @@
             <h2 class="mx-4 text-xl font-bold ">{{ $name }}</h2>
 
             @include('admin.clubs._details')
-
+            @include('admin.clubs._foodbanks')
             <h2 class="pt-2 mx-4 my-3 text-xl font-bold border-t-2 border-gray-400">Notes</h2>
 
             <div class="flex flex-col mx-4 space-y-2">
@@ -32,6 +32,10 @@
         </div>
 
     </div>
+
+    @if($showFoodbankModal)
+        @include('admin.clubs.foodbank-modal')
+    @endif
 
     <script>
         function removeClass(el,theclass,delay) {

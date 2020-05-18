@@ -27,7 +27,7 @@ class Foodbank extends Model
 
     public function clubs()
     {
-        return $this->hasMany(\App\Club::class);
+        return $this->belongsToMany(\App\Club::class);
     }
 
     public function getUpdatedForHumansAttribute()

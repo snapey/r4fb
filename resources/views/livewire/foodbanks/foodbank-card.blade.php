@@ -15,6 +15,8 @@
         {{--don't show if new foodbank --}}
         @if($foodbank_id)
             @include('admin.addresses.card',['addresses'=>$foodbank->addresses])
+
+            @include('admin.foodbanks._clubs')
             
             <h2 class="pt-2 mx-4 my-3 text-xl font-bold border-t-2 border-gray-400">Notes</h2>
         

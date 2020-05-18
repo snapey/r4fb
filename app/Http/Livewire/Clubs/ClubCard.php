@@ -13,6 +13,8 @@ class ClubCard extends Component
     public $attr;
     public $editing;
     public $confirming;
+    public $showFoodbankModal;
+    public $confirmDisassociateFoodbank;
 
     public $name;
     public $areas;
@@ -23,6 +25,7 @@ class ClubCard extends Component
         'noteAdded' => 'redo',
         'contactsUpdated' =>  'redo',
         'contactDetached' => 'redo',
+        'foodbankChosen' => 'associateFoodbank'
     ];
 
     public function mount($club)
@@ -119,4 +122,35 @@ class ClubCard extends Component
 
         $this->redirect(route('admin.clubs.index'));
     }
+
+    public function chooseFoodbank()
+    {
+        $this->showFoodbankModal = true;
+    }
+
+    public function closeFoodbankModal()
+    {
+        $this->showFoodbankModal = false;
+    }
+    
+    public function associateFoodbank($foodbank_id)
+    {
+        $club = Club::find($this->club_id);
+
+        $club->foodbanks()->attach($foodbank_id);
+
+        $this->showFoodbankModal = false;
+    }
+    public function disassociateFoodbank($foodbank_id)
+    {   
+        if($this->confirmDisassociateFoodbank) {
+            $club = Club::find($this->club_id);
+            $club->foodbanks()->detach($foodbank_id);
+            $this->confirmDisassociateFoodbank = false;
+            return;
+        }
+        $this->confirmDisassociateFoodbank = $foodbank_id;
+    }
+
+
 }

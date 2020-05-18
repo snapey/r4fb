@@ -153,6 +153,7 @@ class FoodbankCard extends Component
     {
         $model = Foodbank::find($this->foodbank_id);
         $model->contacts()->detach();
+        $model->clubs()->detach();
         $model->delete();
 
         $this->redirect(route('admin.foodbanks.index'));
