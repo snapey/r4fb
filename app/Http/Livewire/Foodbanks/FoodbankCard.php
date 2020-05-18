@@ -15,7 +15,9 @@ class FoodbankCard extends Component
     public $confirming;
     public $addressShowing;
     public $createAddress;
-    
+    public $showClubsPicker;
+    public $confirmDisassociateClub;
+
     public $name;
     public $charity;
     public $organisation;
@@ -31,7 +33,8 @@ class FoodbankCard extends Component
         'noteAdded' => 'redo',
         'contactsUpdated' =>  'redo',
         'contactDetached' => 'redo',
-        'closeAddressModal'
+        'closeAddressModal',
+        'clubChosen' => 'associateClub',
     ];
 
     public function mount($id)
@@ -170,4 +173,26 @@ class FoodbankCard extends Component
     {
         $this->createAddress=true;
     }
+
+
+    public function associateClub($id)
+    {
+        $foodbank = Foodbank::find($this->foodbank_id);
+        $foodbank->clubs()->syncWithoutDetaching($id);
+
+        $this->showClubsPicker = false;
+    }
+
+    public function disassociateClub($id)
+    {
+        if ($this->confirmDisassociateClub == $id) {
+            $foodbank = Foodbank::find($this->foodbank_id);
+            $foodbank->clubs()->detach($id);
+            $this->confirmDisassociateClub = false;
+            return;
+        }
+        $this->confirmDisassociateClub = $id;
+    }
+
+
 }

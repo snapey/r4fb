@@ -33,7 +33,7 @@
 
     </div>
 
-    @if($showFoodbankModal)
+    @if($showFoodbankPicker)
         @include('admin.clubs.foodbank-modal')
     @endif
 

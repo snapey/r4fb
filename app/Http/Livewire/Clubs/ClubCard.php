@@ -13,7 +13,7 @@ class ClubCard extends Component
     public $attr;
     public $editing;
     public $confirming;
-    public $showFoodbankModal;
+    public $showFoodbankPicker;
     public $confirmDisassociateFoodbank;
 
     public $name;
@@ -123,33 +123,24 @@ class ClubCard extends Component
         $this->redirect(route('admin.clubs.index'));
     }
 
-    public function chooseFoodbank()
-    {
-        $this->showFoodbankModal = true;
-    }
-
-    public function closeFoodbankModal()
-    {
-        $this->showFoodbankModal = false;
-    }
     
-    public function associateFoodbank($foodbank_id)
+    public function associateFoodbank($id)
     {
         $club = Club::find($this->club_id);
 
-        $club->foodbanks()->attach($foodbank_id);
+        $club->foodbanks()->syncWithoutDetaching($id);
 
-        $this->showFoodbankModal = false;
+        $this->showFoodbankPicker = false;
     }
-    public function disassociateFoodbank($foodbank_id)
+    public function disassociateFoodbank($id)
     {   
-        if($this->confirmDisassociateFoodbank) {
+        if($this->confirmDisassociateFoodbank == $id) {
             $club = Club::find($this->club_id);
-            $club->foodbanks()->detach($foodbank_id);
+            $club->foodbanks()->detach($id);
             $this->confirmDisassociateFoodbank = false;
             return;
         }
-        $this->confirmDisassociateFoodbank = $foodbank_id;
+        $this->confirmDisassociateFoodbank = $id;
     }
 
 

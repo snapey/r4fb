@@ -40,6 +40,10 @@
         @endif
     </div>
 
+    @if($showClubsPicker)
+        @include('admin.foodbanks.club-modal')
+    @endif
+
     <script>
         function removeClass(el,theclass,delay){            
             setTimeout(() => {
