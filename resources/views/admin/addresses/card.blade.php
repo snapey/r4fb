@@ -18,7 +18,8 @@
                 <td class="px-4 py-1">{{ $address->address3 }}</td>
                 <td class="px-4 py-1">{{ $address->address4 }}</td>
                 <td class="px-4 py-1">{{ $address->postcode }}</td>
-                <td class="px-4 py-1 text-right"><button wire:click="showAddress({{ $address->id }})" class="px-3 border rounded hover:bg-gray-300 hover:border-gray-500">Edit</button></td>
+                <td class="px-4 py-1 text-right"><button wire:click="showAddress({{ $address->id }})" 
+                    class="px-3 py-1 text-xs text-gray-500 border rounded hover:bg-gray-300 hover:border-gray-500 hover:text-gray-800">View / Edit</button></td>
             </tr>
             @if($addressShowing == $address->id)
                 @livewire('addresses.address-modal', ['address' => $address, 'addressable' => $foodbank], key($address->id))
