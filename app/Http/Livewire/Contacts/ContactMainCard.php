@@ -47,6 +47,9 @@ class ContactMainCard extends Component
 
     public function render()
     {
+        if ($this->redirectTo) {
+            return view('livewire.contacts.contact-main-card')->withContact(new Contact());
+        }
 
         if(is_null($this->model_id)){
             $contact = new Contact;
