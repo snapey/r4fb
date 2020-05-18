@@ -23,6 +23,8 @@ class CreateFoodbanksTable extends Migration
             $table->string('website',100)->nullable();
             $table->string('hours',200)->nullable();
             $table->string('facebook',100)->nullable();
+            $table->string('name2',100)->nullable();
+            $table->string('phone1',20)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -26,7 +26,7 @@ class Club extends Model
 
     public function foodbanks()
     {
-        return $this->hasMany(Foodbank::class);
+        return $this->belongsToMany(Foodbank::class);
     }
 
     public function notes()

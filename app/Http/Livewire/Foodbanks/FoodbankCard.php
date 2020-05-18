@@ -24,6 +24,8 @@ class FoodbankCard extends Component
     public $website;
     public $facebook;
     public $hours;
+    public $phone1;
+    public $name2;
     
     protected $listeners = [
         'noteAdded' => 'redo',
@@ -82,6 +84,8 @@ class FoodbankCard extends Component
             $this->website = $foodbank->website;
             $this->facebook = $foodbank->facebook;
             $this->hours = $foodbank->hours;
+            $this->phone1 = $foodbank->phone1;
+            $this->name2 = $foodbank->name2;
     }
 
     public function editMode()
@@ -121,6 +125,8 @@ class FoodbankCard extends Component
             'website' => 'max:100',
             'facebook' => 'max:100',
             'hours' => 'max:200',
+            'phone1' => 'max:20',
+            'name2' => 'max:100',
         ]);
 
         return Foodbank::updateOrCreate(['id' => $this->foodbank_id], [
@@ -132,6 +138,8 @@ class FoodbankCard extends Component
             'website' => $this->website,
             'facebook' => $this->facebook,
             'hours' => $this->hours,
+            'phone1' => $this->phone1,
+            'name2' => $this->name2,
         ]);
 
     }

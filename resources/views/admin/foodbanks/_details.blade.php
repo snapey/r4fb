@@ -31,6 +31,7 @@
     @error('location')
     <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
     @enderror
+
     <div class="flex flex-row items-center">
         <label class="flex-1 inline-block w-3/12 pl-3 text-sm font-bold" for="name">Organisation:</label>
         <input
@@ -53,6 +54,17 @@
     @enderror
 
     <div class="flex flex-row items-center">
+        <label class="flex-1 inline-block w-3/12 pl-3 text-sm font-bold" for="name2">Alt Name:</label>
+        <input
+            class="inline-block w-8/12 px-2 py-1 mr-4 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
+            wire:model.lazy="name2" name="name2" type="text" @if(!$editing) disabled @endif />
+        <div class="w-1/12"></div>
+    </div>
+    @error('name2')
+    <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
+    @enderror
+
+    <div class="flex flex-row items-center">
         <label class="flex-1 inline-block w-3/12 pl-3 text-sm font-bold" for="name">Website:</label>
         <input
             class="inline-block w-8/12 px-2 py-1 mr-4 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
@@ -71,6 +83,17 @@
         <div class="w-1/12"></div>
     </div>
     @error('email')
+    <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
+    @enderror
+
+    <div class="flex flex-row items-center">
+        <label class="flex-1 inline-block w-3/12 pl-3 text-sm font-bold" for="name">Phone:</label>
+        <input
+            class="inline-block w-4/12 px-2 py-1 mr-4 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
+            wire:model.lazy="phone1" name="phone1" type="text" @if(!$editing) disabled @endif />
+        <div class="w-5/12"></div>
+    </div>
+    @error('phone1')
     <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
     @enderror
 
