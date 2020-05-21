@@ -35,6 +35,20 @@
     
                 <!--Body-->
                 <div class="flex flex-col space-y-3">
+    
+                    <div class="flex flex-row items-center">
+                        <label class="flex-1 inline-block w-3/12 text-sm font-bold" for="surname">Surname:</label>
+                        <input {{ !$editing ? 'disabled': '' }}
+                            class="inline-block w-9/12 px-2 py-1 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
+                            wire:model="surname" name="surname" type="text" />
+                    </div>
+                    @error('surname')
+                    <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
+                    @enderror
+
+                    @include('admin.contacts._candidates')
+
+
                     <div class="flex flex-row items-center">
                         <label class="flex-1 inline-block w-3/12 text-sm font-bold" for="fornames">Forenames:</label>
                         <input {{ !$editing ? 'disabled': '' }}
@@ -44,18 +58,7 @@
                     @error('forenames')
                     <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
                     @enderror
-    
-                    <div class="flex flex-row items-center">
-                        <label class="flex-1 inline-block w-3/12 text-sm font-bold" for="surname">Surname:</label>
-                        <input {{ !$editing ? 'disabled': '' }}
-                            class="inline-block w-9/12 px-2 py-1 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
-                            wire:model.lazy="surname" name="surname" type="text" />
-                    </div>
-                    @error('surname')
-                    <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
-                    @enderror
 
-                    @include('admin.contacts._candidates')
     
                     <div class="flex flex-row items-center">
                         <label class="flex-1 inline-block w-3/12 text-sm font-bold" for="phone1">Phone:</label>
@@ -97,6 +100,8 @@
                     <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
                     @enderror
     
+                    <hr />
+                    
                     <div class="flex flex-row items-center">
                         <label class="flex-1 inline-block w-3/12 text-sm font-bold" for="relationship">Relationship:</label>
                         <input {{ !$editing ? 'disabled': '' }} placeholder="What is the relationship"
