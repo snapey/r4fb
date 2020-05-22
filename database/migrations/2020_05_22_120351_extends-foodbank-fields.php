@@ -14,7 +14,7 @@ class ExtendsFoodbankFields extends Migration
     public function up()
     {
         Schema::table('foodbanks', function (Blueprint $table) {
-            $table->string('phone2',20);
+            $table->string('phone2',20)->nullable();
         });
     }
 
