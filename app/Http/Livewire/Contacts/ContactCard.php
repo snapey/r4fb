@@ -46,8 +46,8 @@ class ContactCard extends Component
         $this->showing = false;
     }
 
-    public function gotoContact()
-    {
-        $this->redirect(route('admin.contacts.show',$this->contact));
-    }
+    // public function gotoContact()
+    // {
+    //     $this->redirect(route('admin.contacts.show',$this->contact));
+    // }
 }

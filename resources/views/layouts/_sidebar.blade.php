@@ -2,68 +2,81 @@
     <ul>
         <a href="{{ route('home') }}">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('home*')) ? 'bg-teal-100' : '' }}">Dashboard</li>
+            {{ (request()->is('home*')) ? 'bg-teal-100' : '' }}">
+            <x-svg.dashboard class="h-5" /> Dashboard</li>
         </a>
         <li class="pt-2 pb-2 pl-4 my-2 text-sm font-bold text-gray-600 border-t border-gray-400 shadow-inner">Operational:</li>
 
         <a href="#">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">Orders</li>
+            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">
+            <x-svg.order class="h-5" /> Orders</li>
         </a>
         <a href="#">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">Requests</li>
+            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">
+            <x-svg.request class="h-5" /> Requests</li>
         </a>
         <a href="#">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">Receipts</li>
+            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">
+            <x-svg.receipt class="h-5" /> Receipts</li>
         </a>
         <a href="#">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">Allocations</li>
+            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">
+            <x-svg.allocation class="h-5" /> Allocations</li>
         </a>
         <a href="#">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">Shipments</li>
+            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">
+            <x-svg.shipment class="h-5" /> Shipments</li>
         </a>
 
         <li class="pt-2 pb-2 pl-4 my-2 text-sm font-bold text-gray-600 border-t border-gray-400 shadow-inner">Master Data:</li>
 
         <a href="{{ route('admin.foodbanks.index')}}">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('admin/foodbanks*')) ? 'bg-teal-100' : '' }}">Food Banks</li>
+            {{ (request()->is('admin/foodbanks*')) ? 'bg-teal-100' : '' }}">
+            <x-svg.foodbank class="h-5" /> Food Banks</li>
         </a>
 
         
     <a href="{{ route('admin.contacts.index')}}">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('admin/contacts*')) ? 'bg-teal-100' : '' }}">Contacts</li>
+            {{ (request()->is('admin/contacts*')) ? 'bg-teal-100' : '' }}">
+            <x-svg.contact class="h-5" /> Contacts</li>
         </a>
 
         <a href="{{ route('admin.clubs.index')}}">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">Clubs</li>
+            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">
+            <x-svg.club class="h-5" />Clubs</li>
         </a>
 
         <a href="#">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-                {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">Suppliers</li>
+                {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">
+                <x-svg.supplier class="h-5" /> Suppliers</li>
         </a>
 
         <a href="#">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">Shippers</li>
+            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">
+            <x-svg.shipper class="h-5" /> Shippers</li>
         </a>
 
         <li class="pt-2 pb-2 pl-4 my-2 text-sm font-bold text-gray-600 border-t border-gray-400 shadow-inner">Administration:</li>
 
         <a href="{{ route('admin.users.index') }}">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('admin/users*')) ? 'bg-teal-100' : '' }}">Users</li>
+            {{ (request()->is('admin/users*')) ? 'bg-teal-100' : '' }}">
+            <x-svg.users class="h-5" /> Users</li>
         </a>
         <a href="{{ route('admin.roles.index') }}">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('admin/roles*')) ? 'bg-teal-100' : '' }}">Roles</li>
+            {{ (request()->is('admin/roles*')) ? 'bg-teal-100' : '' }}">
+            <x-svg.roles class="h-5" /> Roles</li>
         </a>
     </ul>
 </div>
