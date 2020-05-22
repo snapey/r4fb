@@ -27,6 +27,7 @@ class FoodbankCard extends Component
     public $facebook;
     public $hours;
     public $phone1;
+    public $phone2;
     public $name2;
     
     protected $listeners = [
@@ -88,6 +89,7 @@ class FoodbankCard extends Component
             $this->facebook = $foodbank->facebook;
             $this->hours = $foodbank->hours;
             $this->phone1 = $foodbank->phone1;
+            $this->phone2 = $foodbank->phone2;
             $this->name2 = $foodbank->name2;
     }
 
@@ -129,6 +131,7 @@ class FoodbankCard extends Component
             'facebook' => 'max:100',
             'hours' => 'max:200',
             'phone1' => 'max:20',
+            'phone2' => 'max:20',
             'name2' => 'max:100',
         ]);
 
@@ -142,6 +145,7 @@ class FoodbankCard extends Component
             'facebook' => $this->facebook,
             'hours' => $this->hours,
             'phone1' => $this->phone1,
+            'phone2' => $this->phone2,
             'name2' => $this->name2,
         ]);
 

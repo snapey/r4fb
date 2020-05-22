@@ -20,7 +20,7 @@
         <label class="flex-1 inline-block w-3/12 pl-3 text-sm font-bold" for="name">Location:</label>
         <input
             class="inline-block w-8/12 px-2 py-1 mr-4 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
-            wire:model.lazy="location" name="location" type="text" @if(!$editing) disabled @endif />
+            wire:model.lazy="location" name="location" type="text" @if(!$editing) disabled @else placeholder="areas served by this foodbank" @endif />
         @if($editing && is_null($foodbank_id))
         <button wire:click="next" tabindex="99"
             class="w-1/12 py-2 mx-auto text-sm font-bold text-center text-white bg-teal-600 border border-gray-400 rounded hover:bg-teal-700">Next</button>
@@ -89,11 +89,17 @@
     <div class="flex flex-row items-center">
         <label class="flex-1 inline-block w-3/12 pl-3 text-sm font-bold" for="name">Phone:</label>
         <input
-            class="inline-block w-4/12 px-2 py-1 mr-4 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
-            wire:model.lazy="phone1" name="phone1" type="text" @if(!$editing) disabled @endif />
-        <div class="w-5/12"></div>
+            class="inline-block w-3/12 px-2 py-1 mr-4 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
+            wire:model.lazy="phone1" name="phone1" type="text" @if(!$editing) disabled @else placeholder="Phone 1" @endif />
+        <input
+            class="inline-block w-3/12 px-2 py-1 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
+            wire:model.lazy="phone2" name="phone2" type="text" @if(!$editing) disabled @else placeholder="Phone 2" @endif />
+        <div class="w-3/12"></div>
     </div>
     @error('phone1')
+    <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
+    @enderror
+    @error('phone2')
     <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
     @enderror
 
