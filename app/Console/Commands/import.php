@@ -48,88 +48,57 @@ class import extends Command
         $rows = DB::table('import')->get();
 
         $rows->each(function($row){
-            $this->info($row->clubname);
+            $this->info($row->fbname);
 
-            $club = Club::create(['name'=>$row->clubname, 'district'=>'1220']);
+            $foodbank = Foodbank::create([
+                'name' => $row->fbname,
+                'organisation' => $row->organisation,
+                'phone1' => $row->fbtele1,
+                'phone2' => $row->fbtele2,
+                'website' => $row->website,
+                'email' => $row->fbemail1,
+                'charity' => $row->fbcharity,
+                'facebook' => $row->fbfacebook,
+            ]);
 
-            if($row->contact1) {
-                $contact1 = Contact::create([
-                    'forenames' => $this->splitName($row->contact1)[1],
-                    'surname' => $this->splitName($row->contact1)[0],
-                    'phone1' => $row->tele1,
-                    'email1' => $row->email1,
+            if ($row->postcode) {
+                $address = Address::create([
+                    'address1' => $row->address1 ?? $row->address2,
+                    'address2' => $row->address2,
+                    'address3' => $row->address3,
+                    'address4' => $row->address4 . ', ' . $row->address5,
+                    'postcode' => $row->postcode,
+                    'addressable_id' => $foodbank->id,
+                    'addressable_type' => 'App\Foodbank'
                 ]);
-                $club->contacts()->attach($contact1);
             }
 
-            if ($row->contact2) {
-                $contact2 = Contact::create([
-                    'forenames' => $this->splitName($row->contact2)[1],
-                    'surname' => $this->splitName($row->contact2)[0],
-                    'phone1' => $row->tele2,
-                    'email1' => $row->email2,
+            if ($row->fbcontact1) {
+                $fbc1 = Contact::create([
+                    'forenames' => $this->splitName($row->fbcontact1)[1],
+                    'surname' => $this->splitName($row->fbcontact1)[0],
+                    // 'phone1' => $row->tele1,
+                    // 'email1' => $row->email1,
                 ]);
-                $club->contacts()->attach($contact2);
+                $foodbank->contacts()->attach($fbc1, ['relationship' => $row->fbposition]);
             }
 
-            if(!empty($row->fbname)) {
+            if($row->clubname) {
+                $club = Club::create(['name'=>$row->clubname]);
+            
+                $foodbank->clubs()->attach($club);
 
-                $foodbank = Foodbank::create([
-                    'name' => $row->fbname,
-                    'name2' => $row->fbname2,
-                    'phone1' => $row->fbtele1,
-                    'website' => $row->website,
-                    'email' => $row->fbemail1,
-                ]);
-                
-                $club->foodbanks()->attach($foodbank);
-
-                if($row->postcode) {
-                    $address = Address::create([
-                        'address1' => $row->address1 ?? $row->address2, 
-                        'address2' => $row->address2,
-                        'address3' => $row->town,
-                        'address4' => $row->county,
-                        'postcode' => $row->postcode,
-                        'addressable_id' => $foodbank->id,
-                        'addressable_type' => 'App\Foodbank'
-                    ]);
-                }
-
-                //foodbank contacts
-                if(!empty($row->fbcontact1)){
-
+                if ($row->contact1) {
                     $contact1 = Contact::create([
-                        'forenames' => $this->splitName($row->fbcontact1)[1],
-                        'surname' => $this->splitName($row->fbcontact1)[0],
-                        'phone1' => $row->fbtele1,
-                        'email1' => $row->fbemail1,
+                        'forenames' => $this->splitName($row->contact1)[1],
+                        'surname' => $this->splitName($row->contact1)[0],
+                        'phone1' => $row->tele1,
+                        'email1' => $row->email1,
                     ]);
-
-                    $foodbank->contacts()->attach($contact1);
+                    $club->contacts()->attach($contact1);
                 }
-
-                if (!empty($row->fbcontact2)) {
-
-                    $contact2 = Contact::create([
-                        'forenames' => $this->splitName($row->fbcontact2)[1],
-                        'surname' => $this->splitName($row->fbcontact2)[0],
-                        'phone1' => $row->fbtele2,
-                        'email1' => $row->fbemail2,
-                    ]);
-
-                    $foodbank->contacts()->attach($contact2);
-                }
-
-
             }
-
-
-
-
-
         });
-
     }
 
     /**
