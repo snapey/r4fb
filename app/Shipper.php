@@ -3,9 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Shipper extends Model
 {
+
+    use LogsActivity;
+
+    const NAME = 'Shipper'; 
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -14,6 +21,7 @@ class Shipper extends Model
     protected $fillable = [
         'name',
         'modes',
+        'phone',
     ];
 
     /**
@@ -25,6 +33,7 @@ class Shipper extends Model
         'id' => 'integer',
     ];
 
+    protected static $logAttributes = ['name', 'modes', 'phone'];
 
     public function contacts()
     {

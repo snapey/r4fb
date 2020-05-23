@@ -9,5 +9,6 @@ $factory->define(Shipper::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'modes' => $faker->word,
+        'phone' => $faker->e164PhoneNumber,
     ];
 });

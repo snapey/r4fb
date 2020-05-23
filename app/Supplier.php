@@ -4,10 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Supplier extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, LogsActivity;
+
+    const NAME = 'Supplier'; 
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +24,8 @@ class Supplier extends Model
         'fax',
     ];
 
+    protected static $logAttributes = ['name','account','phone','fax'];
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -33,16 +38,28 @@ class Supplier extends Model
 
     public function contacts()
     {
-        return $this->hasMany(\App\Contact::class);
+        return $this->morphToMany(Contact::class, 'contactable')
+            ->withPivot('relationship');
     }
 
     public function addresses()
     {
-        return $this->hasMany(\App\Address::class);
+        return $this->morphMany('App\Address', 'addressable');
+    }
+
+    public function notes()
+    {
+        return $this->morphMany('App\Note', 'notable')->latest();
     }
 
     public function user()
     {
         return $this->belongsTo(\App\User::class);
     }
+
+    public function getUpdatedForHumansAttribute()
+    {
+        return $this->updated_at->diffForHumans();
+    }
+    
 }

@@ -24,6 +24,9 @@ class Permission extends SP
 
             'Contacts.add',     // can create new contacts
             'Clubs.add',        // can create new clubs
+            'Shippers.add',     // can create new shippers
+            'Suppliers.add',    // can create new suppliers
+
         ]);
     }
 }

@@ -9,7 +9,7 @@ $factory->define(Supplier::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'account' => $faker->word,
-        'phone' => $faker->phoneNumber,
+        'phone' => $faker->e164PhoneNumber,
         'fax' => $faker->word,
     ];
 });

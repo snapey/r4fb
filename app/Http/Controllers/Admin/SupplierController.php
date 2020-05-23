@@ -10,7 +10,7 @@ class SupplierController extends Controller
 {
     public function index()
     {
-        return view('admin.contacts.index');
+        return view('admin.suppliers.index');
     }
 
     public function show(Supplier $supplier)

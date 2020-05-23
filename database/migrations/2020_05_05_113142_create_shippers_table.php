@@ -17,6 +17,7 @@ class CreateShippersTable extends Migration
             $table->id();
             $table->string('name', 50);
             $table->string('modes', 50)->nullable();
+            $table->string('phone', 20)->nullable();
             $table->timestamps();
         });
     }

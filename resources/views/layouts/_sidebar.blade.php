@@ -54,13 +54,13 @@
             <x-svg.club class="h-5" />Clubs</li>
         </a>
 
-        <a href="#">
+        <a href="{{ route('admin.suppliers.index')}}">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
                 {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">
                 <x-svg.supplier class="h-5" /> Suppliers</li>
         </a>
 
-        <a href="#">
+        <a href="{{ route('admin.shippers.index')}}">
             <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
             {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">
             <x-svg.shipper class="h-5" /> Shippers</li>
