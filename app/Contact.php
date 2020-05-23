@@ -5,10 +5,11 @@ namespace App;
 use App\ModelTraits\EncryptableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Contact extends Model
 {
-    use SoftDeletes, EncryptableTrait;
+    use SoftDeletes, EncryptableTrait, LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -28,6 +29,7 @@ class Contact extends Model
         'forenames', 'phone1', 'phone2', 'email1', 'email2'
     ];
 
+    protected static $logAttributes = ['forenames', 'surname', 'phone1', 'phone2', 'email1', 'email2','deleted_at'];
 
     /**
      * The attributes that should be cast to native types.

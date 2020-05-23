@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Club extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, LogsActivity;
 
     const NAME = 'Club'; 
 
@@ -17,6 +18,7 @@ class Club extends Model
         'id' => 'integer',
     ];
 
+    protected static $logAttributes = ['name', 'areas', 'group', 'district', 'deleted_at'];
 
     public function contacts()
     {

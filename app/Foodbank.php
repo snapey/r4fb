@@ -4,16 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Foodbank extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, LogsActivity;
 
     const NAME = 'Foodbank'; 
 
     protected $appends = ['updatedForHumans'];
 
     protected $guarded = [];
+
+    protected static $logAttributes = ['name', 'email', 'website', 'location', 'deleted_at', 'hours','phone1', 'charity', 'organisation'];
 
     protected $casts = [
         'id' => 'integer',
