@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Addresses;
+namespace App\Http\Livewire;
 
 use App\Address;
 use Livewire\Component;

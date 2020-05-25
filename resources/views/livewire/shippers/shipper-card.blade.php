@@ -14,7 +14,7 @@
             @include('admin.shippers._details')
 
             @if($shipper->id)
-                @livewire('addresses.address-component',['addressable' => $shipper ])
+                @livewire('address-component',['addressable' => $shipper ])
 
                 <h2 class="pt-2 mx-4 my-3 text-xl font-bold border-t-2 border-gray-400">Notes</h2>
 

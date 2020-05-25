@@ -115,6 +115,7 @@ class ShipperCard extends Component
     {
         $shipper = Shipper::find($this->shipper_id);
         $shipper->contacts()->detach();
+        $shipper->addresses()->delete();
         $shipper->delete();
 
         $this->redirect(route('admin.shippers.index'));
