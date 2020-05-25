@@ -25,7 +25,7 @@ class SupplierTable extends TableComponent
             Column::make('Name')->searchable()->sortable(),
             Column::make('Phone')->searchable(),
             Column::make('Account')->searchable(),
-            Column::make('Updated','updatedforhumans')->sortable()->sortUsing(function($models, $sort_attribute, $sort_direction){
+            Column::make('Updated','updatedForHumans')->sortable()->sortUsing(function($models, $sort_attribute, $sort_direction){
                 return $models->orderBy('updated_at', $sort_direction);
             }),
         ];

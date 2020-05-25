@@ -5,10 +5,11 @@ namespace App\Http\Livewire\Addresses;
 use App\Address;
 use Livewire\Component;
 
-class AddressModal extends Component
-{    
+class AddressComponent extends Component
+{
     public $editing;
     public $exists;
+    public $modalShowing;
 
     public $address_id;
     public $address1;
@@ -17,18 +18,11 @@ class AddressModal extends Component
     public $address4;
     public $postcode;
     public $phone_number;
-    public $latitude;
-    public $longitude;
-    public $addressable =[];
+    public $coordinates;
+    public $addressable = [];
 
-    public function mount($address, $addressable)
+    public function mount($addressable)
     {
-        if($address){
-            $this->setAttributes($address);
-        } else {
-            $this->editing=true;
-        }
-
         $this->addressable = [
             'addressable_id' => $addressable->id,
             'addressable_type' => get_class($addressable),
@@ -36,8 +30,16 @@ class AddressModal extends Component
     }
 
     public function render()
+    {   
+        $addresses = $this->addressable['addressable_type']::find($this->addressable['addressable_id'])->addresses()->get();
+
+        return view('admin.addresses.address-component')->withAddresses($addresses);
+    }
+
+    public function showAddress($id)
     {
-        return view('livewire.addresses.address-modal');
+        $this->setAttributes(Address::find($id));
+        $this->modalShowing = true;
     }
 
     public function setAttributes($address)
@@ -49,9 +51,7 @@ class AddressModal extends Component
         $this->address4     = $address->address4;
         $this->postcode     = $address->postcode;
         $this->phone_number = $address->phone_number;
-        $this->latitude     = $address->latitude;
-        $this->longitude    = $address->longitude;
-
+        $this->coordinates  = $address->latitude . ',' . $address->longitude;
     }
 
     public function editMode()
@@ -73,19 +73,28 @@ class AddressModal extends Component
             'address4' => 'max:200',
             'postcode' => 'required | max:200',
             'phone_number' => 'max:20',
-            'latitude' => 'max:12',
-            'longitude' => 'max:12',
+            'coordinates' => 'max:20',
         ]);
 
-        $address = Address::UpdateOrCreate(['id'=>$this->address_id],$data + $this->addressable);
+        $coords = explode(',', $data['coordinates']);
+        $data['latitude'] = $coords[0];
+        $data['longitude'] = $coords[1];
 
-        $this->editing=false;
+        Address::UpdateOrCreate(['id' => $this->address_id], $data + $this->addressable);
+
+        $this->editing = false;
     }
 
     public function deleteAddress()
     {
         Address::find($this->address_id)->delete();
-        $this->emit('closeAddressModal');
+        $this->modalShowing = false;
+    }
 
+    public function newAddress()
+    {
+        $this->setAttributes(new Address);
+        $this->modalShowing=true;
+        $this->editing=true;
     }
 }

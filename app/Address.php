@@ -47,4 +47,11 @@ class Address extends Model
     {
         return $this->hasMany(\App\Note::class);
     }
+
+    public function setCoordinatesAttribute($value)
+    {
+        $coords = explode(',',$value);
+        $this->attributes['latitude'] = $coords[0];
+        $this->attributes['longitude'] = $coords[1];
+    }
 }

@@ -10,7 +10,9 @@ class Supplier extends Model
 {
     use SoftDeletes, LogsActivity;
 
-    const NAME = 'Supplier'; 
+    const NAME = 'Supplier';
+
+    protected $appends = ['updatedForHumans'];
 
     /**
      * The attributes that are mass assignable.
@@ -61,5 +63,5 @@ class Supplier extends Model
     {
         return $this->updated_at->diffForHumans();
     }
-    
+
 }

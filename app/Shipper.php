@@ -10,7 +10,9 @@ class Shipper extends Model
 
     use LogsActivity;
 
-    const NAME = 'Shipper'; 
+    const NAME = 'Shipper';
+
+    protected $appends = ['updatedForHumans'];
 
 
     /**
@@ -37,21 +39,28 @@ class Shipper extends Model
 
     public function contacts()
     {
-        return $this->hasMany(\App\Contact::class);
+        return $this->morphToMany(Contact::class, 'contactable')
+            ->withPivot('relationship');
     }
 
     public function addresses()
     {
-        return $this->hasMany(\App\Address::class);
+        return $this->morphMany('App\Address', 'addressable');
     }
 
     public function notes()
     {
-        return $this->hasMany(\App\Note::class);
+        return $this->morphMany('App\Note', 'notable')->latest();
     }
 
     public function user()
     {
         return $this->belongsTo(\App\User::class);
     }
+
+    public function getUpdatedForHumansAttribute()
+    {
+        return $this->updated_at->diffForHumans();
+    }
+    
 }

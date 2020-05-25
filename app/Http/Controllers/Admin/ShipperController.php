@@ -15,6 +15,7 @@ class ShipperController extends Controller
 
     public function show(Shipper $shipper)
     {
+        $shipper->load(['addresses','contacts','notes']);
         return view('admin.shippers.show')->withShipper($shipper);
     }
 

@@ -14,7 +14,13 @@ class ShipperTable extends TableComponent
     public $checkbox = false;
     public $clickable_row = true;
 
-    
+    public function mount()
+    {
+        $this->setTableProperties();
+        $this->sort_attribute = 'name';
+        $this->sort_direction = 'asc';
+    }
+
     public function query()
     {
         return Shipper::query();
@@ -23,16 +29,17 @@ class ShipperTable extends TableComponent
     public function columns()
     {
         return [
-            Column::make('ID')->searchable()->sortable(),
-            Column::make('Created At')->searchable()->sortable(),
-            Column::make('Updated At')->searchable()->sortable(),
+            Column::make('Name')->searchable()->sortable(),
+            Column::make('Modes')->searchable()->sortable(),
+            Column::make('Updated', 'updatedForHumans')->sortable()->sortUsing(function ($models, $sort_attribute, $sort_direction) {
+                return $models->orderBy('updated_at', $sort_direction);
+            }),
         ];
     }
 
     public function rowClick($id)
     {
-        return redirect(route('admin.shipper.show', $id));
+        return redirect(route('admin.shippers.show', $id));
     }
-
 
 }
