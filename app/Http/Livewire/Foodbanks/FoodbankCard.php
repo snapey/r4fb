@@ -132,7 +132,7 @@ class FoodbankCard extends Component
             'phone1' => 'max:20',
             'phone2' => 'max:20',
             'name2' => 'max:100',
-            'shipper_id' => 'sometimes|integer',
+            'shipper_id' => 'nullable|integer',
         ]);
 
         return Foodbank::updateOrCreate(['id' => $this->foodbank_id], [
