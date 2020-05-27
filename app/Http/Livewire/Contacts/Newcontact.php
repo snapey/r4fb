@@ -147,4 +147,9 @@ class Newcontact extends Component
 
     }
 
+    public function closeCandidates()
+    {
+        $this->candidates = null;
+    }
+
 }
