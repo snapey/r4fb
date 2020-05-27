@@ -1,6 +1,6 @@
 {{-- relationships ---------------------------------------------------- --}}
 
-<div class="mt-2 mr-4">
+<div class="mx-4 mt-2">
     <h2 class="py-2 text-xl font-bold border-t-2 border-gray-400">
         Relationships <span class="pl-4 text-xs font-normal text-gray-600">Create relationships from the other record</span>
     </h2>

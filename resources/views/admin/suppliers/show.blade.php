@@ -2,6 +2,6 @@
 
 @section('content')
 
-    @livewire('suppliers.supplier-card',['supplier' => $supplier])
+    @livewire('suppliers.supplier-component',['supplier' => $supplier])
     
 @endsection

@@ -1,27 +1,32 @@
 <?php
 
-namespace App\Http\Livewire\Notes;
+namespace App\Http\Livewire;
 
 use App\Note;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class Newnote extends Component
+class NotesComponent extends Component
 {
-    public $model_id;
-    public $model_name;
+    public $notable_id;
+    public $notable_type;
     public $newnote = '';
     public $dirtyNote = false;
 
-    public function mount($model)
+    public function mount($notable)
     {
-        $this->model_id = $model->id;
-        $this->model_name = get_class($model);
+            $this->notable_id = $notable->id;
+            $this->notable_type = get_class($notable);
     }
 
     public function render()
     {
-        return view('livewire.notes.newnote');
+        $notes = Note::where('notable_type',$this->notable_type)
+            ->where('notable_id',$this->notable_id)
+            ->latest()
+            ->get();
+
+        return view('admin.notes.notes-component')->withNotes($notes);
     }
 
     public function updatedNewnote()
@@ -33,14 +38,14 @@ class Newnote extends Component
     {
         if ($this->dirtyNote) {
             Note::create([
-                'notable_id' => $this->model_id,
-                'notable_type' => $this->model_name,
+                'notable_id' => $this->notable_id,
+                'notable_type' => $this->notable_type,
                 'memo' => $this->newnote,
                 'user_id' => Auth::id(),
             ]);
             $this->newnote = '';
             $this->dirtyNote = false;
-        
+
             $this->emit('noteAdded');
         }
     }

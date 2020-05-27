@@ -3,11 +3,9 @@
 namespace App\Http\Livewire\Shippers;
 
 use App\Shipper;
-use App\Note;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class ShipperCard extends Component
+class ShipperComponent extends Component
 {
     public $shipper_id;
     public $attr;
@@ -45,7 +43,7 @@ class ShipperCard extends Component
     public function render()
     {
         if ($this->redirectTo) {
-            return view('livewire.shippers.shipper-card')->withShipper(new Shipper());
+            return view('admin.shippers.livewire.shipper-component')->withShipper(new Shipper());
         }
 
         if (is_null($this->shipper_id)) {
@@ -58,8 +56,9 @@ class ShipperCard extends Component
             $this->setAttr($shipper);
         }
 
-        return view('livewire.shippers.shipper-card')
+        return view('admin.shippers.livewire.shipper-component')
             ->withShipper($shipper);
+
     }
 
     public function setAttr($shipper)

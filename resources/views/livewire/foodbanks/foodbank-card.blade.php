@@ -1,8 +1,8 @@
-<div class="bg-gray-100">
+<div class="bg-gray-200">
 
     <div class="flex flex-row items-center justify-between pt-2 mx-4 my-2">
         <h2 class="text-xl font-bold text-teal-800 ">FOOD BANK</h2>
-        <a href="{{ route('admin.foodbanks.index')}}" class="px-4 py-1 text-sm border rounded hover:bg-gray-300">Return to Index</a>
+        <a href="{{ route('admin.foodbanks.index')}}" class="px-4 py-1 text-sm bg-gray-100 border rounded hover:bg-gray-300">Return to Index</a>
     </div>
 
     <div class="flex flex-row border-t-2 border-gray-400" wire:poll.20s>
@@ -14,24 +14,18 @@
 
         {{--don't show if new foodbank --}}
         @if($foodbank_id)
-            @include('admin.addresses.card',['addresses'=>$foodbank->addresses])
+            @livewire('address-component',['addressable' => $foodbank ])
 
             @include('admin.foodbanks._clubs')
+
+            @livewire('notes-component',['notable' => $foodbank ])
             
-            <h2 class="pt-2 mx-4 my-3 text-xl font-bold border-t-2 border-gray-400">Notes</h2>
-        
-            <div class="flex flex-col mx-4 space-y-2">
-                @livewire('notes.newnote', ['model' => $foodbank])
-                @foreach($foodbank->notes as $note)
-                    @livewire('notes.note-card', compact('note'), key($note->id))
-                @endforeach
-            </div>
         @endif
         </div>
 
         {{-- don't show if new foodbank --}}
         @if($foodbank_id)
-            <div class="w-1/4 bg-gray-100">
+            <div class="w-1/4">
                 @foreach($foodbank->contacts as $contact)
                     @livewire('contacts.contact-card', ['contact' => $contact], key($contact->id))
                 @endforeach

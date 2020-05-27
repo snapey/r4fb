@@ -4,8 +4,8 @@
     <h2 class="py-2 text-xl font-bold border-t-2 border-gray-400">
         Foodbanks
         <button wire:click="$set('showFoodbankPicker',true)"
-            class="float-right px-4 py-2 mr-4 text-xs text-gray-800 border border-gray-500 rounded hover:bg-gray-300">
-            + Associate with a Foodbank</button>
+            class="float-right px-4 py-1 text-xs text-gray-800 bg-gray-100 border border-gray-500 rounded hover:bg-gray-300">
+            + Associate to Foodbank</button>
     </h2>
     <table class="text-sm bg-white ">
 

@@ -8,8 +8,7 @@
             @endif
         </h2>
         <button wire:click="newAddress"
-            class="px-4 py-2 mr-4 text-xs text-gray-800 border border-gray-500 rounded hover:bg-gray-300">+ Add New
-            Address</button>
+            class="px-4 py-1 text-xs text-gray-800 bg-gray-100 border border-gray-500 rounded hover:bg-gray-300">+ Add Address</button>
     </div>
 
     <table class="w-full text-sm bg-white">

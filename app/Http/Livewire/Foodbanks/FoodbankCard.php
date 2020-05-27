@@ -3,8 +3,6 @@
 namespace App\Http\Livewire\Foodbanks;
 
 use App\Foodbank;
-use App\Note;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class FoodbankCard extends Component
@@ -13,8 +11,6 @@ class FoodbankCard extends Component
     public $attr;
     public $editing;
     public $confirming;
-    public $addressShowing;
-    public $createAddress;
     public $showClubsPicker;
     public $confirmDisassociateClub;
 
@@ -34,7 +30,6 @@ class FoodbankCard extends Component
         'noteAdded' => 'redo',
         'contactsUpdated' =>  'redo',
         'contactDetached' => 'redo',
-        'closeAddressModal',
         'clubChosen' => 'associateClub',
     ];
 
@@ -51,12 +46,6 @@ class FoodbankCard extends Component
 
 
     public function redo(){}
-
-    public function closeAddressModal()
-    {
-        $this->addressShowing = false;
-        $this->createAddress = false;
-    }
 
     public function render()
     {
@@ -166,19 +155,6 @@ class FoodbankCard extends Component
         $this->redirect(route('admin.foodbanks.index'));
     }
 
-    // functions to deal with the showing of the address edit card
-    
-    public function showAddress($address)
-    {
-        $this->addressShowing = $address;
-    }
-
-    public function newAddress()
-    {
-        $this->createAddress=true;
-    }
-
-
     public function associateClub($id)
     {
         $foodbank = Foodbank::find($this->foodbank_id);
@@ -197,6 +173,5 @@ class FoodbankCard extends Component
         }
         $this->confirmDisassociateClub = $id;
     }
-
 
 }
