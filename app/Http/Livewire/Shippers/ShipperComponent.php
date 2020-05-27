@@ -16,6 +16,7 @@ class ShipperComponent extends Component
     public $name;
     public $modes;
     public $phone;
+    public $is_satellite;
 
     protected $listeners = [
         'noteAdded' => 'redo',
@@ -66,6 +67,7 @@ class ShipperComponent extends Component
         $this->name = $shipper->name;
         $this->modes = $shipper->modes;
         $this->phone = $shipper->phone;
+        $this->is_satellite = $shipper->is_satellite;
     }
 
     public function editMode()
@@ -86,22 +88,15 @@ class ShipperComponent extends Component
         $this->editing = false;
     }
 
-    public function next()
-    {
-
-        $this->persist();
-
-        $this->redirect(route('admin.shippers.create'));
-    }
-
     public function persist()
     {
         $data = $this->validate([
             'name' => 'required|max:50',
             'modes' => 'max:50',
             'phone' => 'max:20',
+            'is_satellite' => '',
         ]);
-
+dump($data);
         return Shipper::updateOrCreate(['id' => $this->shipper_id], $data);
     }
 

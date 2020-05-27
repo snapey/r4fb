@@ -24,6 +24,7 @@ class Shipper extends Model
         'name',
         'modes',
         'phone',
+        'is_satellite',
     ];
 
     /**
@@ -35,7 +36,7 @@ class Shipper extends Model
         'id' => 'integer',
     ];
 
-    protected static $logAttributes = ['name', 'modes', 'phone'];
+    protected static $logAttributes = ['name', 'modes', 'phone','is_satellite'];
 
     public function contacts()
     {

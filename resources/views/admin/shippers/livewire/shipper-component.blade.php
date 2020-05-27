@@ -16,7 +16,7 @@
                     <x-inputs.text-editable editing="{{ $editing }}" name="name" label="Name:" />
                     <x-inputs.text-editable editing="{{ $editing }}" name="modes" label="Modes:" />
                     <x-inputs.text-editable editing="{{ $editing }}" name="phone" label="Phone:" half />
-
+                    <x-inputs.checkbox-editable editing="{{ $editing }}" name="is_satellite" label="Is Satellite?" checked="{{$is_satellite}}"  />
                 </div>
 
                 {{-- Controls --}}
