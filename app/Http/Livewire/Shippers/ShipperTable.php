@@ -31,6 +31,9 @@ class ShipperTable extends TableComponent
         return [
             Column::make('Name')->searchable()->sortable(),
             Column::make('Modes')->searchable()->sortable(),
+            Column::make('Satellite','isSatelliteForHumans')->sortable()->sortUsing(function ($models, $sort_attribute, $sort_direction) {
+                return $models->orderBy('is_satellite', $sort_direction);
+            }),
             Column::make('Updated', 'updatedForHumans')->sortable()->sortUsing(function ($models, $sort_attribute, $sort_direction) {
                 return $models->orderBy('updated_at', $sort_direction);
             }),

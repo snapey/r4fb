@@ -12,8 +12,7 @@ class Shipper extends Model
 
     const NAME = 'Shipper';
 
-    protected $appends = ['updatedForHumans'];
-
+    protected $appends = ['updatedForHumans','isSatelliteForHumans'];
 
     /**
      * The attributes that are mass assignable.
@@ -62,6 +61,11 @@ class Shipper extends Model
     public function getUpdatedForHumansAttribute()
     {
         return $this->updated_at->diffForHumans();
+    }
+
+    public function getIsSatelliteForHumansAttribute()
+    {
+        return $this->is_satellite ? 'Yes':'';
     }
     
 }
