@@ -19,6 +19,7 @@ class Contact extends Model
     protected $fillable = [
         'forenames',
         'surname',
+        'title',
         'phone1',
         'phone2',
         'email1',
@@ -26,10 +27,10 @@ class Contact extends Model
     ];
 
     public $encryptable = [
-        'forenames', 'phone1', 'phone2', 'email1', 'email2'
+        'forenames', 'phone1', 'phone2', 'email1', 'email2','title'
     ];
 
-    protected static $logAttributes = ['forenames', 'surname', 'phone1', 'phone2', 'email1', 'email2','deleted_at'];
+    protected static $logAttributes = ['forenames', 'surname', 'phone1', 'phone2', 'email1', 'email2','deleted_at','title'];
 
     /**
      * The attributes that should be cast to native types.

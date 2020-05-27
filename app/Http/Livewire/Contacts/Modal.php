@@ -12,9 +12,11 @@ class Modal extends Component
     public $editing = false;
     public $model_id;
     public $model_name;
+    public $model_realname;
 
     public $forenames;
     public $surname;
+    public $title;
     public $phone1;
     public $phone2;
     public $email1;
@@ -27,9 +29,11 @@ class Modal extends Component
         $this->model_id = $model->id;
         $this->exists = $model->id;
         $this->model_name = get_class($model);
+        $this->model_realname = (new $contactable['contactable_type'])::NAME;
 
         $this->forenames = $model->forenames;
         $this->surname = $model->surname;
+        $this->title = $model->title;
         $this->phone1 = $model->phone1;
         $this->phone2 = $model->phone2;
         $this->email1 = $model->email1;
@@ -58,6 +62,7 @@ class Modal extends Component
         $this->validate([
             'forenames' => 'max:200',
             'surname' => 'required | max:200',
+            'title' => 'max:20',
             'phone1' => 'max:200',
             'phone2' => 'max:200',
             'email1' => 'nullable | email | max:200',
@@ -68,6 +73,7 @@ class Modal extends Component
         [
             'forenames' => $this->forenames,
             'surname' => $this->surname,
+            'title' => $this->title,
             'phone1' => $this->phone1,
             'phone2' => $this->phone2,
             'email1' => $this->email1,
@@ -94,6 +100,7 @@ class Modal extends Component
     {
         $this->forenames = null;
         $this->surname = null;
+        $this->title = null;
         $this->phone1 = null;
         $this->phone2 = null;
         $this->email1 = null;

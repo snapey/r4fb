@@ -19,6 +19,7 @@ class ContactMainCard extends Component
 
     public $forenames;
     public $surname;
+    public $title;
     public $phone1;
     public $phone2;
     public $email1;
@@ -32,6 +33,7 @@ class ContactMainCard extends Component
 
         $this->forenames = $contact->forenames;
         $this->surname = $contact->surname;
+        $this->title = $contact->title;
         $this->phone1 = $contact->phone1;
         $this->phone2 = $contact->phone2;
         $this->email1 = $contact->email1;
@@ -72,6 +74,7 @@ class ContactMainCard extends Component
         $this->validate([
             'forenames' => 'max:200',
             'surname' => 'required | max:200',
+            'title'  => 'max:20',
             'phone1' => 'max:200',
             'phone2' => 'max:200',
             'email1' => 'nullable | email | max:200',
@@ -83,6 +86,7 @@ class ContactMainCard extends Component
             [
                 'forenames' => $this->forenames,
                 'surname' => $this->surname,
+                'title' => $this->title,
                 'phone1' => $this->phone1,
                 'phone2' => $this->phone2,
                 'email1' => $this->email1,
@@ -104,6 +108,7 @@ class ContactMainCard extends Component
     {
         $this->forenames = null;
         $this->surname = null;
+        $this->titile = null;
         $this->phone1 = null;
         $this->phone2 = null;
         $this->email1 = null;

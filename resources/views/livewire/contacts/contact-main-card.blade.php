@@ -14,8 +14,9 @@
             <div class="flex flex-col w-full">
                 <div class="p-4 mx-4 my-2 space-y-3 bg-white border rounded ">
 
-                    <x-inputs.text-editable editing="{{ $editing }}" name="surname" label="Surname:" />
+                    <x-inputs.text-editable editing="{{ $editing }}" name="surname" label="Surname:" placeholder="the contact's last name" />
                     <x-inputs.text-editable editing="{{ $editing }}" name="forenames" label="Forenames:" />
+                    <x-inputs.text-editable editing="{{ $editing }}" name="title" label="Title:" placeholder="eg, Mr, Rev., Prof., Dr" half/>
                     <x-inputs.text-editable editing="{{ $editing }}" name="phone1" label="Phone:" half />
                     <x-inputs.text-editable editing="{{ $editing }}" name="phone2" label="Alt. Phone:" half />
                     <x-inputs.text-editable editing="{{ $editing }}" name="email1" label="Email:" />

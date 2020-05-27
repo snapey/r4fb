@@ -36,83 +36,19 @@
                 <!--Body-->
                 <div class="flex flex-col space-y-3">
     
-                    <div class="flex flex-row items-center">
-                        <label class="flex-1 inline-block w-3/12 text-sm font-bold" for="surname">Surname:</label>
-                        <input {{ !$editing ? 'disabled': '' }}
-                            class="inline-block w-9/12 px-2 py-1 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
-                            wire:model="surname" name="surname" type="text" />
-                    </div>
-                    @error('surname')
-                    <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
-                    @enderror
-
+                    <x-inputs.text-editable editing="{{ $editing }}" name="surname" label="Surname:" placeholder="the contact's last name" />
                     @include('admin.contacts._candidates')
+                    <x-inputs.text-editable editing="{{ $editing }}" name="forenames" label="Forenames:" />
+                    <x-inputs.text-editable editing="{{ $editing }}" name="title" label="Title:" placeholder="eg, Mr, Rev., Prof., Dr" half />
+                    <x-inputs.text-editable editing="{{ $editing }}" name="phone1" label="Phone:" half />
+                    <x-inputs.text-editable editing="{{ $editing }}" name="phone2" label="Alt. Phone:" half />
+                    <x-inputs.text-editable editing="{{ $editing }}" name="email1" label="Email:" />
+                    <x-inputs.text-editable editing="{{ $editing }}" name="email2" label="Alt. Email:" />
 
-
-                    <div class="flex flex-row items-center">
-                        <label class="flex-1 inline-block w-3/12 text-sm font-bold" for="fornames">Forenames:</label>
-                        <input {{ !$editing ? 'disabled': '' }}
-                            class="inline-block w-9/12 px-2 py-1 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
-                            wire:model.lazy="forenames" name="forenames" type="text" />
-                    </div>
-                    @error('forenames')
-                    <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
-                    @enderror
-
-    
-                    <div class="flex flex-row items-center">
-                        <label class="flex-1 inline-block w-3/12 text-sm font-bold" for="phone1">Phone:</label>
-                        <input {{ !$editing ? 'disabled': '' }}
-                            class="inline-block w-9/12 px-2 py-1 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
-                            wire:model.lazy="phone1" name="phone1" type="text" />
-                    </div>
-                    @error('phone1')
-                    <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
-                    @enderror
-    
-                    <div class="flex flex-row items-center">
-                        <label class="flex-1 inline-block w-3/12 text-sm font-bold" for="phone2">Alt. Phone:</label>
-                        <input {{ !$editing ? 'disabled': '' }}
-                            class="inline-block w-9/12 px-2 py-1 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
-                            wire:model.lazy="phone2" name="phone2" type="text" />
-                    </div>
-                    @error('phone2')
-                    <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
-                    @enderror
-    
-                    <div class="flex flex-row items-center">
-                        <label class="flex-1 inline-block w-3/12 text-sm font-bold" for="email1">Email:</label>
-                        <input {{ !$editing ? 'disabled': '' }}
-                            class="inline-block w-9/12 px-2 py-1 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
-                            wire:model.lazy="email1" name="email1" type="text" />
-                    </div>
-                    @error('email1')
-                    <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
-                    @enderror
-    
-                    <div class="flex flex-row items-center">
-                        <label class="flex-1 inline-block w-3/12 text-sm font-bold" for="email2">Alt. Email:</label>
-                        <input {{ !$editing ? 'disabled': '' }}
-                            class="inline-block w-9/12 px-2 py-1 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
-                            wire:model.lazy="email2" name="email2" type="text" />
-                    </div>
-                    @error('email2')
-                    <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
-                    @enderror
-    
                     <hr />
                     
-                    <div class="flex flex-row items-center">
-                        <label class="flex-1 inline-block w-3/12 text-sm font-bold" for="relationship">Relationship:</label>
-                        <input {{ !$editing ? 'disabled': '' }} placeholder="What is the relationship"
-                            class="inline-block w-9/12 px-2 py-1 bg-gray-200 border @if($editing) border-teal-600 @endif rounded"
-                            wire:model.lazy="contactable.relationship" name="relationship" type="text" />
-                    </div>
-                    @error('relationship')
-                    <div class="inline-block w-9/12 ml-3 text-xs text-red-800 ">{{ $message }}</div>
-                    @enderror
-    
-    
+                    <x-inputs.text-editable editing="{{ $editing }}" name="contactable.relationship" label="Relationship" placeholder="What relationship to this {{$model_realname}}" />
+
                 </div>
                 <!--Footer-->
                 <div  x-data="{ deleteMessage:false }">
