@@ -12,6 +12,7 @@
         <x-inputs.text-editable editing="{{ $editing }}" name="facebook" label="Facebook:" />
         <x-inputs.text-editable editing="{{ $editing }}" name="charity" label="Charity No:" half />
         <x-inputs.text-editable editing="{{ $editing }}" name="hours" label="Open Hours:" />
+        <x-inputs.select-editable editing="{{ $editing }}" name="shipper_id" label="Shipped Via:" :list="$shippers" :current="$foodbank->shipper->name ?? '' " />
     
     </div>
 

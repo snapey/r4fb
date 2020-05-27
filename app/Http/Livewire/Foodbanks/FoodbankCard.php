@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Foodbanks;
 
 use App\Foodbank;
+use App\Shipper;
 use Livewire\Component;
 
 class FoodbankCard extends Component
@@ -25,6 +26,7 @@ class FoodbankCard extends Component
     public $phone1;
     public $phone2;
     public $name2;
+    public $shipper_id;
     
     protected $listeners = [
         'noteAdded' => 'redo',
@@ -49,8 +51,14 @@ class FoodbankCard extends Component
 
     public function render()
     {
+        $shippers=[];
+
+        if($this->editing) {
+            $shippers = Shipper::orderBy('name','asc')->pluck('name','id');
+        }
+
         if($this->redirectTo){
-            return view('livewire.foodbanks.foodbank-card')->withFoodbank(new Foodbank());
+            return view('livewire.foodbanks.foodbank-card')->withFoodbank(new Foodbank())->withShippers($shippers);
         }
 
         if(is_null($this->foodbank_id)) {
@@ -64,7 +72,8 @@ class FoodbankCard extends Component
         }
 
         return view('livewire.foodbanks.foodbank-card')
-                ->withFoodbank($foodbank);
+                ->withFoodbank($foodbank)
+                ->withShippers($shippers);
     }
 
     public function setAttr($foodbank)
@@ -80,6 +89,7 @@ class FoodbankCard extends Component
             $this->phone1 = $foodbank->phone1;
             $this->phone2 = $foodbank->phone2;
             $this->name2 = $foodbank->name2;
+            $this->shipper_id = $foodbank->shipper_id;
     }
 
     public function editMode()
@@ -122,6 +132,7 @@ class FoodbankCard extends Component
             'phone1' => 'max:20',
             'phone2' => 'max:20',
             'name2' => 'max:100',
+            'shipper_id' => 'sometimes|integer',
         ]);
 
         return Foodbank::updateOrCreate(['id' => $this->foodbank_id], [
@@ -136,6 +147,7 @@ class FoodbankCard extends Component
             'phone1' => $this->phone1,
             'phone2' => $this->phone2,
             'name2' => $this->name2,
+            'shipper_id' => $this->shipper_id>0 ? $this->shipper_id : null,
         ]);
 
     }

@@ -54,4 +54,8 @@ class Foodbank extends Model
                     ->withPivot('relationship');
     }
 
+    public function shipper()
+    {
+        return $this->belongsTo(Shipper::class);
+    }
 }
