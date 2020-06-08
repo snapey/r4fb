@@ -49,7 +49,7 @@ class Modal extends Component
 
     public function close()
     {
-        $this->emit('closeModal');
+        $this->emit('closeModals');
     }
 
     public function editMode()
@@ -116,7 +116,7 @@ class Modal extends Component
             ->delete();
 
         $this->emit('contactDetached');
-        $this->emit('closeModal');
+        $this->emit('closeModals');
         $this->editing=false;
     }
 }

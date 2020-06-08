@@ -17,7 +17,7 @@
             </div>
 
             <!-- Add margin if you want to see some of the overlay behind the modal-->
-            <div class="px-4 py-4 text-left modal-content">
+            <div class="px-4 py-4 text-left modal-content" x-data x-on:keydown.escape="window.livewire.emit('close')">
                 <!--Title-->
                 <div class="flex items-center justify-between pb-3">
                     <p class="text-2xl font-bold">Address</p>

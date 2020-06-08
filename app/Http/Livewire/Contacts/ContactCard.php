@@ -11,7 +11,7 @@ class ContactCard extends Component
     public $contactable;
     public $showing = false;
 
-    protected $listeners = ['closeModal', 'contactsUpdated'];
+    protected $listeners = ['closeModals' => 'close', 'contactsUpdated'];
 
     public function mount($contact)
     {
@@ -22,6 +22,14 @@ class ContactCard extends Component
     public function render()
     {
         return view('livewire.contacts.contact-card');
+    }
+
+    public function close()
+    {
+        dump ('closing card');
+        $this->editing = false;
+        $this->showing = false;
+        $this->emit('contactsUpdated');
     }
 
     public function contactsUpdated()
@@ -39,11 +47,6 @@ class ContactCard extends Component
     public function showModal()
     {
         $this->showing = true;
-    }
-
-    public function closeModal()
-    {
-        $this->showing = false;
     }
 
     // public function gotoContact()

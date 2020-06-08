@@ -1,4 +1,4 @@
-<div class="bg-gray-200">
+<div class="bg-gray-200" x-data x-on:keydown.escape="window.livewire.emit('closeModals')">
 
     <div class="flex flex-row items-center justify-between pt-2 mx-4 my-2">
         <h2 class="text-xl font-bold text-teal-800 ">FOOD BANK</h2>

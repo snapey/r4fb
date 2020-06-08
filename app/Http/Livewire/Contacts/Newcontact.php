@@ -54,6 +54,8 @@ class Newcontact extends Component
         $this->showing = true;
     }
 
+    protected $listeners=['closeModals'=>'close'];
+
     public function close()
     {
         $this->clearForm();
