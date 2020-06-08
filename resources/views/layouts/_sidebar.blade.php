@@ -68,15 +68,22 @@
 
         <li class="pt-2 pb-2 pl-4 my-2 text-sm font-bold text-gray-600 border-t border-gray-400 shadow-inner">Administration:</li>
 
-        <a href="{{ route('admin.users.index') }}">
-            <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('admin/users*')) ? 'bg-teal-100' : '' }}">
-            <x-svg.users class="h-5" /> Users</li>
-        </a>
-        <a href="{{ route('admin.roles.index') }}">
-            <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
-            {{ (request()->is('admin/roles*')) ? 'bg-teal-100' : '' }}">
-            <x-svg.roles class="h-5" /> Roles</li>
-        </a>
+        @can('Users.edit')
+            <a href="{{ route('admin.users.index') }}">
+                <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
+                {{ (request()->is('admin/users*')) ? 'bg-teal-100' : '' }}">
+                <x-svg.users class="h-5" /> Users</li>
+            </a>
+            <a href="{{ route('admin.roles.index') }}">
+                <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
+                {{ (request()->is('admin/roles*')) ? 'bg-teal-100' : '' }}">
+                <x-svg.roles class="h-5" /> Roles</li>
+            </a>
+        @else
+            <li class="px-2 py-2 mx-2 text-gray-600 border-2 border-transparent rounded">
+                <x-svg.users class="h-5" /> Users</li>
+            <li class="px-2 py-2 mx-2 text-gray-600 border-2 border-transparent rounded">
+                            <x-svg.roles class="h-5" /> Roles</li>
+        @endcan
     </ul>
 </div>
