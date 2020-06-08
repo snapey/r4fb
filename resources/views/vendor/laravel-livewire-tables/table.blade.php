@@ -7,7 +7,7 @@
             <input type="search" class="px-4 py-2 ml-4 bg-gray-200 rounded hover:border-gray-300 focus:border-gray-300"  wire:model="search">
         </div>
     @if($header_view)
-        <div class="">
+        <div class="w-full">
             @include($header_view)
         </div>
     @endif

@@ -13,18 +13,20 @@ class FoodbankTable extends TableComponent
     public $checkbox=false;
     public $clickable_row = true;
     public $header_view = 'admin.foodbanks._header';
-
+    public $statuses;
+    public $statusFilter=0;
 
     public function mount() 
     {
         $this->setTableProperties();
         $this->sort_attribute = 'name';
         $this->sort_direction = 'asc';
+        $this->statuses = (new Foodbank)->foodbankStatuses();
     }
 
     public function query()
     {
-        return Foodbank::query();
+        return Foodbank::query()->statusScope($this->statusFilter);
     }
 
     public function rowClick($id)
@@ -38,8 +40,14 @@ class FoodbankTable extends TableComponent
             Column::make('Name')->searchable()->sortable(),
             Column::make('Location')->searchable()->sortable(),
             Column::make('Organisation')->searchable()->sortable(),
-            Column::make('Charity', 'charity')->searchable()->sortable(),
-            Column::make('Updated', 'updatedForHumans'),
+            Column::make('Stat.', 'shortStatusForHumans')->sortable()
+                ->sortUsing(function($models, $sort_attribute, $sort_direction){
+                    return $models->orderBy('status',$sort_direction);
+                }),
+            Column::make('Char#', 'charity')->searchable(),
+            Column::make('Updated', 'updatedForHumans')->sortable()->sortUsing(function ($models, $sort_attribute, $sort_direction) {
+                return $models->orderBy('updated_at', $sort_direction);
+            }),
         ];
     }
 
@@ -47,22 +55,25 @@ class FoodbankTable extends TableComponent
     public function thClass($attribute)
     {
         if ($attribute == 'name') return 'w-3/12';
-        if ($attribute == 'location') return 'w-3/12';
+        if ($attribute == 'location') return 'w-2/12';
         if ($attribute == 'charity') return 'w-1/12';
-        if ($attribute == 'organisation') return 'w-3/12';
-        if ($attribute == 'updated_at') return 'w-2/12';
+        if ($attribute == 'shortStatusForHumans') return 'w-1/12';
+        if ($attribute == 'organisation') return 'w-2/12';
+        if ($attribute == 'updatedForHumans') return 'w-2/12';
 
         return null;
     }
 
     public function tdClass($attribute, $value)
     {
-        if ($attribute == 'name') return 'w-3/12';
-        if ($attribute == 'location') return 'w-3/12';
-        if ($attribute == 'charity') return 'w-1/12';
-        if ($attribute == 'organisation') return 'w-3/12 overflow-hidden';
-        if ($attribute == 'updated_at') return 'w-2/12';
+        if ($attribute == 'name') return 'text-sm';
+        if ($attribute == 'location') return 'text-sm';
+        if ($attribute == 'charity') return 'text-sm';
+        if ($attribute == 'shortStatusForHumans') return 'text-sm';
+        if ($attribute == 'organisation') return 'overflow-hidden text-sm';
+        if ($attribute == 'updatedForHumans') return 'text-sm';
 
         return null;
     }
+
 }

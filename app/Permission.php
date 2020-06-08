@@ -21,6 +21,7 @@ class Permission extends SP
             'Roles.manage.all', // can perform all role and permission maintenance
 
             'Foodbanks.add',    // can create new foodbanks
+            'Foodbanks.approve',// can approve a foodbank to recieve foundation grants
 
             'Contacts.add',     // can create new contacts
             'Clubs.add',        // can create new clubs

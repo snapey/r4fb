@@ -2,17 +2,18 @@
 
 namespace App;
 
+use App\ModelTraits\FoodbankStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Foodbank extends Model
 {
-    use SoftDeletes, LogsActivity;
+    use SoftDeletes, LogsActivity, FoodbankStatus;
 
     const NAME = 'Foodbank'; 
 
-    protected $appends = ['updatedForHumans'];
+    protected $appends = ['updatedForHumans', 'shortStatusForHumans'];
 
     protected $guarded = [];
 
@@ -57,5 +58,17 @@ class Foodbank extends Model
     public function shipper()
     {
         return $this->belongsTo(Shipper::class);
+    }
+
+    public function getShortStatusForHumansAttribute()
+    {
+        return $this->foodbankShortStatuses()[$this->status];
+    }
+
+    public function scopeStatusScope($query, $filter)
+    {
+        if($filter) {
+            $query->where('status',$filter);
+        }
     }
 }

@@ -27,6 +27,7 @@ class FoodbankCard extends Component
     public $phone2;
     public $name2;
     public $shipper_id;
+    public $status;
     
     protected $listeners = [
         'noteAdded' => 'redo',
@@ -90,6 +91,7 @@ class FoodbankCard extends Component
             $this->phone2 = $foodbank->phone2;
             $this->name2 = $foodbank->name2;
             $this->shipper_id = $foodbank->shipper_id;
+            $this->status = $foodbank->status;
     }
 
     public function editMode()
@@ -133,6 +135,7 @@ class FoodbankCard extends Component
             'phone2' => 'max:20',
             'name2' => 'max:100',
             'shipper_id' => 'nullable|integer',
+            'status' => 'required|in:1,2,3,4',
         ]);
 
         return Foodbank::updateOrCreate(['id' => $this->foodbank_id], [
@@ -148,6 +151,7 @@ class FoodbankCard extends Component
             'phone2' => $this->phone2,
             'name2' => $this->name2,
             'shipper_id' => $this->shipper_id>0 ? $this->shipper_id : null,
+            'status' => $this->status,
         ]);
 
     }
