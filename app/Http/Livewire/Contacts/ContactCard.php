@@ -26,7 +26,7 @@ class ContactCard extends Component
 
     public function close()
     {
-        dump ('closing card');
+        // dump ('closing card');
         $this->editing = false;
         $this->showing = false;
         $this->emit('contactsUpdated');
