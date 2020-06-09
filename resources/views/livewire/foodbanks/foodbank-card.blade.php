@@ -2,7 +2,10 @@
 
     <div class="flex flex-row items-center justify-between pt-2 mx-4 my-2">
         <h2 class="text-xl font-bold text-teal-800 ">FOOD BANK</h2>
-        <a href="{{ route('admin.foodbanks.index')}}" class="px-4 py-1 text-sm bg-gray-100 border rounded hover:bg-gray-300">Return to Index</a>
+        <div class="space-x-4" x-data>
+            <a href="#" x-on:click="window.dispatchEvent(new Event('easycopy'))" class="px-4 py-1 text-sm bg-gray-100 border rounded hover:bg-gray-300">Easy Copy</a>
+            <a href="{{ route('admin.foodbanks.index')}}" class="px-4 py-1 text-sm bg-gray-100 border rounded hover:bg-gray-300">Return to Index</a>
+        </div>
     </div>
 
     <div class="flex flex-row border-t-2 border-gray-400" wire:poll.20s>

@@ -15,7 +15,9 @@ class FoodbankController extends Controller
 
     public function show(Foodbank $foodbank)
     {
-        return view('admin.foodbanks.show')->withId($foodbank->id);
+        $foodbank->load('addresses','contacts','clubs');
+
+        return view('admin.foodbanks.show')->withId($foodbank->id)->withFoodbank($foodbank);
     }
 
     public function create()
