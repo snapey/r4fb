@@ -2,7 +2,7 @@
 <div class="flex flex-row items-center">
     <label class="w-3/12 text-sm font-bold" for="{{ $name }}">{{ $label }}</label>
     @if($editing)
-        <select wire:model.lazy={{ $name }} name="{{ $name }}" class="w-9/12 px-1 py-1 bg-gray-300 border border-teal-600 rounded">
+        <select wire:model.lazy={{ $name }} name="{{ $name }}" class="{{ $half ? 'w-4/12' : 'w-9/12' }} px-1 py-1 bg-gray-300 border border-teal-600 rounded">
             <option value="">Not Specified</option>
             @foreach($list as $key => $item)
                 <option value="{{ $key }}">{{ $item }}</option>

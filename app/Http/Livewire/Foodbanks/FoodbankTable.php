@@ -15,6 +15,8 @@ class FoodbankTable extends TableComponent
     public $header_view = 'admin.foodbanks._header';
     public $statuses;
     public $statusFilter=0;
+    public $per_page;
+    public $perPageOptions = ['15'=>'15','25'=>'25','50'=>'50','100'=>'100'];
 
     public function mount() 
     {
@@ -22,6 +24,15 @@ class FoodbankTable extends TableComponent
         $this->sort_attribute = 'name';
         $this->sort_direction = 'asc';
         $this->statuses = (new Foodbank)->foodbankStatuses();
+
+        $this->per_page = session('per_page',15);
+    }
+
+    public function updated($key,$value)
+    {
+        if($key == 'per_page') {
+            session()->put(['per_page' => $value]);
+        }
     }
 
     public function query()
