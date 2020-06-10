@@ -40,7 +40,8 @@
 
                     @foreach($foodbank->addresses as $address)
                     <div class="w-1/3 p-2">
-                        <div class="w-full h-full p-4 text-sm leading-normal bg-gray-200 border border-gray-300 rounded shadow">
+                        <div
+                            class="w-full h-full p-4 text-sm leading-normal bg-gray-200 border border-gray-300 rounded shadow">
                             {{ $foodbank->name}}<br />
                             {{ $address->address1 }}{!! $address->address1 ? '<br />' : '' !!}
                             {{ $address->address2 }}{!! $address->address2 ? '<br />' : '' !!}
@@ -57,21 +58,21 @@
                 </div>
 
                 <h3 class="my-4 text-xl font-bold">Contacts:</h3>
-                    <div class="flex flex-row flex-wrap">
-                    
-                        @foreach($foodbank->contacts as $contact)
-                        <div class="w-1/3 p-2">
-                            <div class="p-4 text-sm leading-normal bg-gray-200 border border-gray-300 rounded shadow">
-                                {{ $contact->title }} {{ $contact->forenames }} {{ $contact->surname }}<br />
-                                @if($contact->pivot->relationship) ({{ $contact->pivot->relationship }})<br />@endif
-                                @if($contact->phone1) <strong>Phone:</strong> {{ $contact->phone1 }} <br />@endif
-                                @if($contact->phone2) <strong>Phone:</strong> {{ $contact->phone2 }} <br />@endif
-                                @if($contact->email1) <strong>Email:</strong> {{ $contact->email1 }} <br />@endif
-                                @if($contact->email2) <strong>Email:</strong> {{ $contact->email2 }} <br />@endif
-                            </div>
+                <div class="flex flex-row flex-wrap">
+
+                    @foreach($foodbank->contacts as $contact)
+                    <div class="w-1/3 p-2">
+                        <div class="p-4 text-sm leading-normal bg-gray-200 border border-gray-300 rounded shadow">
+                            {{ $contact->title }} {{ $contact->forenames }} {{ $contact->surname }}<br />
+                            @if($contact->pivot->relationship) ({{ $contact->pivot->relationship }})<br />@endif
+                            @if($contact->phone1) <strong>Phone:</strong> {{ $contact->phone1 }} <br />@endif
+                            @if($contact->phone2) <strong>Phone:</strong> {{ $contact->phone2 }} <br />@endif
+                            @if($contact->email1) <strong>Email:</strong> {{ $contact->email1 }} <br />@endif
+                            @if($contact->email2) <strong>Email:</strong> {{ $contact->email2 }} <br />@endif
                         </div>
-                        @endforeach
                     </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>

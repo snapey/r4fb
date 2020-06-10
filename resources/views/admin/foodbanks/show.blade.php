@@ -5,7 +5,8 @@
     [x-cloak] {display: none;}
 </style>
 
-    @livewire('foodbanks.foodbank-card',['id' => $id])
+    @livewire('foodbanks.foodbank-card',['id' => $foodbank->id])
     
-    @include('admin.foodbanks.easycopy-modal')
+    @livewire('easycopy.foodbank', ['foodbank' => $foodbank])
+
 @endsection

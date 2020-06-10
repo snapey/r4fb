@@ -51,7 +51,10 @@ class AddressComponent extends Component
         $this->address4     = $address->address4;
         $this->postcode     = $address->postcode;
         $this->phone_number = $address->phone_number;
-        $this->coordinates  = $address->latitude . ',' . $address->longitude;
+
+        $this->coordinates = ($address->latitude)
+            ? $this->coordinates  = $address->latitude . ',' . $address->longitude
+            : '';
     }
 
     public function editMode()
@@ -77,18 +80,23 @@ class AddressComponent extends Component
         ]);
 
         $coords = explode(',', $data['coordinates']);
-        $data['latitude'] = $coords[0];
-        $data['longitude'] = $coords[1];
+        if(count($coords) == 2) {
+            $data['latitude'] = $coords[0];
+            $data['longitude'] = $coords[1];
+        }
+
 
         Address::UpdateOrCreate(['id' => $this->address_id], $data + $this->addressable);
-
+        $this->modalShowing = false;
         $this->editing = false;
+        $this->emit('addressesVaried');
     }
 
     public function deleteAddress()
     {
         Address::find($this->address_id)->delete();
         $this->modalShowing = false;
+        $this->emit('addressesVaried');
     }
 
     public function newAddress()

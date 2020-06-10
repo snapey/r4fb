@@ -36,13 +36,13 @@
                 <!--Body-->
                 <div class="flex flex-col space-y-3">
 
-                    <x-inputs.text-editable editing="{{ $editing }}" name="address1" label="Address 1:" />
+                    <x-inputs.text-editable editing="{{ $editing }}" name="address1" label="Address 1:" placeholder="required" />
                     <x-inputs.text-editable editing="{{ $editing }}" name="address2" label="Address 2:" />
                     <x-inputs.text-editable editing="{{ $editing }}" name="address3" label="Address 3:" />
                     <x-inputs.text-editable editing="{{ $editing }}" name="address4" label="Address 4:" />
-                    <x-inputs.text-editable editing="{{ $editing }}" name="postcode" label="Postcode:" />
+                    <x-inputs.text-editable editing="{{ $editing }}" name="postcode" label="Postcode:" placeholder="required" />
                     <x-inputs.text-editable editing="{{ $editing }}" name="phone_number" label="Phone:" />
-                    <x-inputs.text-editable editing="{{ $editing }}" name="coordinates" label="Coordinates:" />
+                    <x-inputs.text-editable editing="{{ $editing }}" name="coordinates" label="Coordinates:" placeholder="latitude, longitude" />
 
                 </div>
                 <!--Footer-->
