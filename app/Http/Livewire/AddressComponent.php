@@ -71,7 +71,7 @@ class AddressComponent extends Component
             'address2' => 'max:200',
             'address3' => 'max:200',
             'address4' => 'max:200',
-            'postcode' => 'required | max:200',
+            'postcode' => 'required | max:10',
             'phone_number' => 'max:20',
             'coordinates' => 'max:20',
         ]);
