@@ -28,6 +28,9 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('archive')->daily();
 
+        $schedule->command('backup:run')->dailyAt('19:00');
+        $schedule->command('backup:monitor')->dailyAt('19:15');
+
     }
 
     /**
