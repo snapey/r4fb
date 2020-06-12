@@ -33,7 +33,7 @@ trait FoodbankStatus
             $foodbank = $this;
         }
 
-        return $this->foodbankStatuses()[$foodbank->status];
+        return $this->foodbankStatuses()[$foodbank->status ?? 1];
     }
 
     public function foodbankIsApproved($foodbank = null)
