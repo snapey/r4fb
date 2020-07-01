@@ -62,26 +62,26 @@
                 </thead>
                 <tbody>
                 @foreach($models as $model)
-
                     <tr class="{{ $loop->index %2==0 ? 'bg-teal-500 bg-opacity-10' :'' }} 
                             @if($this->clickable_row) 
                                 hover:bg-yellow-200 cursor-pointer 
                             @endif 
                             align-center {{ $this->trClass($model) }}"
-                            @if($this->clickable_row)
-                            wire:click="rowClick({{$model->id}})"
-                            @endif
                         >
                         @if($checkbox && $checkbox_side == 'left')
                             @include('laravel-livewire-tables::checkbox-row')
                         @endif
 
                         @foreach($columns as $column)
-                            <td class="px-4 py-2 {{ $this->tdClass($column->attribute, $value = Arr::get($model->toArray(), $column->attribute)) }}">
+                            <td class="px-4 py-2 {{ $this->tdClass($column->attribute, $value = Arr::get($model->toArray(), $column->attribute)) }}"
+                                @if($this->clickable_row)
+                                    wire:click="rowClick({{$model->id}})"
+                                @endif
+                                >
                                 @if($column->view)
                                     @include($column->view)
                                 @else
-                                    {{ $value }}
+                                    {{ $this->tdPresenter($column->attribute, $value) }}
                                 @endif
                             </td>
                         @endforeach

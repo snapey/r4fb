@@ -28,6 +28,7 @@ class Permission extends SP
             'Shippers.add',     // can create new shippers
             'Suppliers.add',    // can create new suppliers
 
+            'Allocations.add',  // can create new allocations
         ]);
     }
 }
