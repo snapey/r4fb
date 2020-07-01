@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Allocation;
 use Illuminate\Http\Request;
 
 class AllocationsController extends Controller
@@ -13,11 +14,12 @@ class AllocationsController extends Controller
 
     public function create()
     {
-        return 'creating';
+        return $this->show(new Allocation);
     }
 
-    public function show()
+    public function show(Allocation $allocation)
     {
-        return 'showing';
+        $allocation->load('notes');
+        return view('allocations.show')->withAllocation($allocation);
     }
 }

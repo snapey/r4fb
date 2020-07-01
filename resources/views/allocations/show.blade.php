@@ -1,0 +1,12 @@
+@extends('layouts.app',[$title='Shipper | '])
+
+@section('content')
+<style>
+    [x-cloak] {
+        display: none;
+    }
+</style>
+
+@livewire('allocations.allocations-component',['allocation' => $allocation])
+
+@endsection

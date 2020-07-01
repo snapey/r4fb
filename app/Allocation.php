@@ -52,4 +52,8 @@ class Allocation extends Model
         return $this->belongsToMany(Order::class);
     }
 
+    public function notes()
+    {
+        return $this->morphMany('App\Note', 'notable')->latest();
+    }
 }

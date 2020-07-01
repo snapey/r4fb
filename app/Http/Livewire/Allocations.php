@@ -20,7 +20,7 @@ class Allocations extends TableComponent
 
     public function query()
     {
-        return Allocation::query()->with('foodbank');
+        return Allocation::query()->with('foodbank','createdby');
     }
 
 
@@ -28,9 +28,8 @@ class Allocations extends TableComponent
     {
         return [
             Column::make('ID','id')->searchable()->sortable(),
-            Column::make('Foodbank','foodbank.name')->searchable()->sortable(),
-
-            Column::make('Started By','createdby.name')->sortable(),
+            Column::make('Foodbank','foodbank.name'),
+            Column::make('Started By','createdby.name'),
             Column::make('Status')->sortable(),
             Column::make('Budget')->sortable(),
             Column::make('Updated At')->sortable(),
@@ -69,7 +68,7 @@ class Allocations extends TableComponent
 
     public function tdPresenter($attribute, $value)
     {
-        if ($attribute == 'budget') return '£' .  round($value, 2);
+        if ($attribute == 'budget') return '£' .  round($value/100, 2);
         if ($attribute == 'created_at') return Carbon::parse($value)->format('H:i D d.m.y');
         if ($attribute == 'updated_at') return Carbon::parse($value)->format('H:i D d.m.y');
 
