@@ -42,6 +42,10 @@ class ClubTable extends TableComponent
             Column::make('Group')->searchable()->sortable(),
         ];
     }
+    public function tdPresenter($attribute, $value)
+    {
+        return $value;
+    }
 
     public function thClass($attribute)
     {

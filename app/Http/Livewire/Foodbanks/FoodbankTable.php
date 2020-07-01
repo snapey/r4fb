@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Foodbanks;
 
 use App\Foodbank;
+use Carbon\Carbon;
 use Kdion4891\LaravelLivewireTables\Column;
 use Kdion4891\LaravelLivewireTables\TableComponent;
 
@@ -56,12 +57,16 @@ class FoodbankTable extends TableComponent
                     return $models->orderBy('status',$sort_direction);
                 }),
             Column::make('Char#', 'charity')->searchable(),
-            Column::make('Updated', 'updatedForHumans')->sortable()->sortUsing(function ($models, $sort_attribute, $sort_direction) {
-                return $models->orderBy('updated_at', $sort_direction);
-            }),
+            Column::make('Updated', 'updated_at')->sortable(),
         ];
     }
 
+    public function tdPresenter($attribute, $value)
+    {
+        if ($attribute == 'updated_at') return Carbon::parse($value)->diffForHumans();
+
+        return $value;
+    }
 
     public function thClass($attribute)
     {

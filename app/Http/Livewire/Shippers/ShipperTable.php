@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Shippers;
 
 use App\Shipper;
+use Carbon\Carbon;
 use Kdion4891\LaravelLivewireTables\Column;
 use Kdion4891\LaravelLivewireTables\TableComponent;
 
@@ -31,13 +32,17 @@ class ShipperTable extends TableComponent
         return [
             Column::make('Name')->searchable()->sortable(),
             Column::make('Modes')->searchable()->sortable(),
-            Column::make('Satellite','isSatelliteForHumans')->sortable()->sortUsing(function ($models, $sort_attribute, $sort_direction) {
-                return $models->orderBy('is_satellite', $sort_direction);
-            }),
-            Column::make('Updated', 'updatedForHumans')->sortable()->sortUsing(function ($models, $sort_attribute, $sort_direction) {
-                return $models->orderBy('updated_at', $sort_direction);
-            }),
+            Column::make('Satellite','is_satellite')->sortable(),
+            Column::make('Updated', 'updated_at')->sortable(),
         ];
+    }
+
+    public function tdPresenter($attribute, $value)
+    {
+        if ($attribute == 'updated_at') return Carbon::parse($value)->diffForHumans();
+        if ($attribute == 'is_satellite') return $value ? 'Yes' : '';
+
+        return $value;
     }
 
     public function rowClick($id)

@@ -25,6 +25,11 @@ class FoodbanksPicker extends TableComponent
         ];
     }
 
+    public function tdPresenter($attribute, $value)
+    {
+        return $value;
+    }
+
     public function rowClick($id)
     {
         $this->emit('foodbankChosen',$id);

@@ -13,8 +13,6 @@ class Foodbank extends Model
 
     const NAME = 'Foodbank'; 
 
-    protected $appends = ['updatedForHumans', 'shortStatusForHumans'];
-
     protected $guarded = [];
 
     protected static $logAttributes = ['name', 'email', 'website', 'location', 'deleted_at', 'hours','phone1', 'charity', 'organisation'];

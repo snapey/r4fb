@@ -42,6 +42,10 @@ class ContactTable extends TableComponent
         ];
     }
 
+    public function tdPresenter($attribute, $value)
+    {
+        return $value;
+    }
 
     public function thClass($attribute)
     {
