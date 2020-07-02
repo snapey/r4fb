@@ -38,6 +38,10 @@ Route::middleware(['auth', 'nocache'])->group(function () {
     Route::get('admin/shippers/create', 'Admin\ShipperController@create')->name('admin.shippers.create');
     Route::get('admin/shippers/{shipper}', 'Admin\ShipperController@show')->name('admin.shippers.show');
 
+    Route::get('admin/items', 'Admin\ItemController@index')->name('admin.items.index');
+    Route::get('admin/items/create', 'Admin\ItemController@create')->name('admin.items.create');
+    Route::get('admin/items/show/{item}', 'Admin\ItemController@show')->name('admin.items.show');
+
     Route::name('admin.')->group(function () {
         Route::resource('admin/users', 'Admin\UserController');
         Route::resource('admin/roles', 'Admin\RoleController');
@@ -46,5 +50,6 @@ Route::middleware(['auth', 'nocache'])->group(function () {
     Route::get('allocations', 'AllocationsController@index')->name('allocations.index');
     Route::get('allocations/create', 'AllocationsController@create')->name('allocations.create');
     Route::get('allocations/show/{allocation}', 'AllocationsController@show')->name('allocations.show');
+
 
 });

@@ -41,4 +41,10 @@ class Item extends Model
     {
         return $this->hasMany(\App\Costs::class);
     }
+
+    public function notes()
+    {
+        return $this->morphMany('App\Note', 'notable')->latest();
+    }
+
 }

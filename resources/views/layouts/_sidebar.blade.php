@@ -66,6 +66,12 @@
             <x-svg.shipper class="h-5" /> Shippers</li>
         </a>
 
+        <a href="{{ route('admin.items.index')}}">
+            <li class="mx-2 py-2 px-2 hover:bg-teal-100 hover:border border-2 hover:text-teal-900 border-transparent hover:border-teal-700 rounded
+            {{ (request()->is('link')) ? 'bg-teal-100' : '' }}">
+            <x-svg.item class="h-5" /> Items</li>
+        </a>
+
         <li class="pt-2 pb-2 pl-4 my-2 text-sm font-bold text-gray-600 border-t border-gray-400 shadow-inner">Administration:</li>
 
         @can('Users.edit')
