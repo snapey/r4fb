@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Allocations;
 
 use App\Allocation;
 use Carbon\Carbon;
 use Kdion4891\LaravelLivewireTables\Column;
 use Kdion4891\LaravelLivewireTables\TableComponent;
 
-class Allocations extends TableComponent
+class AllocationsTable extends TableComponent
 {
 
 

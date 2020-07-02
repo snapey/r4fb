@@ -10,7 +10,7 @@
         @endcan
     </div>
 
-    @livewire('allocations')
+    @livewire('allocations.allocations-table')
 
 </div>
 @endsection
