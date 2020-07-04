@@ -10,7 +10,7 @@ class Allocation extends Model
     /**
      * Allocation just created, no items yet
      */
-    public CONST START = 'New'; 
+    public CONST START = 'Draft'; 
     
     /**
      * Allocation is in the process of being created, not yet committed
@@ -42,9 +42,9 @@ class Allocation extends Model
         return $this->belongsTo(Foodbank::class);
     }
 
-    public function items()
+    public function stocks()
     {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(Stock::class);
     }
 
     public function orders()

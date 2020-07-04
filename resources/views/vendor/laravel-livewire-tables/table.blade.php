@@ -81,7 +81,7 @@
                                 @if($column->view)
                                     @include($column->view)
                                 @else
-                                    {{ $this->tdPresenter($column->attribute, $value) }}
+                                    {!! $this->tdPresenter($column->attribute, $value) !!}
                                 @endif
                             </td>
                         @endforeach

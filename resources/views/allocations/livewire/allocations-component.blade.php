@@ -50,7 +50,7 @@
             </div>
 
             @if($allocation_id)
-                <!-- items -->
+                @livewire('allocations.allocation-stock', ['allocation' => $allocation])
                 @livewire('notes-component',['notable' => $allocation ])
             @endif
 
