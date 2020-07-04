@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Allocations;
 
 use App\Allocation;
 use App\Foodbank;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class AllocationsComponent extends Component
@@ -86,13 +87,20 @@ class AllocationsComponent extends Component
     public function persist()
     {
         $this->validate([
+            'foodbank' => 'required',
             'budget' => 'max:50000',
         ]);
 
-        $allocation = Allocation::firstOrNew(['id' => $this->allocation_id]);
+        $allocation = is_null($this->allocation_id) 
+            ? new Allocation(['user_id' => Auth::id()]) 
+            : Allocation::find($this->allocation_id);
+
         $allocation->budget = $this->budget * 100;
         $allocation->foodbank_id = $this->foodbank_id;
+
         $allocation->save();
+
+        return $allocation;
     }
 
     public function confirmDelete()

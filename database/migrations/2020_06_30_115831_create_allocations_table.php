@@ -21,6 +21,7 @@ class CreateAllocationsTable extends Migration
             $table->foreignId('user_id');
             $table->string('status',20)->default(Allocation::START);
             $table->integer('budget')->default(0);
+            $table->integer('total')->default(0);
             $table->timestamps();
         });
 

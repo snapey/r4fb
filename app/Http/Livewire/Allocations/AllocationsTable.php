@@ -32,6 +32,7 @@ class AllocationsTable extends TableComponent
             Column::make('Started By','createdby.name'),
             Column::make('Status')->sortable(),
             Column::make('Budget')->sortable(),
+            Column::make('Total','total'),
             Column::make('Updated At')->sortable(),
             Column::make('Created At')->sortable(),
         ];
@@ -49,6 +50,7 @@ class AllocationsTable extends TableComponent
     public function tdClass($attribute, $value)
     {
         if ($attribute == 'budget') return 'text-right ';
+        if ($attribute == 'total') return 'text-right ';
 
         return null;
     }
@@ -56,6 +58,7 @@ class AllocationsTable extends TableComponent
     public function thClass($attribute)
     {
         if ($attribute == 'budget') return 'text-right w-1/12';
+        if ($attribute == 'total') return 'text-right w-1/12';
         // if ($attribute == 'id') return 'w-1/12';
         // if ($attribute == 'foodbank.name') return 'w-3/12';
         // if ($attribute == 'status') return 'w-1/12';
@@ -69,6 +72,7 @@ class AllocationsTable extends TableComponent
     public function tdPresenter($attribute, $value)
     {
         if ($attribute == 'budget') return '£' .  round($value/100, 2);
+        if ($attribute == 'total') return '£' .  round($value/100, 2);
         if ($attribute == 'created_at') return Carbon::parse($value)->format('H:i D d.m.y');
         if ($attribute == 'updated_at') return Carbon::parse($value)->format('H:i D d.m.y');
 

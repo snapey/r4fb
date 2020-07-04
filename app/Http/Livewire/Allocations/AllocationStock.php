@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Allocations;
 use App\Allocation;
 use App\Item;
 use App\Stock;
+use Illuminate\Support\Arr;
 use Livewire\Component;
 
 class AllocationStock extends Component
@@ -26,11 +27,18 @@ class AllocationStock extends Component
 
     public function render()
     {
-        $stocks = Stock::with('item')->where('allocation_id', $this->allocation_id)->get();
+        $allocation = Allocation::with('stocks.item')->find($this->allocation_id);
 
-        $this->allocation_total = number_format($stocks->sum('total') / 100,2);
+        $total = $allocation->stocks->sum('total');
 
-        $this->stocks = $stocks->toArray();
+        if ($total != $allocation->total) {
+            $allocation->total = $total;
+            $allocation->save();
+        }
+
+        $this->allocation_total = number_format($total / 100,2);
+
+        $this->stocks = $allocation->stocks->toArray() ?? [];
 
         return view('allocations.livewire.allocations-stock');
     }
@@ -57,8 +65,11 @@ class AllocationStock extends Component
 
     public function itemChosen($id)
     {
-        //add item to this allocation - as long as it is not already there
-        //adds stock record referencing this allocation and the suggested item id
+        if(Arr::where($this->stocks,function($stock) use($id) {
+                return $stock['item_id'] == $id;
+            })) {
+            return;
+        };
 
         $stock = Stock::create([
             'item_id' => $id,

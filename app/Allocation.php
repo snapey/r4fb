@@ -32,6 +32,8 @@ class Allocation extends Model
      */
     public CONST COMPLETE = 'Complete';
 
+    public $guarded=[];
+
     public function createdby()
     {
         return $this->belongsTo(User::class,'user_id');

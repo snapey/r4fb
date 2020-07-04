@@ -14,6 +14,7 @@
                 <div class="flex flex-col w-11/12 py-4 pl-4 pr-4 m-4 space-y-2 bg-white border border-gray-300 rounded">
 
                     <x-inputs.text-editable name="status" label="Status:" half />
+
                     <div class="flex flex-row items-center">
                         <span class="block w-3/12 text-sm font-bold">Foodbank:</span>
                         <span class="inline-block w-4/12 px-2 py-2 bg-gray-200 rounded">{{ $foodbank }}</span>
@@ -21,6 +22,13 @@
                             <x-button wire:click="$set('showFoodbankPicker',true)" class="w-2/12 ml-8">Change Foodbank</x-button>
                         @endif
                     </div>
+                    @error('foodbank')
+                        <div class="flex flex-row">
+                            <div class="w-3/12"></div>
+                            <div class="w-9/12 text-xs text-red-800 full ">{{ $message }}</div>
+                        </div>
+                    @enderror
+
                     <x-inputs.text-editable editing="{{ $editing }}" name="budget" label="Budget: (£)" half />
                     <x-inputs.text-editable name="created_by" label="Created By:" half />
                 </div>
@@ -56,6 +64,18 @@
 
         </div>
 
+        @if($allocation->status == App\Allocation::START)
+
+            <div class="w-1/4 p-2">
+                <div class="p-2 leading-normal bg-yellow-100 border border-yellow-200">
+                    This Allocation is in <strong>Draft</strong> state and 
+                    can be converted to actual order(s) on suppliers or commitments of existing
+                    stock by returning to the <a class="inline-block px-1 py-0 font-bold leading-tight text-black bg-indigo-100 hover:text-indigo-700" href="{{ route('allocations.index')}}">index page</a>, selecting one or more allocations and
+                    choosing 'Create Orders' from the dropdown menu.
+                </div>
+            </div>
+
+        @endif
     </div>
 
     @if($showFoodbankPicker)
