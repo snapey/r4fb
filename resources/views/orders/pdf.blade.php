@@ -86,7 +86,7 @@
     </section>
 
     <div>
-        @foreach($order->notes->where('external') as $note)
+        @foreach($order->notes as $note)
             <p>{{ $note->memo }}</p>
         @endforeach
     </div>

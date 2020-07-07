@@ -2,7 +2,7 @@
     <div class="fixed top-0 left-0 z-20 flex items-center justify-center w-full h-full modal">
         <div class="absolute w-full h-full bg-gray-900 opacity-50 pointer-events-none modal-overlay"></div>
 
-        <div class="container z-50 max-w-2xl mx-auto overflow-y-auto bg-white rounded shadow-lg" style="height: 35vh;">
+        <div class="container z-50 max-w-2xl mx-auto overflow-y-auto bg-white rounded shadow-lg" style="height: 30vh;">
 
             <div
                 class="absolute top-0 right-0 z-50 flex flex-col items-center my-4 mr-4 text-sm text-white cursor-pointer">
@@ -42,7 +42,6 @@
                             <span class="mt-1 text-red-700">{{ $message }}</span>
                         @enderror
                         <x-inputs.checkbox-editable editing="1" name="pinned" label="Pinned to top" checked="{{$pinned}}"  />
-                        <x-inputs.checkbox-editable editing="1" name="external" label="Visible externally" checked="{{$external}}"  />
                         <div class="mt-2 text-right">
                             @if($confirming)
                                 <x-button wire:click="kill()" class="w-2/12 h-8" danger active>You Sure?</x-button>

@@ -15,10 +15,6 @@
 
         {{-- Output existing notes --}}
         @foreach($notes as $note)
-        <div class="relative">
-            @if($note->external)
-                <div class="absolute z-10 inline-block px-2 py-px mx-2 -mt-1 text-xs text-yellow-900 bg-yellow-400 rounded-full">External Note</div>
-            @endif
             <div x-init="removeClass($el,'bg-green-300',2500)" wire:key="{{ $note->id }}"
                 class="
                 @if($note->recentlyUpdated) bg-green-300 @endif
@@ -34,7 +30,6 @@
                 </div>
                 <div><a href="#" x-on:click.prevent="editor=true;window.livewire.emit('editoropen',{{ $note->id }})" ><x-svg.pencil-alt class="h-5 pl-2 text-gray-600 transition duration-100 hover:text-gray-800" /></a></div>
             </div>
-        </div>
         @endforeach
         
         @include('admin.notes.note-editor')
