@@ -13,7 +13,8 @@ class NotesComponent extends Component
     public $newnote = '';
     public $dirtyNote = false;
     public $memo;
-    public $pinned;
+    public $pinned; 
+    public $external; 
     public $editing;
     public $confirming;
 
@@ -63,6 +64,7 @@ class NotesComponent extends Component
         $note = Note::findOrFail($id);
         $this->memo = $note->memo;
         $this->pinned = $note->pinned;
+        $this->external = $note->external;
         $this->editing = $id;
     }
 
@@ -75,6 +77,7 @@ class NotesComponent extends Component
         $note = Note::findOrFail($this->editing);
         $note->memo = $data['memo'];
         $note->pinned = $this->pinned;
+        $note->external = $this->external;
         $note->user_id = Auth::id();
         $note->save();
         return $this->closed();
@@ -84,6 +87,7 @@ class NotesComponent extends Component
     {   
         $this->memo = null;
         $this->pinned = null;
+        $this->closed = null;
         $this->editing = null;
         $this->confirming = null;
         $this->dispatchBrowserEvent('closemodal');
