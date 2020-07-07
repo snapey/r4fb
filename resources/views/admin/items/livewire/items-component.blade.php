@@ -15,6 +15,7 @@
 
                     <x-inputs.text-editable editing="{{ $editing }}" name="code" label="Code" half />
                     <x-inputs.text-editable editing="{{ $editing }}" name="description" label="Description" />
+                    <x-inputs.text-editable editing="{{ $editing }}" name="pounds" label="Latest Cost Each" half />
                     <x-inputs.text-editable editing="{{ $editing }}" name="sku" label="SKU" half />
                     <x-inputs.text-editable editing="{{ $editing }}" name="uom" label="UOM" half />
                     <x-inputs.text-editable editing="{{ $editing }}" name="weight" label="Weight" half />

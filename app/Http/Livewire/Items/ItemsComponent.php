@@ -16,6 +16,7 @@ class ItemsComponent extends Component
     public $description;
     public $durability;
     public $generic;
+    public $pounds;
 
     public $editing;
     public $confirming;
@@ -64,6 +65,7 @@ class ItemsComponent extends Component
         $this->description = $item->description;
         $this->durability = $item->durability;
         $this->generic = $item->generic ?? 0;
+        $this->pounds = $item->pounds;
     }
 
     public function editMode()
@@ -110,10 +112,16 @@ class ItemsComponent extends Component
             'description' => 'required|max:100',
             'durability' => 'max:20',
             'generic' => 'boolean',
+            'pounds' => 'required|numeric'
             ]);
-            dump('next');
-            
-        $item = item::updateOrCreate(['id' => $this->item_id],$data);
+
+        $item = is_null($this->item_id)
+            ? new Item()
+            : Item::find($this->item_id);
+
+        $item->fill($data);
+        $item->save();
+
         return $item;
     }
 

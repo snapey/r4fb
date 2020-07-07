@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Livewire\Allocations;
+namespace App\Http\Livewire\Orders;
 
-use App\Allocation;
+use App\Order;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Kdion4891\LaravelLivewireTables\Column;
 use Kdion4891\LaravelLivewireTables\TableComponent;
 
-class AllocationsTable extends TableComponent
+class OrdersTable extends TableComponent
 {
 
 
@@ -17,12 +17,11 @@ class AllocationsTable extends TableComponent
     public $checkbox = true;
     public $checkbox_side = 'left';
     public $clickable_row = true;
-    public $header_view = 'allocations._header';
     public $action;
 
     public function query()
     {
-        return Allocation::query()->with('foodbank','createdby');
+        return Order::query()->with('supplier');
     }
 
 
@@ -30,28 +29,20 @@ class AllocationsTable extends TableComponent
     {
         return [
             Column::make('ID','id')->searchable()->sortable(),
-            Column::make('Foodbank','foodbank.name'),
-            Column::make('Started By','createdby.name'),
+            Column::make('Supplier','supplier.name'),
             Column::make('Status')->sortable(),
-            Column::make('Budget')->sortable(),
             Column::make('Total','total'),
             Column::make('Updated At')->sortable(),
-            Column::make('Created At')->sortable(),
         ];
     }
 
     public function rowClick($id)
     {
-        return redirect(route('allocations.show', $id));
+        return redirect(route('orders.show', $id));
     }
-
-
-
-
 
     public function tdClass($attribute, $value)
     {
-        if ($attribute == 'budget') return 'text-right ';
         if ($attribute == 'total') return 'text-right ';
 
         return null;
@@ -59,7 +50,6 @@ class AllocationsTable extends TableComponent
 
     public function thClass($attribute)
     {
-        if ($attribute == 'budget') return 'text-right w-1/12';
         if ($attribute == 'total') return 'text-right w-1/12';
         // if ($attribute == 'id') return 'w-1/12';
         // if ($attribute == 'foodbank.name') return 'w-3/12';
@@ -73,21 +63,10 @@ class AllocationsTable extends TableComponent
 
     public function tdPresenter($attribute, $value)
     {
-        if ($attribute == 'budget') return '£' .  number_format($value/100, 0);
         if ($attribute == 'total') return '£' .  number_format($value/100, 2);
-        if ($attribute == 'created_at') return Carbon::parse($value)->format('H:i D d.m.y');
         if ($attribute == 'updated_at') return Carbon::parse($value)->format('H:i D d.m.y');
 
         return $value;
     }
 
-    public function go()
-    {
-        if($this->action == 'create') {
-
-            $this->redirect(route('prepare-orders', ['allocations' => $this->checkbox_values]));
-            
-        }
-
-    }
 }

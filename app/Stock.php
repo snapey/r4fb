@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Stock extends Model
 {
     public CONST DRAFT = 'Draft';
+    public CONST PURCHASING = 'Purchasing';
 
     public $guarded=[];
     

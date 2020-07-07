@@ -45,4 +45,9 @@ trait FoodbankStatus
         return $foodbank->status == 4;
     }
 
+    function scopeApproved($query)
+    {
+        $query->where('status',4);
+    }
+
 }

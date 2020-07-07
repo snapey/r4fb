@@ -67,7 +67,7 @@
         @if($allocation->status == App\Allocation::START)
 
             <div class="w-1/4 p-2">
-                <div class="p-2 leading-normal bg-yellow-100 border border-yellow-200">
+                <div class="p-2 text-sm leading-normal bg-yellow-100 border border-yellow-200">
                     This Allocation is in <strong>Draft</strong> state and 
                     can be converted to actual order(s) on suppliers or commitments of existing
                     stock by returning to the <a class="inline-block px-1 py-0 font-bold leading-tight text-black bg-indigo-100 hover:text-indigo-700" href="{{ route('allocations.index')}}">index page</a>, selecting one or more allocations and

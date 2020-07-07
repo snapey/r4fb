@@ -39,9 +39,9 @@ class AllocationsComponent extends Component
 
     public function render()
     {
-        // if ($this->redirectTo) {
-        //     return view('allocations.livewire.allocations-component')->withAllocation(new Allocation());
-        // }
+        if ($this->redirectTo) {
+            return view('allocations.livewire.allocations-component')->withAllocation(new Allocation());
+        }
 
         if (is_null($this->allocation_id)) {
             $allocation = new Allocation;
@@ -88,7 +88,7 @@ class AllocationsComponent extends Component
     {
         $this->validate([
             'foodbank' => 'required',
-            'budget' => 'max:50000',
+            'budget' => 'max:50000| numeric',
         ]);
 
         $allocation = is_null($this->allocation_id) 
@@ -111,7 +111,8 @@ class AllocationsComponent extends Component
     public function kill()
     {
         $allocation = Allocation::find($this->allocation_id);
-        $allocation->items()->detach();
+        $allocation->stocks()->delete();
+        $allocation->delete();
 
         $this->redirect(route('allocations.index'));
     }

@@ -21,6 +21,7 @@ class CreateStockRecord extends Migration
             $table->string('status',20);
             $table->integer('each')->default(0);
             $table->integer('total')->default(0);
+            $table->foreignId('orderline_id')->nullable();
             $table->timestamps();
         });
     }

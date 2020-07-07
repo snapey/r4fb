@@ -51,5 +51,13 @@ Route::middleware(['auth', 'nocache'])->group(function () {
     Route::get('allocations/create', 'AllocationsController@create')->name('allocations.create');
     Route::get('allocations/show/{allocation}', 'AllocationsController@show')->name('allocations.show');
 
+    Route::get('prepareOrders', 'PrepareOrdersController@show')->name('prepare-orders');
+
+    Route::get('orders', 'PurchaseOrderController@index')->name('orders.index');
+    Route::get('orders/{order}', 'PurchaseOrderController@show')->name('orders.show');
+    Route::get('orders/{order}/pdf', 'PurchaseOrderController@pdf')->name('orders.pdf');
+    Route::post('purchase/create', 'PurchaseOrderController@create')->name('orders.create');
+    Route::patch('purchase/{order}/marksent', 'PurchaseOrderController@marksent')->name('orders.marksent');
+
 
 });

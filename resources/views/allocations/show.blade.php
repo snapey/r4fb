@@ -1,4 +1,4 @@
-@extends('layouts.app',[$title='Shipper | '])
+@extends('layouts.app',[$title='Allocation | '])
 
 @section('content')
 <style>

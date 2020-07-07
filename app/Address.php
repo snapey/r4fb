@@ -54,4 +54,9 @@ class Address extends Model
         $this->attributes['latitude'] = $coords[0];
         $this->attributes['longitude'] = $coords[1];
     }
+
+    public function addressable()
+    {
+        return $this->morphTo();
+    }
 }

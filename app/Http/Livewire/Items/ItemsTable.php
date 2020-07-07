@@ -33,7 +33,7 @@ class ItemsTable extends TableComponent
             Column::make('Description', 'description')->searchable(),
             Column::make('SKU', 'sku')->searchable(),
             Column::make('UOM', 'uom'),
-            Column::make('Weight', 'weight'),
+            Column::make('Latest Price', 'each'),
             Column::make('Generic', 'generic'),
             Column::make('Last Update','updated_at')->sortable(),
         ];
@@ -48,6 +48,9 @@ class ItemsTable extends TableComponent
     {
         if ($attribute == 'generic') return 'text-center';
         if ($attribute == 'uom') return 'text-center';
+        if ($attribute == 'each') return 'text-right';
+        if ($attribute == 'updated_at') return 'text-xs';
+
 
         return null;
     }
@@ -56,15 +59,10 @@ class ItemsTable extends TableComponent
     {
         if ($attribute == 'code') return 'text-left w-1/12';
         if ($attribute == 'sku') return 'text-center w-1/12';
-        if ($attribute == 'weight') return 'text-center w-1/12';
+        if ($attribute == 'each') return 'text-right w-1/12';
         if ($attribute == 'uom') return 'text-center w-2/12';
-        if ($attribute == 'description') return 'text-left w-3/12';
+        if ($attribute == 'description') return 'text-left w-4/12';
         if ($attribute == 'generic') return 'w-1/12 text-center';
-        // if ($attribute == 'foodbank.name') return 'w-3/12';
-        // if ($attribute == 'status') return 'w-1/12';
-        // if ($attribute == 'createdby.name') return 'w-2/12';
-        // if ($attribute == 'updated_at') return 'w-2/12';
-        // if ($attribute == 'created_at') return 'w-2/12';
 
         return null;
     }
@@ -72,7 +70,8 @@ class ItemsTable extends TableComponent
     public function tdPresenter($attribute, $value)
     {
         if ($attribute == 'generic') return  $value ? 'Yes' : '';
-        if ($attribute == 'updated_at') return Carbon::parse($value)->format('H:i D d.m.y');
+        if ($attribute == 'each') return  '£' . number_format($value/100,2) ? : '';
+        if ($attribute == 'updated_at') return Carbon::parse($value)->format('H:i d/m/Y');
 
         return $value;
     }

@@ -4,6 +4,10 @@ module.exports = {
     './resources/css/**/*.css',
   ],
   theme: {
+    fontFamily: {
+      'sans' : ['Roboto','sans-serif'],
+      'mono' : ['monospace']
+    },
     opacity: {
       '0': '0',
       '10': '.1',

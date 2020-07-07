@@ -19,6 +19,8 @@ class Item extends Model
         'description',
         'durability',
         'generic',
+        'each',
+        'pounds',
     ];
 
     /**
@@ -45,6 +47,16 @@ class Item extends Model
     public function notes()
     {
         return $this->morphMany('App\Note', 'notable')->latest();
+    }
+
+    public function setPoundsAttribute($value)
+    {
+        $this->each = intval($value*100);
+    }
+
+    public function getPoundsAttribute()
+    {
+        return number_format($this->each/100,2);
     }
 
 }

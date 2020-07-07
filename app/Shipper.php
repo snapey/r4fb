@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Shipper extends Model
@@ -54,6 +55,11 @@ class Shipper extends Model
     public function user()
     {
         return $this->belongsTo(\App\User::class);
+    }
+
+    public function scopeSatelliteScope(Builder $query)
+    {
+        $query->where('is_satellite',1);
     }
     
 }
