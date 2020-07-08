@@ -112,7 +112,7 @@
                     @include('admin.user._roles')
                     @include('admin.user._permissions')
 
-                    <button class="positive-button" type="submit">Save</button>
+                    <button class="my-4 positive-button" type="submit">Save</button>
                 <form>
             </div>
         </div>

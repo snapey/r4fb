@@ -40,7 +40,7 @@
     @apply block mt-4 ml-4 border-0 border-b-4 pb-1 text-blue-800 font-mono font-bold
 }
 .positive-button {
-    @apply w-32 px-2 py-2 mb-6 rounded shadow bg-teal-600 font-bold text-white
+    @apply w-32 px-2 py-2 rounded shadow bg-teal-600 font-bold text-white
 }
 .positive-button:hover {
     @apply bg-teal-700 

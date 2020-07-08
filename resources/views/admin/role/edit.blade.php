@@ -7,9 +7,9 @@
 <div class="flex items-center text-gray-700">
     <div class="w-full mx-4 lg:w-2/3 lg:mx-auto">
 
-        <div class="bg-white border border-2 rounded shadow-md mb-12">
+        <div class="mb-12 bg-white border border-2 rounded shadow-md">
 
-            <div class="font-semibold bg-gray-200 py-6 px-6 mb-0">
+            <div class="px-6 py-6 mb-0 font-semibold bg-gray-200">
                 @if($role->exists)
                 Edit role: {{ $role->name }}
 
@@ -17,7 +17,7 @@
                     onsubmit="return confirm('Are you sure you want to delete this role?');">
                     @csrf @method('delete')
                     <button
-                        class="w-48 -mt-2 py-2 text-sm rounded shadow bg-gray-500 hover:bg-red-800 font-bold text-white"
+                        class="w-48 py-2 -mt-2 text-sm font-bold text-white bg-gray-500 rounded shadow hover:bg-red-800"
                         type="submit">- Delete role</button>
                 </form>
 
@@ -27,7 +27,7 @@
 
             </div>
 
-            <div class="w-full p-6 flex text-sm">
+            <div class="flex w-full p-6 text-sm">
                 @if($role->exists)
                 <form class="flex flex-col w-full" method="POST" action="{{ route('admin.roles.update',$role) }}">
                     @method('put')
@@ -37,13 +37,13 @@
                         @csrf
                         <div class="">
                             {{-- form input element --}}
-                            <div class="flex flex-wrap content-start mb-6 w-1/3">
-                                <label for="name" class="block text-sm font-bold mb-2">Role Name:</label>
+                            <div class="flex flex-wrap content-start w-1/3 mb-6">
+                                <label for="name" class="block mb-2 text-sm font-bold">Role Name:</label>
 
                                 <input id="name" type="text" required name="name" value="{{ old('name', $role->name) }}"
                                     class="text-base font-mono shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline @error('name') border-red-500 @enderror">
                                 @error('name')
-                                <p class="text-red-500 text-xs italic mt-4">{{ $message }}</p>
+                                <p class="mt-4 text-xs italic text-red-500">{{ $message }}</p>
                                 @enderror
                             </div>
 
@@ -51,7 +51,7 @@
 
                             <div class="flex w-full mt-2">
 
-                                <div class="w-1/3 bg-gray-200 rounded p-4">
+                                <div class="w-1/3 p-4 bg-gray-200 rounded">
                                     @if(isset($groupedPermissions[0]))
                                         @foreach($groupedPermissions[0] as $permission)
                                             <div class="w-full py-1"><label>
@@ -62,7 +62,7 @@
                                     @endif
                                 </div>
 
-                                <div class="w-1/3 bg-gray-200 ml-4 rounded p-4">
+                                <div class="w-1/3 p-4 ml-4 bg-gray-200 rounded">
                                     @if(isset($groupedPermissions[1]))
                                         @foreach($groupedPermissions[1] as $permission)
                                         <div class="w-full py-1"><label>
@@ -74,7 +74,7 @@
                                     @endif
                                 </div>
 
-                                <div class="w-1/3 bg-gray-200 ml-4 rounded p-4">
+                                <div class="w-1/3 p-4 ml-4 bg-gray-200 rounded">
                                     @if(isset($groupedPermissions[2]))
                                         @foreach($groupedPermissions[2] as $permission)
                                         <div class="w-full py-1"><label>
@@ -87,7 +87,7 @@
                             </div>
                         </div>
 
-                        <button class="positive-button" type="submit">Save</button>
+                        <button class="my-4 positive-button" type="submit">Save</button>
 
                         <form>
             </div>
