@@ -17,17 +17,17 @@
         @foreach($notes as $note)
         <div class="relative">
             @if($note->external)
-                <div class="absolute z-10 inline-block px-2 py-px mx-2 -mt-1 text-xs text-yellow-900 bg-yellow-400 rounded-full">External Note</div>
+                <div class="absolute z-10 inline-block px-2 py-px mx-2 -mt-1 text-xs text-yellow-900 bg-yellow-400 border border-yellow-500 rounded-full shadow">External Note</div>
             @endif
             <div x-init="removeClass($el,'bg-green-300',2500)" wire:key="{{ $note->id }}"
                 class="
                 @if($note->recentlyUpdated) bg-green-300 @endif
                 @if($note->pinned)
-                    border-l-4 border-red-500
+                    border-red-500
                 @else
-                    border-l-4 border-teal-500
+                    border-teal-500
                 @endif
-                flex flex-row items-center px-2 py-1 text-gray-800 transition-all duration-150 bg-white ease-in rounded shadow hover:bg-yellow-300">
+                border-l-4 flex flex-row items-center px-2 py-1 text-gray-800 transition-all duration-150 bg-white ease-in rounded shadow hover:bg-yellow-300">
                 <div class="flex-1 py-1 text-sm leading-snug ">{!! nl2br(e($note->memo)) !!}</div>
                 <div class="flex-none text-xs leading-snug text-right text-gray-600">
                     {{$note->user->name ?? 'anon' }}<br>{{ $note->updated_at->format('H:i D d/m/y') }}
