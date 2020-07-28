@@ -1,4 +1,4 @@
-@extends('layouts.app',[$title='Order {{ $order->id }} | '])
+@extends('layouts.app',[$title='Order: ' . $order->id . ' ' ])
 
 @section('content')
 <style>
@@ -9,7 +9,7 @@
 
 <div class="pb-8 mb-8 bg-gray-200">
     <h1 class="py-4 mx-4 text-xl font-bold text-teal-800 ">Order {{ $order->id }} - {{ $order->status }}</h1>
-
+    
     <div id="progress" class="flex items-center justify-between px-4 py-3 m-4 bg-teal-100 border-gray-500 rounded-full shadow">
         <div class="">
             @if($order->status == $order::START)

@@ -10,7 +10,7 @@
 
         <div class="w-3/4 my-4 border-r-2 border-gray-400">
 
-            <div class="flex flex-row">
+            <div class="flex flex-row text-gray-800">
                 <div class="flex flex-col w-11/12 py-4 pl-4 pr-4 m-4 space-y-2 bg-white border border-gray-300 rounded">
 
                     <x-inputs.text-editable name="status" label="Status:" half />
@@ -72,6 +72,23 @@
                     can be converted to actual order(s) on suppliers or commitments of existing
                     stock by returning to the <a class="inline-block px-1 py-0 font-bold leading-tight text-black bg-indigo-100 hover:text-indigo-700" href="{{ route('allocations.index')}}">index page</a>, selecting one or more allocations and
                     choosing 'Create Orders' from the dropdown menu.
+                </div>
+            </div>
+
+        @endif
+        @if($allocation->status && $allocation->status != App\Allocation::START)
+
+            <div class="w-1/4 p-2">
+                <div class="p-2 text-sm leading-normal bg-yellow-100 border border-yellow-200 rounded-lg shadow-lg">
+                    You can <a class="inline-block px-1 py-0 font-bold leading-tight text-black bg-indigo-100 hover:text-indigo-700" 
+                        href="{{ route('shipment.create',$allocation) }}">create a single shipment</a> for this Allocation. <br /><br />
+                    If you want to ship multiple Allocations to one place then this is done by selecting several allocations on the previous screen and
+                    selecting Create Shipment from the menu.
+                </div>
+                <div class="p-2 mt-2 text-sm leading-normal bg-yellow-100 border border-yellow-200 rounded-lg shadow-lg">
+                    You can <a class="inline-block px-1 py-0 font-bold leading-tight text-black bg-indigo-100 hover:text-indigo-700" 
+                        href="{{ route('allocations.copy',$allocation) }}">duplicate this allocation</a> in order to then change the foodbank and 
+                        create a brand new allocation.
                 </div>
             </div>
 

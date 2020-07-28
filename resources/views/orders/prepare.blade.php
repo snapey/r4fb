@@ -102,9 +102,9 @@
                             @endforeach
                             </optgroup>
                             <optgroup label="Foodbanks">
-                            @foreach($foodbanks as $foodbank)
-                                @foreach($foodbank->addresses as $address)
-                                <option value="{{ $address->id }}">{{ $foodbank->name }} - {{ $address->address1 }} - {{ $address->postcode }}</option>
+                            @foreach($allocations as $allocation)
+                                @foreach($allocation->foodbank->addresses as $address)
+                                <option value="{{ $address->id }}">{{ $allocation->foodbank->name }} - {{ $address->address1 }} - {{ $address->postcode }}</option>
                                 @endforeach
                             @endforeach
                             </optgroup>

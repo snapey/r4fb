@@ -57,12 +57,12 @@ class ItemsTable extends TableComponent
 
     public function thClass($attribute)
     {
-        if ($attribute == 'code') return 'text-left w-1/12';
-        if ($attribute == 'sku') return 'text-center w-1/12';
-        if ($attribute == 'each') return 'text-right w-1/12';
-        if ($attribute == 'uom') return 'text-center w-2/12';
-        if ($attribute == 'description') return 'text-left w-4/12';
-        if ($attribute == 'generic') return 'w-1/12 text-center';
+        if ($attribute == 'code') return 'text-left';
+        if ($attribute == 'sku') return 'text-center';
+        if ($attribute == 'each') return 'text-right';
+        if ($attribute == 'uom') return 'text-center';
+        if ($attribute == 'description') return 'w-4/12 text-left';
+        if ($attribute == 'generic') return 'text-center';
 
         return null;
     }

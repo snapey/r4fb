@@ -1,4 +1,4 @@
-<tr>
+<tr class="text-gray-800">
     <td class="py-1 font-bold">{{ $stock['item']['code'] }}</td>
     <td class="px-1 py-1">{{$stock['item']['description'] }}</td>
     <td class="py-1">{{ $stock['item']['uom'] }}</td>

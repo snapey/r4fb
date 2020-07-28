@@ -22,11 +22,9 @@
             <div x-init="removeClass($el,'bg-green-300',2500)" wire:key="{{ $note->id }}"
                 class="
                 @if($note->recentlyUpdated) bg-green-300 @endif
-                @if($note->pinned)
-                    border-red-500
-                @else
-                    border-teal-500
-                @endif
+
+                {{ $note->pinned ? 'border-red-500' : 'border-teal-500' }}
+        
                 border-l-4 flex flex-row items-center px-2 py-1 text-gray-800 transition-all duration-150 bg-white ease-in rounded shadow hover:bg-yellow-300">
                 <div class="flex-1 py-1 text-sm leading-snug ">{!! nl2br(e($note->memo)) !!}</div>
                 <div class="flex-none text-xs leading-snug text-right text-gray-600">

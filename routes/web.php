@@ -49,9 +49,18 @@ Route::middleware(['auth', 'nocache'])->group(function () {
 
     Route::get('allocations', 'AllocationsController@index')->name('allocations.index');
     Route::get('allocations/create', 'AllocationsController@create')->name('allocations.create');
+    Route::get('allocations/{allocation}/copy', 'AllocationsController@copy')->name('allocations.copy');
     Route::get('allocations/{allocation}', 'AllocationsController@show')->name('allocations.show');
 
     Route::get('prepareOrders', 'PrepareOrdersController@show')->name('prepare-orders');
+
+    Route::get('shipment', 'ShipmentController@index')->name('shipment.index');
+    Route::get('shipment/multi', 'ShipmentController@multi')->name('shipment.multi');
+    Route::get('shipment/{shipment}', 'ShipmentController@show')->name('shipment.show');
+    Route::get('shipment/{allocation}/create', 'ShipmentController@create')->name('shipment.create');
+    Route::post('shipment', 'ShipmentController@store')->name('shipment.store');
+    Route::get('shipment/{shipment}/pdf', 'ShipmentController@multipdf')->name('shipment.pdf.multi');
+    Route::get('shipment/{shipment}/{allocation}/pdf', 'ShipmentController@singlepdf')->name('shipment.pdf');
 
     Route::get('orders', 'PurchaseOrderController@index')->name('orders.index');
     Route::get('orders/{order}', 'PurchaseOrderController@show')->name('orders.show');

@@ -37,7 +37,7 @@ class PurchaseOrderController extends Controller
 
     public function create(Request $request)
     {
-        // return $request->all();
+        abort_if(is_null($request->allocations),500);
 
         $allocations = Allocation::with('stocks.item')
             ->whereIn('id', $request->allocations)

@@ -29,4 +29,9 @@ class ClubsPicker extends TableComponent
     {
         $this->emit('clubChosen', $id);
     }
+
+    public function tdPresenter($attribute, $value)
+    {
+        return $value;
+    }
 }

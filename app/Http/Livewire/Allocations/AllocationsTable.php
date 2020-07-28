@@ -89,5 +89,11 @@ class AllocationsTable extends TableComponent
             
         }
 
+        if($this->action == 'shipment') {
+
+            $this->redirect(route('shipment.multi',['allocations' => $this->checkbox_values]));
+
+        }
+
     }
 }

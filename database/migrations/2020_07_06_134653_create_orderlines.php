@@ -16,7 +16,7 @@ class CreateOrderlines extends Migration
         Schema::create('orderlines', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id');
-            $table->integer('code');
+            $table->string('code',30);
             $table->string('description',100);
             $table->string('uom',10)->nullable();
             $table->string('sku',30)->nullable();
