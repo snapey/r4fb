@@ -18,6 +18,7 @@ class ItemsTable extends TableComponent
     public $clickable_row = true;
     public $sort_attribute = 'code';
     public $sort_direction = 'asc';
+    public $per_page = 50;
     // public $header_view = 'admin.contacts._header';
 
     public function query()
@@ -31,10 +32,10 @@ class ItemsTable extends TableComponent
         return [
             Column::make('Code', 'code')->searchable(),
             Column::make('Description', 'description')->searchable(),
-            Column::make('SKU', 'sku')->searchable(),
+            // Column::make('SKU', 'sku')->searchable(),
             Column::make('UOM', 'uom'),
-            Column::make('Latest Price', 'each'),
-            Column::make('Generic', 'generic'),
+            Column::make('Latest £', 'each'),
+            // Column::make('Generic', 'generic'),
             Column::make('Last Update','updated_at')->sortable(),
         ];
     }
@@ -47,7 +48,7 @@ class ItemsTable extends TableComponent
     public function tdClass($attribute, $value)
     {
         if ($attribute == 'generic') return 'text-center';
-        if ($attribute == 'uom') return 'text-center';
+        if ($attribute == 'uom') return 'text-left';
         if ($attribute == 'each') return 'text-right';
         if ($attribute == 'updated_at') return 'text-xs';
 
@@ -59,9 +60,9 @@ class ItemsTable extends TableComponent
     {
         if ($attribute == 'code') return 'text-left';
         if ($attribute == 'sku') return 'text-center';
-        if ($attribute == 'each') return 'text-right';
-        if ($attribute == 'uom') return 'text-center';
-        if ($attribute == 'description') return 'w-4/12 text-left';
+        if ($attribute == 'each') return 'w-1/12 text-right';
+        if ($attribute == 'uom') return 'text-left';
+        if ($attribute == 'description') return 'w-6/12 text-left';
         if ($attribute == 'generic') return 'text-center';
 
         return null;

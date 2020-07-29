@@ -14,6 +14,7 @@ class AllocationStock extends Component
     public $stocks;
     public $confirming = false;
     public $allocation_total;
+    public $allocation_status;
 
     protected $listeners = [
         'itemChosen','itemRemoved'
@@ -37,6 +38,7 @@ class AllocationStock extends Component
         }
 
         $this->allocation_total = number_format($total / 100,2);
+        $this->allocation_status = $allocation->status;
 
         $this->stocks = $allocation->stocks->toArray() ?? [];
 

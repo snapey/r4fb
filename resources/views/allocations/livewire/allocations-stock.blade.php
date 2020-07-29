@@ -22,7 +22,7 @@
             </thead>
             <tbody>
                 @foreach($stocks as $stock)
-                    @include('allocations.stocks-row',['stock' => $stock, 'row' => $loop->index ])
+                    @include('allocations.stocks-row',['stock' => $stock, 'row' => $loop->index, 'allocation_status' => $allocation_status ])
                 @endforeach
             </tbody>
         </table>

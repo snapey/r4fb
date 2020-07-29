@@ -67,11 +67,14 @@
         @if($allocation->status == App\Allocation::START)
 
             <div class="w-1/4 p-2">
-                <div class="p-2 text-sm leading-normal bg-yellow-100 border border-yellow-200">
+                <div class="p-2 text-sm leading-normal bg-yellow-100 border border-yellow-200 rounded-lg shadow-lg text-900">
                     This Allocation is in <strong>Draft</strong> state and 
                     can be converted to actual order(s) on suppliers or commitments of existing
-                    stock by returning to the <a class="inline-block px-1 py-0 font-bold leading-tight text-black bg-indigo-100 hover:text-indigo-700" href="{{ route('allocations.index')}}">index page</a>, selecting one or more allocations and
+                    stock by returning to the <a class="inline-block px-1 py-0 font-semibold leading-tight text-indigo-800 border rounded hover:bg-indigo-100 hover:underline" href="{{ route('allocations.index')}}">index page</a>, selecting one or more allocations and
                     choosing 'Create Orders' from the dropdown menu.
+                </div>
+                <div class="p-2 mt-2 text-sm leading-normal text-gray-900 bg-yellow-100 border border-yellow-200 rounded-lg shadow-lg">
+                    <x-svg.exclamation class="h-5" /> Any changes you make here are saved immediately.
                 </div>
             </div>
 
@@ -80,13 +83,13 @@
 
             <div class="w-1/4 p-2">
                 <div class="p-2 text-sm leading-normal bg-yellow-100 border border-yellow-200 rounded-lg shadow-lg">
-                    You can <a class="inline-block px-1 py-0 font-bold leading-tight text-black bg-indigo-100 hover:text-indigo-700" 
+                    You can <a class="inline-block px-1 py-0 font-semibold leading-tight text-indigo-800 border rounded hover:bg-indigo-100 hover:underline" 
                         href="{{ route('shipment.create',$allocation) }}">create a single shipment</a> for this Allocation. <br /><br />
                     If you want to ship multiple Allocations to one place then this is done by selecting several allocations on the previous screen and
                     selecting Create Shipment from the menu.
                 </div>
                 <div class="p-2 mt-2 text-sm leading-normal bg-yellow-100 border border-yellow-200 rounded-lg shadow-lg">
-                    You can <a class="inline-block px-1 py-0 font-bold leading-tight text-black bg-indigo-100 hover:text-indigo-700" 
+                    You can <a class="inline-block px-1 py-0 font-semibold leading-tight text-indigo-800 border rounded hover:bg-indigo-100 hover:underline" 
                         href="{{ route('allocations.copy',$allocation) }}">duplicate this allocation</a> in order to then change the foodbank and 
                         create a brand new allocation.
                 </div>
