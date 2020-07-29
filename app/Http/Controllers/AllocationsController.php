@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Allocation;
 use App\Stock;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AllocationsController extends Controller
 {
@@ -47,6 +48,7 @@ class AllocationsController extends Controller
             ]);
         }
 
+        Alert::success('Allocation duplicated','You should change the foodbank to be the correct one for this new allocation');
         return redirect(route('allocations.show',$newAllocation));
     }
 }
