@@ -22,7 +22,7 @@ class AllocationsTable extends TableComponent
 
     public function query()
     {
-        return Allocation::query()->with('foodbank','createdby');
+        return Allocation::query()->with('foodbank.shipper','createdby');
     }
 
 
@@ -31,9 +31,9 @@ class AllocationsTable extends TableComponent
         return [
             Column::make('ID','id')->searchable()->sortable(),
             Column::make('Foodbank','foodbank.name')->searchable(),
+            Column::make('Via','foodbank.shipper.name')->searchable(),
             Column::make('Started By','createdby.name'),
             Column::make('Status')->sortable(),
-            Column::make('Budget'),
             Column::make('Total','total'),
             Column::make('Updated At')->sortable(),
             // Column::make('Created At')->sortable(),
