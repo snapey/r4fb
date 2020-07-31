@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Allocation;
 use App\Stock;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AllocationsController extends Controller
@@ -31,7 +32,7 @@ class AllocationsController extends Controller
 
         $newAllocation = Allocation::create([
             'foodbank_id' => $allocation->foodbank_id,
-            'user_id' => $allocation->user_id,
+            'user_id' => Auth::id(),
             'status' => Allocation::START,
             'budget' => $allocation->budget,
             'total' => $allocation->total,
