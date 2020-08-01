@@ -74,13 +74,10 @@ class ShipmentController extends Controller
             ->where('shipment_id',$shipment->id)
             ->first();
 
-        // $pdf = App::make('dompdf.wrapper');
- 
-        // $pdf->loadView('shipments.pdf', compact(['shipment','allocation','sub']));
-
-        // return $pdf->download("R4FB-Shipment-{$shipment->id}-{$sub->sub}.pdf");
-
         $pdf = SnappyPdf::loadView('shipments.pdf', compact(['shipment', 'allocation', 'sub']));
+
+        $pdf->setOption('margin-left', 15);
+        $pdf->setOption('margin-right', 15);
 
         return $pdf->download("R4FB-Shipment-{$shipment->id}-{$sub->sub}.pdf");
 
@@ -93,6 +90,9 @@ class ShipmentController extends Controller
         $shipment->load('fromAddress.addressable', 'toAddress.addressable', 'notes','allocations.stocks.item');
 
         $pdf = SnappyPdf::loadView('shipments.pdf-multi', compact(['shipment']));
+
+        $pdf->setOption('margin-left', 15);
+        $pdf->setOption('margin-right', 15);
 
         return $pdf->download("R4FB-Shipment-{$shipment->id}-all.pdf");
     }
