@@ -41,11 +41,7 @@
                     <x-button wire:click="editMode" class="w-full">Edit</x-button>
                     @endif
 
-                    @if($editing && is_null($allocation->id))
-                    <x-button wire:click="next" class="w-full" active>Next</x-button>
-                    @else
                     <div class="w-full"></div>
-                    @endif
 
                     @if(!$editing)
                     @if($confirming)

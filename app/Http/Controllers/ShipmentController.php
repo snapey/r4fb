@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Allocation;
 use App\Shipment;
 use App\Shipper;
+use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -73,11 +74,17 @@ class ShipmentController extends Controller
             ->where('shipment_id',$shipment->id)
             ->first();
 
-        $pdf = App::make('dompdf.wrapper');
+        // $pdf = App::make('dompdf.wrapper');
  
-        $pdf->loadView('shipments.pdf', compact(['shipment','allocation','sub']));
+        // $pdf->loadView('shipments.pdf', compact(['shipment','allocation','sub']));
+
+        // return $pdf->download("R4FB-Shipment-{$shipment->id}-{$sub->sub}.pdf");
+
+        $pdf = SnappyPdf::loadView('shipments.pdf', compact(['shipment', 'allocation', 'sub']));
 
         return $pdf->download("R4FB-Shipment-{$shipment->id}-{$sub->sub}.pdf");
+
+
     }
 
 
@@ -85,9 +92,7 @@ class ShipmentController extends Controller
     {
         $shipment->load('fromAddress.addressable', 'toAddress.addressable', 'notes','allocations.stocks.item');
 
-        $pdf = App::make('dompdf.wrapper');
-
-        $pdf->loadView('shipments.pdf-multi', compact(['shipment']));
+        $pdf = SnappyPdf::loadView('shipments.pdf-multi', compact(['shipment']));
 
         return $pdf->download("R4FB-Shipment-{$shipment->id}-all.pdf");
     }

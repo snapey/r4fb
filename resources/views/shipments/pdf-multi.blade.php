@@ -10,33 +10,33 @@
     @foreach($shipment->allocations as $allocation)
 
         <div class="w-full text-center">
-            <img src="{{ asset('images/R4FBLogo.png') }}" class="w-64" />
+            <img src="{{ asset('images/R4FBLogo.png') }}" class="w-64 mx-auto" />
         </div>
         
         <table class="w-full text-xl font-bold ">
             <tr>
-                <td>Rotary4Foodbanks</td>
-                <td class="text-right">Delivery Note</td>
+                <td class="py-2">Rotary4Foodbanks</td>
+                <td class="py-2 text-right">Delivery Note</td>
             </tr>
             <tr>
-                <td>Shipment {{ $shipment->id }}-{{ $allocation->pivot->sub ?? 0 }}</td>
-                <td class="text-right">{{ $shipment->created_at->format('d/m/Y')}}</td>
+                <td class="py-2 ">Shipment {{ $shipment->id }}-{{ $allocation->pivot->sub ?? 0 }}</td>
+                <td class="py-2 text-right">{{ $shipment->created_at->format('d/m/Y')}}</td>
             </tr>
         </table>
         
         <p>Allocation: {{ $allocation->id }} / {{ $allocation->foodbank->name }}</p>
 
-        <table class="w-full mt-4 text-sm">
+        <table class="w-full mt-4 text-sm leading-normal">
             <thead>
                 <tr>
-                    <th class="text-left">Ship From:</th>
+                    <th class="w-1/2 p-2 text-left">Ship From:</th>
                     <th class="w-4 text-left"></th>
-                    <th class="text-left">Ship To:</th>
+                    <th class="w-1/2 p-2 text-left">Ship To:</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="text-sm">
-                    <td class="align-top border">
+                <tr class="text-base">
+                    <td class="p-2 align-top border ">
                         {{ $shipment->fromAddress->addressable->name }}<br />
                         {{ $shipment->fromAddress->address1 }}<br />
                         {{ $shipment->fromAddress->address2 }}<br />
@@ -47,7 +47,7 @@
                         email:</span>{{ $shipment->fromAddress->email }}<br />
                     </td>
                     <td class="">&nbsp;</td>
-                    <td class="align-top border">
+                    <td class="p-2 align-top border">
                         {{ $shipment->toAddress->addressable->name }}<br />
                         {{ $shipment->toAddress->address1 }}<br />
                         {{ $shipment->toAddress->address2 }}<br />
@@ -60,22 +60,22 @@
             </tbody>
         </table>
 
-        <table class="w-full text-xs">
+        <table class="w-full mt-4 text-xs">
             <thead>
                 <tr class="">
-                    <th class="py-1 text-sm text-left">Code</th>
-                    <th class="py-1 text-sm text-left">Description</th>
-                    <th class="py-1 text-sm text-left">UOM</th>
+                    <th class="px-2 py-1 text-sm text-left">Code</th>
+                    <th class="px-2 py-1 text-sm text-left">Description</th>
+                    <th class="px-2 py-1 text-sm text-left">UOM</th>
                     <th class="py-1 text-sm text-center">Qty</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($allocation->stocks as $line)
                     <tr class="">
-                        <td class="py-1 bg-gray-300 border-2 border-white ">{{ $line->item->code }}</td>
-                        <td class="py-1 bg-gray-300 border-2 border-white ">{{ $line->item->description }}</td>
-                        <td class="py-1 bg-gray-300 border-2 border-white ">{{ $line->item->uom }}</td>
-                        <td class="px-2 text-center bg-gray-300 border-2 border-white">{{ $line->qty }}</td>
+                        <td class="px-2 py-2 bg-gray-100 border-2 border-white ">{{ $line->item->code }}</td>
+                        <td class="px-2 py-2 bg-gray-100 border-2 border-white ">{{ $line->item->description }}</td>
+                        <td class="px-2 py-2 bg-gray-100 border-2 border-white ">{{ $line->item->uom }}</td>
+                        <td class="py-2 text-center bg-gray-100 border-2 border-white">{{ $line->qty }}</td>
                     </tr>
                 @endforeach
             </tbody>
