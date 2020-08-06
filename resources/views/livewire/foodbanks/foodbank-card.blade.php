@@ -13,7 +13,7 @@
         <div class="w-3/4 my-4 border-r-2 border-gray-400">
         <h2 class="mx-4 text-xl font-bold ">{{ $name }}
         @if($foodbank->foodbankIsApproved())<span 
-            class="relative inline-block px-2 py-1 ml-4 -mt-2 text-xs font-normal font-bold text-yellow-900 bg-yellow-400 rounded-lg shadow " style="top: -0.4rem;">Approved</span> @endif </h2>
+            class="relative inline-block px-2 py-1 ml-4 -mt-2 text-xs font-bold text-yellow-900 bg-yellow-400 rounded-lg shadow " style="top: -0.4rem;">Approved</span> @endif </h2>
 
             @include('admin.foodbanks._details')
 
