@@ -60,7 +60,7 @@ class AllocationsTable extends TableComponent
 
     public function thClass($attribute)
     {
-        if ($attribute == 'id') return 'text-right w-20';
+        if ($attribute == 'id') return 'text-left w-20';
         if ($attribute == 'budget') return 'text-right w-1/12';
         if ($attribute == 'total') return 'text-right w-1/12';
         if ($attribute == 'foodbank.id') return 'text-center w-8';
