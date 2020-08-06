@@ -58,4 +58,14 @@ class Allocation extends Model
     {
         return $this->morphMany('App\Note', 'notable')->latest();
     }
+
+    public function shipments()
+    {
+        return $this->belongsToMany(Shipment::class);
+    }
+
+    public function getPoundsAttribute()
+    {
+        return number_format($this->total / 100, 2);
+    }
 }

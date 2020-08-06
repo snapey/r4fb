@@ -24,9 +24,12 @@
             @include('admin.foodbanks._clubs')
 
             @livewire('notes-component',['notable' => $foodbank ])
-            
+        
+            @include('admin.foodbanks._allocations')
+
         @endif
         </div>
+
 
         {{-- don't show if new foodbank --}}
         @if($foodbank_id)

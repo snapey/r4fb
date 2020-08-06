@@ -58,6 +58,11 @@ class Foodbank extends Model
         return $this->belongsTo(Shipper::class);
     }
 
+    public function allocations()
+    {
+        return $this->hasMany(Allocation::class);
+    }
+
     public function getShortStatusForHumansAttribute()
     {
         return $this->foodbankShortStatuses()[$this->status];

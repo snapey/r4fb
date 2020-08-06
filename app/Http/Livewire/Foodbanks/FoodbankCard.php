@@ -74,7 +74,8 @@ class FoodbankCard extends Component
 
         return view('livewire.foodbanks.foodbank-card')
                 ->withFoodbank($foodbank)
-                ->withShippers($shippers);
+                ->withShippers($shippers)
+                ->withAllocations($foodbank->allocations()->with('shipments')->latest()->get());
     }
 
     public function setAttr($foodbank)
