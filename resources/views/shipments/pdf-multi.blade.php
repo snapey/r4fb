@@ -5,7 +5,7 @@
     <link href="{{ asset(mix('css/app.css')) }}" rel="stylesheet">
 </head>
 
-<body class="">
+<body class="m-8">
 
     @foreach($shipment->allocations as $allocation)
 

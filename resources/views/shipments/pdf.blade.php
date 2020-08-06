@@ -5,7 +5,7 @@
     <link href="{{ asset(mix('css/app.css')) }}" rel="stylesheet">
 </head>
 
-<body class="">
+<body class="m-8">
 
     <div class="w-full text-center">
         <img src="{{ asset('images/R4FBLogo.png') }}" class="w-64 mx-auto" />
