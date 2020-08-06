@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ShipmentController extends Controller
 {
@@ -31,7 +32,11 @@ class ShipmentController extends Controller
     public function multi(Request $request)
     {
         $allocations = Allocation::with('stocks.item', 'foodbank.clubs')->find($request->allocations);
-        abort_if($allocations->count()==0,500);
+
+        if(!$allocations) {
+            Alert::error('Please select one or more valid Allocations');
+            return back();
+        }
 
         return view('shipments.multi')
             ->withAllocations($allocations)
