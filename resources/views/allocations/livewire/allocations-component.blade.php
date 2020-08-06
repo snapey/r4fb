@@ -16,8 +16,11 @@
                     <x-inputs.text-editable name="status" label="Status:" half />
 
                     <div class="flex flex-row items-center">
-                        <span class="block w-3/12 text-sm font-bold">Foodbank:</span>
-                        <span class="inline-block w-4/12 px-2 py-2 bg-gray-200 rounded">{{ $foodbank }}</span>
+                        <div class="flex items-center justify-between w-3/12">
+                            <span class="block text-sm font-bold">Foodbank:</span>
+                            <a href="{{ route('admin.foodbanks.show',$foodbank_id)}}"><x-svg.foodbank class="h-5 px-1 text-indigo-700 hover:text-indigo-900" /></a>
+                        </div>
+                        <span class="inline-block w-7/12 px-2 py-2 bg-gray-200 rounded">{{ $foodbank }}</span>
                         @if($editing)
                             <x-button wire:click="$set('showFoodbankPicker',true)" class="w-2/12 ml-8">Change Foodbank</x-button>
                         @endif
