@@ -33,7 +33,6 @@ class ShipmentsTable extends TableComponent
 
     public function thClass($attribute)
     {
-        dump($attribute);
         if ($attribute == 'id') return 'w-1/12';
         if ($attribute == 'from_address.addressable.name') return 'w-3/12 text-left';
         if ($attribute == 'to_address.addressable.name') return 'w-3/12 text-left';
