@@ -11,7 +11,7 @@
             <td>&nbsp;</td>
             <td class="">
                 <br /><br />
-                Recieved By (print):
+                Received By (print):
             </td>
             <td class="border border-t-0 border-b-2 border-l-0 border-r-0 border-gray-800">
                 <br /><br /><br /><br /><br />
