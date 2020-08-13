@@ -37,6 +37,7 @@ class ShipmentsTable extends TableComponent
         if ($attribute == 'from_address.addressable.name') return 'w-3/12 text-left';
         if ($attribute == 'to_address.addressable.name') return 'w-3/12 text-left';
         if ($attribute == 'updated_at') return 'w-2/12 text-left';
+        if ($attribute == 'allocations') return 'text-left';
  
         return null;
     }
