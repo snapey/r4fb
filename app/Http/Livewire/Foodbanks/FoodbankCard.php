@@ -2,8 +2,11 @@
 
 namespace App\Http\Livewire\Foodbanks;
 
+use App\Events\FoodbankAddedEvent;
+use App\Events\FoodbankApprovedEvent;
 use App\Foodbank;
 use App\Shipper;
+use Illuminate\Support\Arr;
 use Livewire\Component;
 
 class FoodbankCard extends Component
@@ -103,23 +106,17 @@ class FoodbankCard extends Component
 
     public function save()
     {
-
-        $foodbank = $this->persist();
-
-        if(is_null($this->foodbank_id)) {
-            $this->redirect(route('admin.foodbanks.show', $foodbank));
-        }
-
+        $this->persist();
         $this->editing = false;
     }
 
-    public function next() {
+    // public function next() {
 
-        $this->persist();
+    //     $this->persist();
 
-        $this->redirect(route('admin.foodbanks.create'));
+    //     $this->redirect(route('admin.foodbanks.create'));
 
-    }
+    // }
 
     public function persist()
     {
@@ -139,7 +136,7 @@ class FoodbankCard extends Component
             'status' => 'required|in:1,2,3,4',
         ]);
 
-        return Foodbank::updateOrCreate(['id' => $this->foodbank_id], [
+        $foodbank = Foodbank::updateOrCreate(['id' => $this->foodbank_id], [
             'name' => $this->name,
             'charity' => $this->charity,
             'organisation' => $this->organisation,
@@ -154,6 +151,19 @@ class FoodbankCard extends Component
             'shipper_id' => $this->shipper_id>0 ? $this->shipper_id : null,
             'status' => $this->status,
         ]);
+
+        if($foodbank->wasRecentlyCreated){
+            event(new FoodbankAddedEvent($foodbank));
+            $this->redirect(route('admin.foodbanks.show', $foodbank));
+        }
+
+        if(Arr::exists($foodbank->getChanges(),'status') || $foodbank->wasRecentlyCreated) {
+            if($foodbank->status == 4) {
+                event(new FoodbankApprovedEvent($foodbank));
+            }
+        }
+
+        return $foodbank;
 
     }
 

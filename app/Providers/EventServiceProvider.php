@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
+use App\Events\FoodbankAddedEvent;
+use App\Events\FoodbankApprovedEvent;
+use App\Events\ShipmentCreatedEvent;
+use App\Listeners\NotifyUsersListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,6 +21,15 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        FoodbankAddedEvent::class => [
+            NotifyUsersListener::class,
+        ],
+        FoodbankApprovedEvent::class => [
+            NotifyUsersListener::class
+        ],
+        ShipmentCreatedEvent::class => [
+            NotifyUsersListener::class
+        ]
     ];
 
     /**
@@ -28,7 +40,5 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
-        //
     }
 }

@@ -24,28 +24,28 @@
                 On Behalf of (print):
             </td>
             <td class="border border-t-0 border-b-2 border-l-0 border-r-0 border-gray-800">
-                <br /><br /><br /><br /><br />
+                <br /><br /><br />
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td class="pt-12 pb-4">
+                <br /><br />
+                Date:
+                <br />
+            </td>
+            <td class="pt-12 pb-4 text-xl border border-t-0 border-b-2 border-l-0 border-r-0 border-gray-800">
+                <br /><br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <br /><br />
             </td>
         </tr>
         <tr>
             <td>&nbsp;</td>
             <td class="py-12">
-                <br /><br />
-                Date:
-                <br /><br /><br />
-            </td>
-            <td class="text-xl border border-t-0 border-b-2 border-l-0 border-r-0 border-gray-800">
-                <br /><br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <br /><br /><br />
-            </td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td class="py-24">
-                <br /><br />
+                <br />
                 Sign:
-                <br /><br /><br />
+                <br />
             </td>
             <td class="border border-t-0 border-b-2 border-l-0 border-r-0 border-gray-800">
             </td>

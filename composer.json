@@ -17,6 +17,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "kdion4891/laravel-livewire-tables": "^1.6",
         "laravel/framework": "^7.0",
+        "laravel/helpers": "^1.2",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "league/flysystem-aws-s3-v3": "^1.0",

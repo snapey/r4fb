@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Allocation;
+use App\Events\ShipmentCreatedEvent;
 use App\Shipment;
 use App\Shipper;
 use Barryvdh\Snappy\Facades\SnappyPdf;
@@ -58,12 +59,14 @@ class ShipmentController extends Controller
             $shipment->allocations()->attach($allocation,['sub'=>$i++]);
         }
 
+        event(new ShipmentCreatedEvent($shipment));
+        
         return redirect(route('shipment.show',$shipment));
     }
     
     public function show(Request $request, Shipment $shipment)
     {
-        $shipment->load('fromAddress.addressable','toAddress.addressable','allocations.stocks');
+        $shipment->load('fromAddress.addressable','toAddress.addressable.contacts','allocations.stocks');
 
         // return $shipment;
         return view('shipments.show')->withShipment($shipment);

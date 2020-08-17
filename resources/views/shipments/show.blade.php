@@ -44,6 +44,13 @@
                     {{ $shipment->toAddress->postcode }}<br />
                 </div>
             </div>
+            <div class="px-4 py-2 text-sm leading-snug text-gray-700 bg-white">
+                @foreach($shipment->toAddress->addressable->contacts as $contact)
+                    <div>
+                        <strong>{{ $contact->forenames }} {{ $contact->surname }}</strong> - {{ $contact->phone1 }} <em class="text-xs">{{ $contact->pivot->relationship ?? '' }}</em>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
 

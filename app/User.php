@@ -61,6 +61,11 @@ class User extends Authenticatable
     //     return false;
     // }
 
+    public function alerts()
+    {
+        return $this->hasMany(Alert::class);
+    }
+
     public function selectorColumns()
     {
         return ['id', 'name'];

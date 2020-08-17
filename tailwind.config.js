@@ -21,7 +21,18 @@ module.exports = {
       '90': '.9',
       '100': '1',
     },
-    extend: {}
+    extend: {
+      keyframes: {
+        'swing': {
+          '0%,100%' : { transform: 'rotate(0deg)' },
+          '25%' : { transform: 'rotate(-15deg)' },
+          '75%' : { transform: 'rotate(15deg)' },
+        }
+      },
+      animation: {
+        'swing': 'swing 1s infinite linear'
+      }
+    }
   },
   variants: {},
   plugins: [

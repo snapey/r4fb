@@ -15,6 +15,8 @@
 
     <h2 class="my-4 text-xl font-bold text-teal-900 ">Shipment {{ $shipment->id }}-{{ $sub->sub }}<span class="float-right text-base font-normal">{{ $shipment->created_at->format('d/m/Y')}}</span></h2>
 
+    <p class="text-xl">Allocation {{ $allocation->id }} / {{ $allocation->foodbank->name }}</p>
+    
     @include('shipments.pdf._fromto')
     @include('shipments.pdf._items')
 

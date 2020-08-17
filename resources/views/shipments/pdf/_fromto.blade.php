@@ -27,6 +27,10 @@
                 {{ $shipment->toAddress->address4 }}<br />
                 {{ $shipment->toAddress->postcode }}<br /><br />
                 Phone: {{ $shipment->toAddress->phone_number }}<br />
+                @foreach($shipment->toAddress->addressable->contacts as $contact)
+                    <strong>{{ $contact->forenames }} {{ $contact->surname }}</strong> - {{ $contact->phone1 }}
+                    <em class="text-xs">{{ $contact->pivot->relationship ?? '' }}</em><br />
+                @endforeach
             </td>
         </tr>
     </tbody>

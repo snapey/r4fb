@@ -24,8 +24,7 @@
             </tr>
         </table>
         
-        <p>Allocation: {{ $allocation->id }} / {{ $allocation->foodbank->name }}</p>
-
+        <p class="text-xl">Allocation {{ $allocation->id }} / {{ $allocation->foodbank->name }}</p>
 
         @include('shipments.pdf._fromto')
         @include('shipments.pdf._items')

@@ -69,4 +69,7 @@ Route::middleware(['auth', 'nocache'])->group(function () {
     Route::patch('purchase/{order}/marksent', 'PurchaseOrderController@marksent')->name('orders.marksent');
 
 
+    Route::get('alertSubscriptions','User\AlertSubscriptionsController@index')->name('alertSubscriptions.index');
+    Route::patch('alertSubscriptions','User\AlertSubscriptionsController@update')->name('alertSubscriptions.update');
+
 });
