@@ -31,7 +31,9 @@ class Kernel extends ConsoleKernel
         $schedule->command('backup:run')->dailyAt('19:00');
         $schedule->command('backup:monitor')->dailyAt('19:15');
 
-        $schedule->command('r4fb:send-alert-digests')->dailyAt('16:30');
+        $schedule->command('r4fb:send-alert-digests')->dailyAt('00:10');
+
+        $schedule->command('queue:work --stop-when-empty')->everyFiveMinutes();
 
     }
 
