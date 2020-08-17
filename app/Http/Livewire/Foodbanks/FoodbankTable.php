@@ -34,6 +34,9 @@ class FoodbankTable extends TableComponent
         if($key == 'per_page') {
             session()->put(['per_page' => $value]);
         }
+        if($key == 'statusFilter') {
+            $this->resetPage();
+        }
     }
 
     public function query()
