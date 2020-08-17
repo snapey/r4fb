@@ -8,6 +8,10 @@ class Shipment extends Model
 {
     protected $guarded = [];
 
+    public const PLANNED    = 'Planned';
+    public const RECEIVED   = 'Received';
+    public const CANCELLED  = 'Cancelled';
+
     public function allocations()
     {
         return $this->belongsToMany(Allocation::class)->withPivot('sub');

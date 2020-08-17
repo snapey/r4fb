@@ -26,8 +26,9 @@ class ShipmentsTable extends TableComponent
             Column::make('ID')->searchable()->sortable(),
             Column::make('From','from_address.addressable.name'),
             Column::make('To','to_address.addressable.name'),
+            Column::make('Status')->searchable()->sortable(),
             Column::make('Allocations'),
-            Column::make('Updated At')->searchable()->sortable(),
+            Column::make('Updated At')->sortable(),
         ];
     }
 
@@ -36,12 +37,18 @@ class ShipmentsTable extends TableComponent
         if ($attribute == 'id') return 'w-1/12';
         if ($attribute == 'from_address.addressable.name') return 'w-3/12 text-left';
         if ($attribute == 'to_address.addressable.name') return 'w-3/12 text-left';
+
         if ($attribute == 'updated_at') return 'w-2/12 text-left';
         if ($attribute == 'allocations') return 'text-left';
+        if ($attribute == 'status') return 'w-1/12 text-left';
  
         return null;
     }
     
+    public function tdClass($attribute,$value)
+    {
+        if ($attribute == 'allocations') return 'text-xs';
+    }
 
     public function tdPresenter($attribute, $value)
     {
