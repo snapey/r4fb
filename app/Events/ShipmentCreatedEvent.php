@@ -27,7 +27,7 @@ class ShipmentCreatedEvent
     public function __construct($shipment)
     {
         $shipment->load('fromAddress.addressable', 'toAddress.addressable');
-        dump($shipment);
+
         $this->entityName = sprintf('Shipment %s, from %s to %s',
                 $shipment->id,
                 $shipment->fromAddress->addressable->name ?? '?',
@@ -40,6 +40,6 @@ class ShipmentCreatedEvent
 
     public static function alertable()
     {
-        return 'When a new Shipment has been created';
+        return 'Shipment: When a new Shipment has been created';
     }
 }

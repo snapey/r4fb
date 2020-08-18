@@ -10,11 +10,11 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class FoodbankAddedEvent
+class ShipmentReceivedEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $described = 'A new Food Bank was added to R4FB';
+    public $described = 'A Shipment was marked as received';
     public $entityName;
     public $entityId;
     public $showRoute;
@@ -24,15 +24,22 @@ class FoodbankAddedEvent
      *
      * @return void
      */
-    public function __construct($foodbank)
+    public function __construct($shipment)
     {
-        $this->entityName = $foodbank->name;
-        $this->entityId = $foodbank->id;
-        $this->showRoute = route('admin.foodbanks.show',$foodbank);
+        $shipment->load('fromAddress.addressable', 'toAddress.addressable');
+
+        $this->entityName = sprintf('Shipment %s, from %s to %s',
+                $shipment->id,
+                $shipment->fromAddress->addressable->name ?? '?',
+                $shipment->toAddress->addressable->name ?? '?'
+        );
+
+        $this->entityId = $shipment->id;
+        $this->showRoute = route('shipment.show', $shipment);
     }
 
     public static function alertable()
     {
-        return 'Foodbank: When new Foodbank Added';
+        return 'Shipment: When a Shipment has been marked as received';
     }
 }

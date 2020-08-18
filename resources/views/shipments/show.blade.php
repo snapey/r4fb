@@ -84,7 +84,10 @@
             @endforeach
         </table>
     </div>
+    @livewire('shipments.shipment-status',['shipment' => $shipment ])
 </div>
+
+
 <div class="py-4 mt-0 bg-gray-200">
     @livewire('notes-component',['notable' => $shipment ])
 </div>

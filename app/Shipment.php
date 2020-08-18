@@ -34,4 +34,11 @@ class Shipment extends Model
             ->latest();
     }
 
+    public function scopeStatusScope($query, $filter)
+    {
+        if ($filter) {
+            $query->where('status', $filter);
+        }
+    }
+    
 }

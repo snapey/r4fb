@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -40,7 +41,8 @@ class AlertSubscriptionsController extends Controller
             $classFullname = 'App\\Events\\' . $class;
             $classlist[$class] = $classFullname::alertable();
         }
-        return $classlist;
+
+        return Arr::sort($classlist);
     }
 
 }

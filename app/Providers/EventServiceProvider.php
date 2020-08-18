@@ -29,6 +29,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         ShipmentCreatedEvent::class => [
             NotifyUsersListener::class
+        ],
+        ShipmentCancelledEvent::class => [
+            NotifyUsersListener::class
+        ],
+        ShipmentReceivedEvent::class => [
+            NotifyUsersListener::class
         ]
     ];
 

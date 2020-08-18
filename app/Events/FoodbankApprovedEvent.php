@@ -33,6 +33,6 @@ class FoodbankApprovedEvent
 
     public static function alertable()
     {
-        return 'When Foodbank status changed to Approved';
+        return 'Foodbank: When Foodbank status changed to Approved';
     }
 }

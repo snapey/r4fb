@@ -12,11 +12,36 @@ class ShipmentsTable extends TableComponent
 {
     public $clickable_row = true;
     public $checkbox = false;
+    public $header_view = 'shipments.livewire._header';
+    public $statuses;
+    public $statusFilter = Shipment::PLANNED;
+    public $per_page;
+    public $perPageOptions = ['15' => '15', '25' => '25', '50' => '50', '100' => '100'];
 
+    public function mount()
+    {
+        $this->per_page = session('per_page', 15);
+        $this->statuses = [
+            Shipment::PLANNED => Shipment::PLANNED, 
+            Shipment::RECEIVED => Shipment::RECEIVED,
+            Shipment::CANCELLED => Shipment::CANCELLED
+        ];
+
+    }
+
+    public function updated($key, $value)
+    {
+        if ($key == 'per_page') {
+            session()->put(['per_page' => $value]);
+        }
+        if ($key == 'statusFilter') {
+            $this->resetPage();
+        }
+    }
 
     public function query()
     {
-        return Shipment::with('fromAddress.addressable','toAddress.addressable','allocations');
+        return Shipment::with('fromAddress.addressable','toAddress.addressable','allocations')->statusScope($this->statusFilter);
 
     }
 
