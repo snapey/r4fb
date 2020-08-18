@@ -23,8 +23,6 @@ class NotifyUsersListener
      */
     public function handle($event)
     {
-        dump($event);
-        
         // send the event to all the users that are interested.
         // except for the user that created it
         $users = User::with(['alerts'=>function($query) use($event) {
