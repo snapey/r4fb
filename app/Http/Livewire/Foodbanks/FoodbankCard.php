@@ -62,7 +62,7 @@ class FoodbankCard extends Component
         }
 
         if($this->redirectTo){
-            return view('livewire.foodbanks.foodbank-card')->withFoodbank(new Foodbank())->withShippers($shippers);
+            return view('livewire.foodbanks.foodbank-card')->withFoodbank(new Foodbank())->withShippers([])->withAllocations([]);
         }
 
         if(is_null($this->foodbank_id)) {
