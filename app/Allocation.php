@@ -32,6 +32,11 @@ class Allocation extends Model
      */
     public CONST COMPLETE = 'Complete';
 
+    /**
+     * Allocation has been cancelled and will not be processed
+     */
+    public CONST CANCELLED = 'Cancelled';
+
     public $guarded=[];
 
     public function createdby()
@@ -67,5 +72,12 @@ class Allocation extends Model
     public function getPoundsAttribute()
     {
         return number_format($this->total / 100, 2);
+    }
+
+    public function scopeStatusScope($query, $filter)
+    {
+        if ($filter) {
+            $query->where('status', $filter);
+        }
     }
 }

@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\AllocationCompleteEvent;
 use App\Events\FoodbankAddedEvent;
 use App\Events\FoodbankApprovedEvent;
+use App\Events\ShipmentCancelledEvent;
 use App\Events\ShipmentCreatedEvent;
+use App\Events\ShipmentReceivedEvent;
 use App\Listeners\NotifyUsersListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -34,6 +37,9 @@ class EventServiceProvider extends ServiceProvider
             NotifyUsersListener::class
         ],
         ShipmentReceivedEvent::class => [
+            NotifyUsersListener::class
+        ],
+        AllocationCompleteEvent::class => [
             NotifyUsersListener::class
         ]
     ];

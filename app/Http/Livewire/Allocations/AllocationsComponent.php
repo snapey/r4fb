@@ -3,7 +3,9 @@
 namespace App\Http\Livewire\Allocations;
 
 use App\Allocation;
+use App\Events\AllocationCompleteEvent;
 use App\Foodbank;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -15,6 +17,7 @@ class AllocationsComponent extends Component
     public $budget;
     public $status;
     public $created_by;
+    public $statuses;
 
     public $editing;
     public $confirming;
@@ -35,6 +38,8 @@ class AllocationsComponent extends Component
             $this->editing = true;
             $this->setAttr(new Allocation());
         }
+
+        $this->setStatuses();
     }
 
     public function render()
@@ -65,6 +70,27 @@ class AllocationsComponent extends Component
         $this->budget = $allocation->budget / 100 ?? 0;
     }
 
+    public function setStatuses()
+    {
+        if (is_null($this->allocation_id)) {
+            $this->statuses=[
+                Allocation::INPROGRESS => Allocation::INPROGRESS,
+            ];
+            $this->status = Allocation::INPROGRESS;
+
+        } else {
+
+            $this->statuses=[
+                Allocation::START => Allocation::START, 
+                Allocation::INPROGRESS => Allocation::INPROGRESS, 
+                Allocation::CONFIRMED => Allocation::CONFIRMED, 
+                Allocation::SHIPPED => Allocation::SHIPPED, 
+                Allocation::COMPLETE => Allocation::COMPLETE, 
+                Allocation::CANCELLED => Allocation::CANCELLED, 
+            ];
+        }
+    }
+
     public function editMode()
     {
         $this->editing = true;
@@ -81,6 +107,12 @@ class AllocationsComponent extends Component
         }
 
         $this->editing = false;
+
+        if (Arr::exists($allocation->getChanges(), 'status') || $allocation->wasRecentlyCreated) {
+            if ($allocation->status == Allocation::COMPLETE) {
+                event(new AllocationCompleteEvent($allocation));
+            }
+        }
     }
 
 
@@ -97,6 +129,7 @@ class AllocationsComponent extends Component
 
         $allocation->budget = $this->budget * 100;
         $allocation->foodbank_id = $this->foodbank_id;
+        $allocation->status = $this->status;
 
         $allocation->save();
 

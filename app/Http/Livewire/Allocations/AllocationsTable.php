@@ -19,10 +19,39 @@ class AllocationsTable extends TableComponent
     public $clickable_row = true;
     public $header_view = 'allocations._header';
     public $action;
+    public $statuses;
+    public $statusFilter = Allocation::INPROGRESS;
+    public $per_page;
+    public $perPageOptions = ['15' => '15', '25' => '25', '50' => '50', '100' => '100'];
+
+
+    public function mount()
+    {
+        $this->per_page = session('per_page', 15);
+        $this->statuses = [
+            Allocation::START => Allocation::START,
+            Allocation::INPROGRESS => Allocation::INPROGRESS,
+            Allocation::CONFIRMED => Allocation::CONFIRMED,
+            Allocation::SHIPPED => Allocation::SHIPPED,
+            Allocation::COMPLETE => Allocation::COMPLETE,
+            Allocation::CANCELLED => Allocation::CANCELLED,
+        ];
+
+    }
+
+    public function updated($key, $value)
+    {
+        if ($key == 'per_page') {
+            session()->put(['per_page' => $value]);
+        }
+        if ($key == 'statusFilter') {
+            $this->resetPage();
+        }
+    }
 
     public function query()
     {
-        return Allocation::query()->with('foodbank.shipper','createdby');
+        return Allocation::query()->with('foodbank.shipper','createdby')->statusScope($this->statusFilter);
     }
 
 

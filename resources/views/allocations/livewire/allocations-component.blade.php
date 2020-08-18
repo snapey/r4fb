@@ -13,12 +13,17 @@
             <div class="flex flex-row text-gray-800">
                 <div class="flex flex-col w-11/12 py-4 pl-4 pr-4 m-4 space-y-2 bg-white border border-gray-300 rounded">
 
-                    <x-inputs.text-editable name="status" label="Status:" half />
+                    <x-inputs.select-editable 
+                        editing="{{ is_null($allocation_id) ? false : $editing }}"
+                        name="status" current="{{ $status }}" label="Status:" :list="$statuses" half 
+                    />
 
                     <div class="flex flex-row items-center">
                         <div class="flex items-center justify-between w-3/12">
                             <span class="block text-sm font-bold">Foodbank:</span>
-                            <a href="{{ route('admin.foodbanks.show',$foodbank_id)}}"><x-svg.foodbank class="h-5 px-1 text-indigo-700 hover:text-indigo-900" /></a>
+                            @if($foodbank_id)
+                                <a href="{{ route('admin.foodbanks.show',$foodbank_id)}}"><x-svg.foodbank class="h-5 px-1 text-indigo-700 hover:text-indigo-900" /></a>
+                            @endif
                         </div>
                         <span class="inline-block w-7/12 px-2 py-2 bg-gray-200 rounded">{{ $foodbank }}</span>
                         @if($editing)
