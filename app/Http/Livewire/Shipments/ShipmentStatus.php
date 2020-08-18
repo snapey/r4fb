@@ -27,7 +27,6 @@ class ShipmentStatus extends Component
         $disabled = '';
 
         if ($shipment->updated_at->addMinutes(3) < now()) {
-            dump('disabled');
             $disabled = 'disabled';
         }
 
