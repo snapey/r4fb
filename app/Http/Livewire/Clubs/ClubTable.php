@@ -18,7 +18,7 @@ class ClubTable extends TableComponent
 
     public function query()
     {
-        return Club::query();
+        return Club::with('foodbanks');
     }
 
     public function mount()
@@ -38,19 +38,27 @@ class ClubTable extends TableComponent
         return [
             Column::make('Name')->searchable()->sortable(),
             Column::make('Areas')->searchable()->sortable(),
+            Column::make('Foodbanks'),
             Column::make('District')->searchable()->sortable(),
             Column::make('Group')->searchable()->sortable(),
         ];
     }
     public function tdPresenter($attribute, $value)
     {
+        if($attribute == 'foodbanks') return $this->merge($value);
         return $value;
     }
+
+    public function merge($foodbanks)
+    {
+        return implode('<br /> ',collect($foodbanks)->pluck('name')->toArray());
+     }
 
     public function thClass($attribute)
     {
         if ($attribute == 'name') return 'w-2/12';
-        if ($attribute == 'areas') return 'w-6/12';
+        if ($attribute == 'areas') return 'w-3/12';
+        if ($attribute == 'foodbank') return 'w-3/12';
         if ($attribute == 'district') return 'w-2/12 text-center';
         if ($attribute == 'group') return 'w-2/12';
 
@@ -60,7 +68,8 @@ class ClubTable extends TableComponent
     public function tdClass($attribute, $value)
     {
         if ($attribute == 'name') return 'w-2/12';
-        if ($attribute == 'areas') return 'w-6/12';
+        if ($attribute == 'areas') return 'w-3/12';
+        if ($attribute == 'foodbank') return 'w-3/12';
         if ($attribute == 'district') return 'w-2/12 text-center';
         if ($attribute == 'group') return 'w-2/12';
 
