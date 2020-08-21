@@ -45,6 +45,8 @@ Route::middleware(['auth', 'nocache'])->group(function () {
     Route::name('admin.')->group(function () {
         Route::resource('admin/users', 'Admin\UserController');
         Route::resource('admin/roles', 'Admin\RoleController');
+        Route::resource('admin/templates', 'Admin\TemplateController');
+
     });
 
     Route::get('allocations', 'AllocationsController@index')->name('allocations.index');

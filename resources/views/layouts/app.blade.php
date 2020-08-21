@@ -17,4 +17,5 @@
     @include('sweetalert::alert')
     @livewireScripts
     </body>
+    @yield('page-js')
 </html>
