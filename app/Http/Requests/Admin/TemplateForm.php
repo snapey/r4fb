@@ -29,6 +29,7 @@ class TemplateForm extends FormRequest
             'purpose' => 'max:150',
             'body' => 'max:10000',
             'context' => 'in:shipment,allocation',
+            'subject' => 'required|max:100',
         ];
     }
 
@@ -39,6 +40,7 @@ class TemplateForm extends FormRequest
         $model->body = $this->body;
         $model->context = $this->context;
         $model->user_id = Auth::id();
+        $model->subject = $this->subject;
 
         $model->save();
     }

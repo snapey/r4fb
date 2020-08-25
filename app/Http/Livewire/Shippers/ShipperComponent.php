@@ -96,7 +96,7 @@ class ShipperComponent extends Component
             'phone' => 'max:20',
             'is_satellite' => '',
         ]);
-// dump($data);
+
         return Shipper::updateOrCreate(['id' => $this->shipper_id], $data);
     }
 

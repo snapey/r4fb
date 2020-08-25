@@ -110,10 +110,17 @@ class AllocationsTable extends TableComponent
         if ($attribute == 'budget') return '£' .  number_format($value/100, 0);
         if ($attribute == 'total') return '£' .  number_format($value/100, 2);
         if ($attribute == 'updated_at') return Carbon::parse($value)->format('H:i d/m/y');
-        if ($attribute == 'foodbank.id') return '<a href="'. route('admin.foodbanks.show', $value) . '">
-            <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"
-                viewBox="0 0 24 24" class="h-5 text-indigo-700 hover:text-indigo-500"><path d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg></a>';
+        if ($attribute == 'foodbank.id') return $this->foodbankLink($value);
         return $value;
+    }
+
+    public function foodbankLink($value)
+    {
+        if (is_null($value)) return;
+
+       return '<a href="' . route('admin.foodbanks.show', $value) . '">
+                <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"
+                viewBox="0 0 24 24" class="h-5 text-indigo-700 hover:text-indigo-500"><path d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg></a>';
     }
 
     public function go()

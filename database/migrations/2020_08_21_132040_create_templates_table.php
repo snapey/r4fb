@@ -17,6 +17,7 @@ class CreateTemplatesTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('title',30);
+            $table->string('subject',100);
             $table->string('purpose',150)->nullable();
             $table->text('body')->nullable();
             $table->string('context',20)->nullable();

@@ -36,7 +36,9 @@ class AllocationsComponent extends Component
 
         if (is_null($allocation->id)) {
             $this->editing = true;
-            $this->setAttr(new Allocation());
+            $alloc = new Allocation();
+            $alloc->status = Allocation::START;
+            $this->setAttr($alloc);
         }
 
         $this->setStatuses();
@@ -50,6 +52,9 @@ class AllocationsComponent extends Component
 
         if (is_null($this->allocation_id)) {
             $allocation = new Allocation;
+            $allocation->status = Allocation::START;
+            $this->status = Allocation::START;
+
         } else {
             $allocation = Allocation::with(['notes.user'])->find($this->allocation_id);
         }

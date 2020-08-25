@@ -8,9 +8,17 @@
 </style>
 
 <div class="p-4 mb-0 bg-gray-200">
-    <h1 class="text-2xl font-bold text-teal-700 ">Shipment - {{ $shipment->id }} </h1>
+    <div class="flex flex-row items-center justify-between">
+        <h1 class="text-2xl font-bold text-teal-700 ">Shipment - {{ $shipment->id }} </h1>
 
-
+        <div class="space-x-4" x-data>
+            <a href="#" x-on:click.prevent="window.dispatchEvent(new Event('emailpanel'))"
+                class="px-4 py-1 text-sm bg-gray-100 border rounded hover:bg-gray-300">Email Centre</a>
+            <a href="{{ route('shipment.index')}}"
+                class="px-4 py-1 text-sm bg-gray-100 border rounded hover:bg-gray-300">Return to Index</a>
+        </div>
+    </div>
+    
     <div class="flex flex-row py-4">
 
         <div class="w-1/2 pr-4">
@@ -92,4 +100,34 @@
     @livewire('notes-component',['notable' => $shipment ])
 </div>
 
+@livewire('emails.shipment',['shipment' => $shipment ])
+
+@endsection
+
+@section('head')
+
+<link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+<script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+
+@endsection
+
+@section('page-js')
+    <script>
+        var easyMDE = new EasyMDE({
+            element: document.getElementById('template'),
+            toolbar: ["bold", "italic","|","heading-1","heading-2","heading-3","|", "unordered-list", "ordered-list", "|", "guide"],
+            spellChecker: false,
+            status:false,
+            minHeight:'200px',
+        });
+
+        window.livewire.on('templateSwitched', body=> {
+            easyMDE.value(body);
+        });
+        
+        easyMDE.codemirror.on("blur", function(){
+            window.livewire.emit('bodyUpdate',easyMDE.value());
+        })
+        
+    </script>
 @endsection
