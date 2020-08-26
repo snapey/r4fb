@@ -4,7 +4,10 @@ namespace App\Http\Livewire\Emails;
 
 use App\Providers\BulkMailProvider;
 use App\Template;
+use Barryvdh\Snappy\Facades\SnappyPdf;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Vinkla\Hashids\Facades\Hashids;
 
 class Shipment extends Component
 {
@@ -16,6 +19,7 @@ class Shipment extends Component
     public $purpose;
     public $recipients =[];
     public $rcount;
+    public $sendpdf;
 
     public function mount($shipment)
     {
@@ -67,10 +71,13 @@ class Shipment extends Component
             return;
         }
 
+        $pdf = $this->createPDF();
+
         $bulk = new BulkMailProvider;
 
         $bulk->recipients(collect($this->recipients)->filter()->keys())
             ->subject($this->subject)
+            ->pdf($pdf)
             ->body($this->body)
             ->send();
 
@@ -85,5 +92,27 @@ class Shipment extends Component
             $recipient = false;
         }
         
+    }
+
+    private function createPDF()
+    {
+        if(!$this->sendpdf) {
+            return null;
+        }
+
+        $this->shipment->load('fromAddress.addressable', 'toAddress.addressable', 'notes', 'allocations.stocks.item');
+
+        $pdf = SnappyPdf::loadView('shipments.pdf-multi', ['shipment' => $this->shipment]);
+
+        $pdf->setOption('margin-left', 15);
+        $pdf->setOption('margin-right', 15);
+
+        $filename = sprintf('Shipment-' . $this->shipment->id);
+        $filename = $filename . '-' . Hashids::encode($this->shipment->id);
+
+        Storage::disk('pdfs')->put($filename,$pdf->output());
+
+        return Storage::disk('pdfs')->url($filename);
+
     }
 }

@@ -14,6 +14,7 @@ class BulkMailProvider
     public $subject = '';
     public $body = '';
     public $user;
+    public $pdf;
 
     public function subject(string $subject) 
     {
@@ -30,6 +31,12 @@ class BulkMailProvider
     public function recipients(Collection $recipients)
     {
         $this->recipients = Contact::find($recipients);
+        return $this;
+    }
+
+    public function pdf($pdf)
+    {
+        $this->pdf = $pdf;
         return $this;
     }
 

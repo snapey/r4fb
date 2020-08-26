@@ -82,10 +82,16 @@
                             <textarea class="w-full p-3 text-sm" rows='16' id="template"></textarea>
                         </div>
 
-                        @if($rcount)
-                            <x-button class="float-right px-4 mt-2" active wire:click="send"> 
-                                Send to {{ $rcount }} Contacts</x-button>
-                        @endif
+                        <div class="flex flex-row items-center justify-between" >
+                            <label for="sendpdf" class="my-3 ml-2 font-bold">Attach Shipment PDF?
+                                <input id="sendpdf" name="sendpdf" wire:model="sendpdf" type="checkbox" />
+                            </label>
+                            @if($rcount)
+                                <x-button wire:loading.remove wire:target="send" wire:click="send" class="float-right px-4 mt-2" active > 
+                                    Send to {{ $rcount }} Contacts</x-button>
+                                <p wire:loading wire:target="send" class="px-4 my-3 font-bold text-red-700">Sending</p>
+                            @endif
+                        </div>
                     </div>
 
 
