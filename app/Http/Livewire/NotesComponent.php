@@ -107,6 +107,8 @@ class NotesComponent extends Component
         $this->closed = null;
         $this->editing = null;
         $this->confirming = null;
+        $this->attachment = null;
+        $this->iteration++; // ensures file input is replaced
         $this->dispatchBrowserEvent('closemodal');
     }
 
