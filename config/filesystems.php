@@ -73,7 +73,16 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => 'r4fb-data',
             'visibility' => 'public',
+        ],
 
+        'uploads' => [
+            'driver' => 's3',
+            'root' => env('APP_NAME') . '/uploads',
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION'),
+            'bucket' => 'r4fb-data',
+            'visibility' => 'public',
         ],
 
     ],

@@ -36,6 +36,11 @@ class Note extends Model
         return $this->belongsTo(\App\User::class);
     }
 
+    public function attachments()
+    {
+        return $this->morphMany(Attachment::class, 'attachable');
+    }
+
     public function getRecentlyUpdatedAttribute()
     {
         return $this->updated_at > now()->subseconds(60);
