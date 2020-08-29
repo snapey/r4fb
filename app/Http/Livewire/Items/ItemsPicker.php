@@ -26,7 +26,7 @@ class ItemsPicker extends TableComponent
 
     public function query()
     {
-        return Item::orderBy('code','asc');
+        return Item::query();
     }
 
     public function itemAdded($id)
@@ -44,7 +44,7 @@ class ItemsPicker extends TableComponent
         return [
             Column::make('','id'),
             Column::make('Code')->searchable()->sortable(),
-            Column::make('Description')->searchable(),
+            Column::make('Description')->searchable()->sortable(),
             Column::make('Updated','updated_at')->sortable(),
         ];
     }
@@ -57,10 +57,13 @@ class ItemsPicker extends TableComponent
     public function thClass($attribute)
     {
         if($attribute == 'id') return 'w-5';
+        if($attribute == 'code') return 'w-2/12';
+        if($attribute == 'description') return 'w-7/12';
     }
-
+    
     public function tdClass($attribute, $value)
     {
+        if ($attribute == 'description') return 'text-sm';
         return 'text-xs';
     }
 

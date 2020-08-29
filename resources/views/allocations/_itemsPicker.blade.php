@@ -2,7 +2,7 @@
     <div class="fixed top-0 left-0 z-20 flex items-center justify-center w-full h-full modal">
         <div class="absolute w-full h-full bg-gray-900 opacity-50 pointer-events-none modal-overlay"></div>
 
-        <div class="container z-50 max-w-2xl mx-auto overflow-y-auto bg-white rounded shadow-lg" style="height: 80vh;">
+        <div class="container z-50 w-8/12 mx-auto overflow-y-auto bg-white rounded shadow-lg" style="height: 80vh;">
 
             <!-- Add margin if you want to see some of the overlay behind the modal-->
             <div class="px-4 py-4 mb-4 text-left modal-content" x-on:click.away="picker=false">
