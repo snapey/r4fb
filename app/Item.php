@@ -51,7 +51,7 @@ class Item extends Model
 
     public function setPoundsAttribute($value)
     {
-        $this->each = intval($value*100);
+        $this->each = strval($value*100);
     }
 
     public function getPoundsAttribute()
