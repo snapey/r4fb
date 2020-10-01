@@ -94,10 +94,14 @@ class ShipperComponent extends Component
             'name' => 'required|max:50',
             'modes' => 'max:50',
             'phone' => 'max:20',
-            'is_satellite' => '',
         ]);
 
-        return Shipper::updateOrCreate(['id' => $this->shipper_id], $data);
+        return Shipper::updateOrCreate(['id' => $this->shipper_id],[
+                'name' => $data['name'],
+                'modes' => $data['modes'],
+                'phone' => $data['phone'],
+                'is_satellite' => $this->is_satellite ? 1 : 0, 
+         ]);
     }
 
     public function confirmDelete()
