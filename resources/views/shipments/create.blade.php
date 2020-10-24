@@ -77,15 +77,6 @@
                             </select>
                         </div>
         
-                        @foreach($foodbank->clubs as $club)
-                            <div class="flex justify-between">
-                                @if($loop->index==0)<span class="inline-block">Advise Club:</span>
-                                @else
-                                    &nbsp;
-                                @endif
-                                <label class="w-4/6"><input type="checkbox" value="{{ $club->id }}" name="clubs[]" class="mr-4" />{{ $club->name}}</label>
-                            </div>
-                        @endforeach
         
                         <div class="flex items-center justify-between">
                             <x-button type="submit" class="px-8">Create Shipment</x-button>
