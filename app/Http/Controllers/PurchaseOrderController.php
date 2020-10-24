@@ -6,6 +6,7 @@ use App\Address;
 use App\Allocation;
 use App\Order;
 use App\Stock;
+use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
@@ -29,8 +30,10 @@ class PurchaseOrderController extends Controller
     {
         $order->load('orderlines', 'shipto.addressable', 'supplier.addresses','notes');
 
-        $pdf = App::make('dompdf.wrapper');
-        $pdf->loadView('orders.pdf', compact(['order']));
+        $pdf = SnappyPdf::loadView('orders.pdf', compact('order'));
+
+        $pdf->setOption('margin-left', 15);
+        $pdf->setOption('margin-right', 15);
 
         return $pdf->download("R4FB-Order-{$order->id}.pdf");
     }

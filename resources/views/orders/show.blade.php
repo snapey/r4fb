@@ -7,9 +7,19 @@
     }
 </style>
 
-<div class="pb-8 mb-8 bg-gray-200">
-    <h1 class="py-4 mx-4 text-xl font-bold text-teal-800 ">Order {{ $order->id }} - {{ $order->status }}</h1>
+<div class="pb-8 mb-8 bg-gray-200">    
+    <div class="flex flex-row items-center justify-between p-4">
+        <h1 class="text-xl font-bold text-teal-700 ">Order {{ $order->id }} - {{ $order->status }}</h1>
     
+        <div class="space-x-4" x-data>
+            <a href="#" x-on:click.prevent="window.dispatchEvent(new Event('emailpanel'))"
+                class="px-4 py-1 text-sm bg-gray-100 border rounded hover:bg-gray-300">Email Centre</a>
+            <a href="{{ route('orders.index')}}"
+                class="px-4 py-1 text-sm bg-gray-100 border rounded hover:bg-gray-300">Return to Index</a>
+        </div>
+    </div>
+
+
     <div id="progress" class="flex items-center justify-between px-4 py-3 m-4 bg-teal-100 border-gray-500 rounded-full shadow">
         <div class="">
             @if($order->status == $order::START)
@@ -103,7 +113,36 @@
     </section>
 
     @livewire('notes-component',['notable' => $order ])
-
+    @livewire('emails.order',['order' => $order ])
+    
 </div>
 
+@endsection
+
+@section('head')
+
+<link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+<script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+
+@endsection
+
+@section('page-js')
+<script>
+    var easyMDE = new EasyMDE({
+            element: document.getElementById('template'),
+            toolbar: ["bold", "italic","|","heading-1","heading-2","heading-3","|", "unordered-list", "ordered-list", "|", "guide"],
+            spellChecker: false,
+            status:false,
+            minHeight:'200px',
+        });
+
+        window.livewire.on('templateSwitched', body=> {
+            easyMDE.value(body);
+        });
+        
+        easyMDE.codemirror.on("blur", function(){
+            window.livewire.emit('bodyUpdate',easyMDE.value());
+        })
+        
+</script>
 @endsection

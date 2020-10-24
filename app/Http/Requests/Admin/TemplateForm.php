@@ -28,7 +28,7 @@ class TemplateForm extends FormRequest
             'title' => 'required|max:30',
             'purpose' => 'max:150',
             'body' => 'max:10000',
-            'context' => 'in:shipment,allocation',
+            'context' => 'in:shipment,allocation,order',
             'subject' => 'required|max:100',
         ];
     }

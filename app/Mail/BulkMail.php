@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class BulkMail extends Mailable
 {
@@ -25,7 +26,9 @@ class BulkMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.bulkmail')
+        $this->markdown('mail.' . $this->provider->template)
             ->subject($this->provider->subject);
+        Log::info($this->provider->template);
+        return ;
     }
 }

@@ -20,7 +20,7 @@ class AllocationsTable extends TableComponent
     public $header_view = 'allocations._header';
     public $action;
     public $statuses;
-    public $statusFilter = Allocation::INPROGRESS;
+    public $statusFilter;
     public $per_page;
     public $perPageOptions = ['15' => '15', '25' => '25', '50' => '50', '100' => '100'];
 
@@ -28,6 +28,9 @@ class AllocationsTable extends TableComponent
     public function mount()
     {
         $this->per_page = session('per_page', 15);
+
+        $this->statusFilter = session()->get('allocations.filter');
+        
         $this->statuses = [
             Allocation::START => Allocation::START,
             Allocation::INPROGRESS => Allocation::INPROGRESS,
@@ -47,6 +50,11 @@ class AllocationsTable extends TableComponent
         if ($key == 'statusFilter') {
             $this->resetPage();
         }
+    }
+
+    public function updatedStatusFilter($value)
+    {
+        session()->put(['allocations.filter' => $this->statusFilter]);
     }
 
     public function query()

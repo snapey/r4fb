@@ -48,6 +48,7 @@
                         <option >Choose a context for this mail</option>
                         <option value="shipment" {{ old('context',$template->context) == 'shipment' ? 'selected' :''}}>Shipment</option>
                         <option value="allocation" {{ old('context',$template->context)== 'allocation' ? 'selected' :''}}>Allocation</option>
+                        <option value="order" {{ old('context',$template->context)== 'order' ? 'selected' :''}}>Order</option>
                     </select>
                     @error('context')
                         <p class="mt-4 text-xs italic text-red-500">{{ $message }}</p>
@@ -78,10 +79,11 @@
                         <p class="mb-2">Use these tags to insert data into your email templates:</p>
                         <ul>
                             <li>[shipment] <span class="ml-2 text-gray-600">The Shipment Number</span></li>
+                            <li>[order] <span class="ml-2 text-gray-600">The Order Number</span></li>
                             <li>[foodbank] <span class="ml-2 text-gray-600">the name of the foodbank</span></li>
                             <li>[foodbanks] <span class="ml-2 text-gray-600">A bullet list of foodbank names (put in 1st column)</span></li>
                             <li>[allocations] <span class="ml-2 text-gray-600">A comma seperated list of allocation numbers</span></li>
-                            <li>[to] <span class="ml-2 text-gray-600">The delivery address of a shipment</span></li>
+                            <li>[to] <span class="ml-2 text-gray-600">The delivery address for a shipment or order</span></li>
                             <li>[from] <span class="ml-2 text-gray-600">Where the shipment is from</span></li>
                         </ul>
                     </div>

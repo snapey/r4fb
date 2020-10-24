@@ -18,17 +18,18 @@
 
     <h2 class="my-4 text-xl font-bold text-teal-800 ">Order {{ $order->id }}<span class="float-right text-base font-normal">{{ $order->created_at->format('d/m/Y')}}</span></h2>
 
-    <table class="w-full">
+    <table class="w-full leading-snug table-fixed">
         <thead>
             <tr>
-                <th class="text-left">Supplier:</th>
-                <th class="w-4 text-left"></th>
-                <th class="text-left">Ship To:</th>
+                <th class="p-2 text-left border-0">Supplier:</th>
+                <th class="w-4 p-2 text-left border-0"></th>
+                <th class="p-2 text-left border-0">Ship To:</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td class="align-top border">
+        <tbody class="border-0">
+            <tr class="border-0">
+                <td class="p-4 align-top border">
+                    {{ $order->supplier->name }}<br />
                     {{ $order->supplier->addresses->first()->address1 }}<br />
                     {{ $order->supplier->addresses->first()->address3 }}<br />
                     {{ $order->supplier->addresses->first()->address4 }}<br />
@@ -37,8 +38,9 @@
                     Phone:</span>{{ $order->supplier->phone }}<br />
                     email:</span>{{ $order->supplier->email }}<br />
                 </td>
-                <td class="">&nbsp;</td>
-                <td class="align-top border">
+                <td class="border-0">&nbsp;</td>
+                <td class="p-4 align-top border">
+                    {{ $order->shipto->addressable->name }}<br />
                     {{ $order->shipto->address1 }}<br />
                     {{ $order->shipto->address2 }}<br />
                     {{ $order->shipto->address3 }}<br />
@@ -52,9 +54,9 @@
 
     <section id="orderLines" class="max-w-screen-xl mt-2">
 
-        <div class="p-1 bg-white border border-gray-500 rounded">
+        <div class="p-1 bg-white">
 
-            <table class="w-full text-xs">
+            <table class="w-full text-xs border-0">
                 <thead>
                     <tr class="">
                         <th class="py-1 text-sm text-left">Code</th>
@@ -91,5 +93,8 @@
         @endforeach
     </div>
 
+    <div class="mt-8">
+        <p>PDF Generated {{ now()->format('d-m-Y H:i')  }}</p>
+    </div>
 </body>
 </html>

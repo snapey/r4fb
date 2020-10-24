@@ -14,13 +14,28 @@ class PrepareOrdersController extends Controller
     {
         $allocations = Allocation::with('foodbank.addresses','stocks.item')->whereIn('id',$request->allocations)->where('status',Allocation::START)->get();
 
+        return $this->prepareView($allocations);
+    }
+
+    public function single(Request $request, Allocation $allocation)
+    {
+        $allocation->load('foodbank.addresses', 'stocks.item');
+
+        $allocations = collect()->push($allocation);
+
+        return $this->prepareView($allocations);
+    }
+
+    public function prepareView($allocations)
+    {
+
         $lines = $allocations->pluck('stocks')->flatten(1)->groupBy('item_id');
-    //    return Shipper::with('addresses')->get(['id','name']);
 
         return view('orders.prepare')
             ->withAllocations($allocations)
             ->withLines($lines)
             ->withSuppliers(Supplier::all())
-            ->withShippers(Shipper::with('addresses')->get(['id','name']));
+            ->withShippers(Shipper::with('addresses')->get(['id', 'name']));
     }
+
 }

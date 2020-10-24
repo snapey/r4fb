@@ -55,6 +55,7 @@ Route::middleware(['auth', 'nocache'])->group(function () {
     Route::get('allocations/{allocation}', 'AllocationsController@show')->name('allocations.show');
 
     Route::get('prepareOrders', 'PrepareOrdersController@show')->name('prepare-orders');
+    Route::get('prepareorders/{allocation}/single', 'PrepareOrdersController@single')->name('prepare.orders.single');
 
     Route::get('shipment', 'ShipmentController@index')->name('shipment.index');
     Route::get('shipment/multi', 'ShipmentController@multi')->name('shipment.multi');
@@ -63,6 +64,7 @@ Route::middleware(['auth', 'nocache'])->group(function () {
     Route::post('shipment', 'ShipmentController@store')->name('shipment.store');
     Route::get('shipment/{shipment}/pdf', 'ShipmentController@multipdf')->name('shipment.pdf.multi');
     Route::get('shipment/{shipment}/{allocation}/pdf', 'ShipmentController@singlepdf')->name('shipment.pdf');
+    
 
     Route::get('orders', 'PurchaseOrderController@index')->name('orders.index');
     Route::get('orders/{order}', 'PurchaseOrderController@show')->name('orders.show');

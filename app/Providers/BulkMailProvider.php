@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Contact;
 use App\Mail\BulkMail;
+use App\User;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -11,10 +12,12 @@ use Illuminate\Support\Facades\Mail;
 class BulkMailProvider
 {
     public $recipients = [];
+    public $users = [];
     public $subject = '';
     public $body = '';
     public $user;
     public $pdf;
+    public $template = 'bulkmail';
 
     public function subject(string $subject) 
     {
@@ -34,9 +37,21 @@ class BulkMailProvider
         return $this;
     }
 
+    public function users(Collection $users)
+    {
+        $this->users = User::find($users);
+        return $this;
+    }
+
     public function pdf($pdf)
     {
         $this->pdf = $pdf;
+        return $this;
+    }
+
+    public function template($template)
+    {
+        $this->template = $template;
         return $this;
     }
 
@@ -46,6 +61,10 @@ class BulkMailProvider
 
         $this->recipients->each(function($recipient){
             Mail::to($recipient->email1)->queue(new BulkMail($this));
+        });
+
+        $this->users->each(function ($user) {
+            Mail::to($user->email)->queue(new BulkMail($this));
         });
     }
 }
