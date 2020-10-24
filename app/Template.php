@@ -91,7 +91,6 @@ class Template extends Model
     {
         if (isset($this->order))
         {
-            dump($this->order);
             return $this->order->shipto->address1 ?? '----';
         }
 
