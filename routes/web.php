@@ -42,6 +42,8 @@ Route::middleware(['auth', 'nocache'])->group(function () {
     Route::get('admin/items/create', 'Admin\ItemController@create')->name('admin.items.create');
     Route::get('admin/items/show/{item}', 'Admin\ItemController@show')->name('admin.items.show');
 
+    Route::get('admin/emails','Admin\EmailHistoryController@index')->name('admin.emails');
+
     Route::name('admin.')->group(function () {
         Route::resource('admin/users', 'Admin\UserController');
         Route::resource('admin/roles', 'Admin\RoleController');

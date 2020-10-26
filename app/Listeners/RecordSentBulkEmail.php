@@ -31,6 +31,7 @@ class RecordSentBulkEmail implements ShouldQueue
             'subject' => $event->subject,
             'body' => $event->body,
             'pdf' => $event->pdf,
+            'recipient' => $event->recipient,
             'user_id' => $event->sender,
             'queued_at' => Carbon::parse($event->queued_at),
         ]);

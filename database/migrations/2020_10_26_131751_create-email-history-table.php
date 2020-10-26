@@ -18,6 +18,7 @@ class CreateEmailHistoryTable extends Migration
             $table->string('subject');
             $table->text('body');
             $table->string('pdf');
+            $table->string('recipient');
             $table->foreignId('user_id');
             $table->timestamp('queued_at');
             $table->timestamps();
