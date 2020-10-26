@@ -6,6 +6,7 @@ use App\Providers\BulkMailProvider;
 use App\Template;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Livewire\Component;
 use Vinkla\Hashids\Facades\Hashids;
 
@@ -78,6 +79,7 @@ class Order extends Component
             ->users(collect($this->users)->filter()->keys())
             ->subject($this->subject)
             ->pdf($pdf)
+            ->excelurl(URL::signedRoute('order.download', $this->order))
             ->body($this->body)
             ->template('order')
             ->send();

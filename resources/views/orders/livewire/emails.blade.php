@@ -66,7 +66,7 @@
                         </div>
 
                         <div class="flex flex-row items-center justify-between">
-                            <p><strong>Order PDF will always be attached</strong></p>
+                            <p class="pt-1 leading-normal"><strong>Order PDF and link to Excel <br />will always be attached</strong></p>
                             @if($rcount)
                             <x-button wire:loading.remove wire:target="send" wire:click="send"
                                 class="float-right px-4 mt-2" active>

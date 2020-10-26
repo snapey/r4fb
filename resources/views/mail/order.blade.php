@@ -3,7 +3,12 @@
 
 @if($provider->pdf)
 ----
-[You can download the order here]({{ $provider->pdf }})
+[You can download the order as PDF here]({{ $provider->pdf }})
+@endif
+
+@if($provider->excelurl)
+----
+[You can download the order as Excel here]({{ $provider->excelurl }})
 @endif
 
 ----

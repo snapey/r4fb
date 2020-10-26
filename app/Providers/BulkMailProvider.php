@@ -18,6 +18,7 @@ class BulkMailProvider
     public $body = '';
     public $user;
     public $pdf;
+    public $excelurl;
     public $template = 'bulkmail';
 
     public function subject(string $subject) 
@@ -47,6 +48,12 @@ class BulkMailProvider
     public function pdf($pdf)
     {
         $this->pdf = $pdf;
+        return $this;
+    }
+
+    public function excelurl($url)
+    {
+        $this->excelurl = $url;
         return $this;
     }
 

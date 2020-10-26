@@ -14,4 +14,14 @@ class OrderLine extends Model
     {
         return $this->belongsTo(Order::class);
     }
+
+    public function getEachPoundsAttribute()
+    {
+        return number_format($this->each / 100, 2,".","");
+    }
+
+    public function getTotalPoundsAttribute()
+    {
+        return number_format($this->total / 100, 2,".","");
+    }
 }
