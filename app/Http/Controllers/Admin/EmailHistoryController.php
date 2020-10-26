@@ -10,6 +10,6 @@ class EmailHistoryController extends Controller
 {
     public function index()
     {
-        return view('admin.emailhistory')->withEmails(EmailHistory::latest()->get());
+        return view('admin.emailhistory')->withEmails(EmailHistory::latest()->paginate(20));
     }
 }
