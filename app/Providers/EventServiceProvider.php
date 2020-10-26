@@ -3,12 +3,14 @@
 namespace App\Providers;
 
 use App\Events\AllocationCompleteEvent;
+use App\Events\BulkMailSent;
 use App\Events\FoodbankAddedEvent;
 use App\Events\FoodbankApprovedEvent;
 use App\Events\ShipmentCancelledEvent;
 use App\Events\ShipmentCreatedEvent;
 use App\Events\ShipmentReceivedEvent;
 use App\Listeners\NotifyUsersListener;
+use App\Listeners\RecordSentBulkEmail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -41,7 +43,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         AllocationCompleteEvent::class => [
             NotifyUsersListener::class
-        ]
+        ],
+        BulkMailSent::class => [
+            RecordSentBulkEmail::class
+        ],
     ];
 
     /**

@@ -26,9 +26,7 @@ class BulkMail extends Mailable
      */
     public function build()
     {
-        $this->markdown('mail.' . $this->provider->template)
+        return $this->markdown('mail.' . $this->provider->template)
             ->subject($this->provider->subject);
-        Log::info($this->provider->template);
-        return ;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Contact;
+use App\Events\BulkMailSent;
 use App\Mail\BulkMail;
 use App\User;
 use Illuminate\Support\Collection;
@@ -65,6 +66,8 @@ class BulkMailProvider
 
         $this->users->each(function ($user) {
             Mail::to($user->email)->queue(new BulkMail($this));
+            
+            event(new BulkMailSent($this, $user->email, Auth::id()));
         });
     }
 }
