@@ -68,7 +68,7 @@
 
         </div>
 
-        @if($allocation->status == App\Allocation::START)
+        @if($allocation->id && $allocation->status == App\Allocation::START)
 
             <div class="w-1/4 p-2">
 
