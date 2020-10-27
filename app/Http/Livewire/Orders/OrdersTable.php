@@ -52,12 +52,12 @@ class OrdersTable extends TableComponent
     public function thClass($attribute)
     {
         if ($attribute == 'cost') return 'text-right w-1/12';
-        // if ($attribute == 'id') return 'w-1/12';
-        // if ($attribute == 'foodbank.name') return 'w-3/12';
-        // if ($attribute == 'status') return 'w-1/12';
-        // if ($attribute == 'createdby.name') return 'w-2/12';
-        // if ($attribute == 'updated_at') return 'w-2/12';
-        // if ($attribute == 'created_at') return 'w-2/12';
+        if ($attribute == 'id') return 'w-1/12';
+        if ($attribute == 'supplier') return 'w-2/12';
+        if ($attribute == 'shipto.addressable.name') return 'w-3/12';
+        if ($attribute == 'status') return 'w-2/12';
+        if ($attribute == 'total') return 'w-2/12';
+        if ($attribute == 'created_at') return 'w-2/12';
 
         return null;
     }
