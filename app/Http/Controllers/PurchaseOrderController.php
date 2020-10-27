@@ -74,6 +74,8 @@ class PurchaseOrderController extends Controller
                 'total' => $stocks->first()->each * $stocks->sum('qty'),
             ]);
 
+            $order->cost += $stocks->first()->each * $stocks->sum('qty');
+
             $stocks->each(function($stock) use ($orderline) {
                 $stock->status = Stock::PURCHASING;
                 $stock->orderline_id = $orderline->id;
@@ -81,11 +83,13 @@ class PurchaseOrderController extends Controller
             });
 
         }
+        $order->save();
 
         $allocations->each(function($allocation) use($order) {
             $allocation->status = Allocation::INPROGRESS;
             $allocation->save();
         });
+
 
         DB::commit();
 

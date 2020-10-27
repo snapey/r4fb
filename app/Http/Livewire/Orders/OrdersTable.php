@@ -21,7 +21,7 @@ class OrdersTable extends TableComponent
 
     public function query()
     {
-        return Order::query()->with('supplier');
+        return Order::query()->with('supplier','shipto.addressable');
     }
 
 
@@ -30,8 +30,9 @@ class OrdersTable extends TableComponent
         return [
             Column::make('ID','id')->searchable()->sortable(),
             Column::make('Supplier','supplier.name'),
+            Column::make('Ship To','shipto.addressable.name'),
             Column::make('Status')->sortable(),
-            Column::make('Total','total'),
+            Column::make('Total','cost'),
             Column::make('Updated At')->sortable(),
         ];
     }
@@ -43,14 +44,14 @@ class OrdersTable extends TableComponent
 
     public function tdClass($attribute, $value)
     {
-        if ($attribute == 'total') return 'text-right ';
+        if ($attribute == 'cost') return 'text-right ';
 
         return null;
     }
 
     public function thClass($attribute)
     {
-        if ($attribute == 'total') return 'text-right w-1/12';
+        if ($attribute == 'cost') return 'text-right w-1/12';
         // if ($attribute == 'id') return 'w-1/12';
         // if ($attribute == 'foodbank.name') return 'w-3/12';
         // if ($attribute == 'status') return 'w-1/12';
@@ -63,7 +64,7 @@ class OrdersTable extends TableComponent
 
     public function tdPresenter($attribute, $value)
     {
-        if ($attribute == 'total') return '£' .  number_format($value/100, 2);
+        if ($attribute == 'cost') return '£' .  number_format($value/100, 2);
         if ($attribute == 'updated_at') return Carbon::parse($value)->format('H:i D d.m.y');
 
         return $value;
