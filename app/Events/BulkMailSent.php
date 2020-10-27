@@ -9,6 +9,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\URL;
 
 class BulkMailSent
 {
@@ -17,6 +18,7 @@ class BulkMailSent
     public $subject;
     public $body;
     public $pdf;
+    public $excel;
     public $sender;
     public $recipient;
     public $queued_at;
@@ -29,6 +31,7 @@ class BulkMailSent
         $this->sender = $sender;
         $this->recipient = $email;
         $this->queued_at = now()->timestamp;
+        $this->excel = $bulkmail->excelurl;
     }
 
 }

@@ -69,6 +69,8 @@ class BulkMailProvider
 
         $this->recipients->each(function($recipient){
             Mail::to($recipient->email1)->queue(new BulkMail($this));
+
+            event(new BulkMailSent($this, $recipient->email1, Auth::id()));
         });
 
         $this->users->each(function ($user) {
