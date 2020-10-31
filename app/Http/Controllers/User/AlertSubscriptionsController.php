@@ -39,7 +39,10 @@ class AlertSubscriptionsController extends Controller
         foreach ($classes as $class) {
             $class = str_replace('.php','', $class->getBasename());
             $classFullname = 'App\\Events\\' . $class;
-            $classlist[$class] = $classFullname::alertable();
+
+            if(method_exists($classFullname,'alertable')) {
+                $classlist[$class] = $classFullname::alertable();
+            }
         }
 
         return Arr::sort($classlist);
