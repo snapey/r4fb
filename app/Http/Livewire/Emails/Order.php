@@ -79,7 +79,8 @@ class Order extends Component
             ->users(collect($this->users)->filter()->keys())
             ->subject($this->subject)
             ->pdf($pdf)
-            ->excelurl(URL::signedRoute('order.download', $this->order))
+            ->excelurl(URL::signedRoute('order.download.excel', $this->order))
+            ->csvurl(URL::signedRoute('order.download.csv', $this->order))
             ->body($this->body)
             ->template('order')
             ->send();

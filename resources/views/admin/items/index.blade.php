@@ -10,6 +10,7 @@
         @endcan
     </div>
 
+    @livewire('import-catalogue')
     @livewire('items.items-table')
     
 

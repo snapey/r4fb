@@ -13,7 +13,8 @@ Route::view('/passwordless/sent', 'auth.passwordless.sent')->name('passwordless.
 Route::get('/passwordless/link/{user}', 'Auth\LoginController@link')->name('passwordless.link');
 Route::view('/logout', 'auth.logout')->name('logoutview');
 
-Route::get('/orderdownload/{order}','ExportOrderController@show')->name('order.download')->middleware('signed');
+Route::get('/orderdownload/{order}/csv','ExportOrderController@showcsv')->name('order.download.csv')->middleware('signed');
+Route::get('/orderdownload/{order}','ExportOrderController@show')->name('order.download.excel')->middleware('signed');
 
 
 //protected routes (must be logged in)

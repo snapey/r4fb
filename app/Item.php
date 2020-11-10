@@ -21,6 +21,8 @@ class Item extends Model
         'generic',
         'each',
         'pounds',
+        'category',
+        'case_quantity'
     ];
 
     /**

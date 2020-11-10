@@ -69,6 +69,7 @@ class PurchaseOrderController extends Controller
                 'description' => $stocks->first()->item->description ?? 'error',
                 'uom' => $stocks->first()->item->uom ?? NULL,
                 'sku' => $stocks->first()->item->sku ?? NULL,
+                'case_quantity' => $stocks->first()->item->case_quantity ?? NULL,
                 'qty' => $stocks->sum('qty'),
                 'each' => $stocks->first()->each ?? 0,
                 'total' => $stocks->first()->each * $stocks->sum('qty'),

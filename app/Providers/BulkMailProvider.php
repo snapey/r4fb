@@ -19,6 +19,7 @@ class BulkMailProvider
     public $user;
     public $pdf;
     public $excelurl;
+    public $csvurl;
     public $template = 'bulkmail';
 
     public function subject(string $subject) 
@@ -54,6 +55,12 @@ class BulkMailProvider
     public function excelurl($url)
     {
         $this->excelurl = $url;
+        return $this;
+    }
+
+    public function csvurl($url)
+    {
+        $this->csvurl = $url;
         return $this;
     }
 

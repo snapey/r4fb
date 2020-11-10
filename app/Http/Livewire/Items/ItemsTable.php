@@ -33,7 +33,9 @@ class ItemsTable extends TableComponent
             Column::make('Code', 'code')->searchable(),
             Column::make('Description', 'description')->searchable(),
             // Column::make('SKU', 'sku')->searchable(),
+            Column::make('Category', 'category'),
             Column::make('UOM', 'uom'),
+            Column::make('QTY', 'case_quantity'),
             Column::make('Latest £', 'each'),
             // Column::make('Generic', 'generic'),
             Column::make('Last Update','updated_at')->sortable(),
@@ -48,9 +50,10 @@ class ItemsTable extends TableComponent
     public function tdClass($attribute, $value)
     {
         if ($attribute == 'generic') return 'text-center';
-        if ($attribute == 'uom') return 'text-left';
+        if ($attribute == 'uom') return 'text-center';
         if ($attribute == 'each') return 'text-right';
         if ($attribute == 'updated_at') return 'text-xs';
+        if ($attribute == 'case_quantity') return 'text-center';
 
 
         return null;
@@ -61,8 +64,9 @@ class ItemsTable extends TableComponent
         if ($attribute == 'code') return 'text-left';
         if ($attribute == 'sku') return 'text-center';
         if ($attribute == 'each') return 'w-1/12 text-right';
-        if ($attribute == 'uom') return 'text-left';
-        if ($attribute == 'description') return 'w-6/12 text-left';
+        if ($attribute == 'uom') return 'w-1/12 text-center';
+        if ($attribute == 'case_quantity') return 'w-1/12 text-center';
+        if ($attribute == 'description') return 'w-4/12 text-left';
         if ($attribute == 'generic') return 'text-center';
 
         return null;
