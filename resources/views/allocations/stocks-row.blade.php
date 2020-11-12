@@ -1,7 +1,8 @@
 <tr class="text-gray-800">
-    <td class="py-1 font-bold">{{ $stock['item']['code'] }}</td>
-    <td class="px-1 py-1">{{$stock['item']['description'] }}</td>
+    <td class="py-1 text-xs">{{ $stock['item']['code'] }}</td>
+    <td class="px-1 py-1 overflow-x-hidden">{{$stock['item']['description'] }}</td>
     <td class="py-1">{{ $stock['item']['uom'] }}</td>
+    <td class="py-1">{{ $stock['item']['case_quantity'] }}</td>
     <td class="text-right">
         @if($allocation_status == App\Allocation::START)
             <input type="text" class="w-12 px-1 text-right border border-gray-400" name="qty" wire:model="stocks.{{ $row }}.qty" />

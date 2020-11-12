@@ -15,6 +15,7 @@ class AllocationStock extends Component
     public $confirming = false;
     public $allocation_total;
     public $allocation_status;
+    public $case_count;
 
     protected $listeners = [
         'itemChosen','itemRemoved'
@@ -29,6 +30,8 @@ class AllocationStock extends Component
     public function render()
     {
         $allocation = Allocation::with('stocks.item')->find($this->allocation_id);
+
+        $this->case_count = $allocation->stocks->sum('qty');
 
         $total = $allocation->stocks->sum('total');
 

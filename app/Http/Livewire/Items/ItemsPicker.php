@@ -45,8 +45,8 @@ class ItemsPicker extends TableComponent
             Column::make('','id'),
             Column::make('Code')->searchable()->sortable(),
             Column::make('Description')->searchable()->sortable(),
-            Column::make('Qty','case_quantity'),
-            Column::make('£','each'),
+            Column::make('# Per','case_quantity'),
+            Column::make('Case £','each'),
             Column::make('Updated','updated_at')->sortable(),
         ];
     }
