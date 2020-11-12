@@ -90,7 +90,7 @@
             </div>
 
         @endif
-        @if($allocation->status && $allocation->status != App\Allocation::START)
+        @if($allocation->status && $allocation->status == App\Allocation::INPROGRESS )
 
             <div class="w-1/4 p-2">
                 <div class="p-2 text-sm leading-normal text-gray-900 bg-yellow-100 border border-yellow-200 rounded-lg shadow-lg">
@@ -106,6 +106,23 @@
             </div>
 
         @endif
+
+        @if($allocation->status && $allocation->status == App\Allocation::SHARED)
+                
+                <div class="w-1/4 p-2 mt-2">
+                    <div class="p-2 text-sm leading-normal text-gray-900 bg-yellow-100 border border-yellow-200 rounded-lg shadow-lg">
+                        This Allocation has been <strong>shared</strong> for editing.  It cannot be progressed until moved back to draft.
+                    </div>
+                    <div class="p-2 mt-4 text-sm leading-normal text-gray-900 bg-yellow-100 border border-yellow-200 rounded-lg shadow-lg">
+                        The link for sharing is below.  Anyone with this link can adjust the allocation.
+                        <div class="flex justify-center">
+                            <button class="px-4 py-1 font-bold text-gray-700 transition duration-300 bg-white border rounded shadow-lg hover:bg-teal-700 hover:text-white" onClick="copyShare()">Copy Link to Clipboard</button>
+                        </div>
+                    </div>
+                
+                </div>
+                
+                @endif
     </div>
 
     @if($showFoodbankPicker)
@@ -117,6 +134,14 @@
             setTimeout(() => {
                 el.classList.remove(theclass);
             }, delay);
+        }
+    </script>
+
+    <script>
+        function copyShare() {
+            navigator.clipboard.writeText('{{ Illuminate\Support\Facades\URL::signedRoute('allocation.shared',$allocation) }}')
+                .then(() => { alert(`Copied the link to your clipboard`) })
+                .catch((error) => { alert(`Copy failed! ${error}`) })
         }
     </script>
 

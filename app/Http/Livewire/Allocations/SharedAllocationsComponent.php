@@ -4,12 +4,13 @@ namespace App\Http\Livewire\Allocations;
 
 use App\Allocation;
 use App\Events\AllocationCompleteEvent;
+use App\Events\SharedAllocationFinished;
 use App\Foodbank;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class AllocationsComponent extends Component
+class SharedAllocationsComponent extends Component
 {
     public $allocation_id;
     public $foodbank;
@@ -63,7 +64,7 @@ class AllocationsComponent extends Component
             $this->setAttr($allocation);
         }
 
-        return view('allocations.livewire.allocations-component')->withAllocation($allocation);
+        return view('allocations.livewire.shared-allocations-component')->withAllocation($allocation);
     }
 
     public function setAttr($allocation)
@@ -163,4 +164,13 @@ class AllocationsComponent extends Component
         $this->showFoodbankPicker = false;
     }
 
+    public function finished()
+    {
+        event(new SharedAllocationFinished($this->allocation_id));
+
+        $this->dispatchBrowserEvent('swal', [
+            'title' => 'A message has been sent to R4FB',
+            'icon' => 'info',
+        ]);
+    }
 }

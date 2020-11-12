@@ -15,6 +15,11 @@ class Allocation extends Model
     /**
      * Allocation is in the process of being created, not yet committed
      */
+    public CONST SHARED = 'Shared';
+
+    /**
+     * Allocation is in the process of being created, not yet committed
+     */
     public CONST INPROGRESS = 'In Progress';
 
     /**

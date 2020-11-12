@@ -6,6 +6,7 @@ use App\Events\AllocationCompleteEvent;
 use App\Events\BulkMailSent;
 use App\Events\FoodbankAddedEvent;
 use App\Events\FoodbankApprovedEvent;
+use App\Events\SharedAllocationFinished;
 use App\Events\ShipmentCancelledEvent;
 use App\Events\ShipmentCreatedEvent;
 use App\Events\ShipmentReceivedEvent;
@@ -42,6 +43,9 @@ class EventServiceProvider extends ServiceProvider
             NotifyUsersListener::class
         ],
         AllocationCompleteEvent::class => [
+            NotifyUsersListener::class
+        ],
+        SharedAllocationFinished::class => [
             NotifyUsersListener::class
         ],
         BulkMailSent::class => [

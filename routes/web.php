@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', 'login');
 
+Route::get('/shared-allocation/{allocation}','SharedAllocationController@show')->name('allocation.shared')->middleware('signed');
+Route::get('/shared-allocation-ok/{allocation}','SharedAllocationController@authenticatedShow')->name('allocation.shared.authenticated');
+
 // authentication related
 Auth::routes(['register' => false]);
 

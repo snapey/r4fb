@@ -1,4 +1,4 @@
-<div x-data="{picker: false}">
+<div x-data="{picker: false}" wire:poll.30s>
     <div class="flex flex-row items-baseline justify-between mx-4 border-t-2 border-gray-400">
         <h2 class="pt-2 my-3 text-xl font-bold ">Proposed Items</h2>
         <span class="text-xs">Total: <span class="text-base font-bold">£{{ $allocation_total }}</span></span>

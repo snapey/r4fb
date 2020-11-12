@@ -4,7 +4,7 @@
     <td class="py-1">{{ $stock['item']['uom'] }}</td>
     <td class="py-1">{{ $stock['item']['case_quantity'] }}</td>
     <td class="text-right">
-        @if($allocation_status == App\Allocation::START)
+        @if($allocation_status == App\Allocation::START || $allocation_status == App\Allocation::SHARED)
             <input type="text" class="w-12 px-1 text-right border border-gray-400" name="qty" wire:model="stocks.{{ $row }}.qty" />
         @else
             {{ $stocks[$row]['qty'] }}
@@ -12,7 +12,7 @@
     </td>
     <td class="pl-2 text-right">{{ $this->presenter('each',$stock['each']) }}</td>
     <td class="pl-2 text-right">{{ $this->presenter('total',$stock['total']) }}</td>
-    @if($allocation_status == App\Allocation::START)
+    @if($allocation_status == App\Allocation::START || $allocation_status == App\Allocation::SHARED)
         <td class="text-right">
             @if($confirming == $stock['id'])
                 <a class="p-1" href="#" wire:click.prevent="kill()">

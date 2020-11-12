@@ -33,6 +33,7 @@ class AllocationsTable extends TableComponent
         
         $this->statuses = [
             Allocation::START => Allocation::START,
+            Allocation::SHARED => Allocation::SHARED,
             Allocation::INPROGRESS => Allocation::INPROGRESS,
             Allocation::CONFIRMED => Allocation::CONFIRMED,
             Allocation::SHIPPED => Allocation::SHIPPED,
