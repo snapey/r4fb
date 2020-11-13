@@ -63,7 +63,7 @@
                             <td class="p-1">{{ $line->first()->item->code ?? 'Error' }}</td>
                             <td class="p-1">{{ $line->first()->item->description ?? 'Error' }}</td>
                             <td class="p-1 text-center">{{ $line->sum('qty') }}</td>
-                            <td class="p-1 text-right"><x-pp v="{{ $line->first()->item->each}}" /></td>
+                            <td class="p-1 text-right {{ $line->first()->each == $line->first()->item->each ?: 'bg-red-600 text-white' }}"><x-pp v="{{ $line->first()->item->each}}" /></td>
                             <td class="p-1 text-right"><x-pp v="{{ $lineTotal }}" /></td>
                         </tr>
                     @endforeach
@@ -73,6 +73,11 @@
                     </tr>
                 </table>
             </div>
+
+            @if($allocations->sum('total') != $total)
+                <p class="px-2 py-1 mt-2 text-sm leading-normal bg-white border border-red-600 rounded shadow-lg">There is a discrepancy in the pricing.  Check the above list for highlighted prices. Ideally, you
+                    should correct the price on the allocation(s) by removing and re-adding the item.</p>
+            @endif
 
             <div class="p-2 mt-8">
                 <h2 class="my-2 text-xl font-bold text-teal-800" >Create order</h2>
