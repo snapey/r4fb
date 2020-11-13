@@ -32,7 +32,7 @@ class SharedAllocationFinished
         $this->entityName = sprintf(
             'Allocation %s, for %s',
             $allocation->id,
-            $allocation->foodbank->name ?? '?',
+            $allocation->foodbank->name ?? '?'
         );
 
         $this->entityId = $allocation->id;
