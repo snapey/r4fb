@@ -14,14 +14,27 @@ class ImportCatalogue extends Component
     use WithFileUploads;
 
     public $upload;
+    public $loaded;
+    public $iteration=0;
 
     public function render()
     {
         return view('livewire.import-catalogue');
     }
 
+    public function updatedUpload()
+    {
+        $this->validate([
+            'upload' => 'required|mimes:txt,csv',
+        ]);
+
+        $this->loaded=true;
+    }
+
     public function process()
     {
+        if($this->upload == null) return;
+
         $importCount = 0;
 
         $file = Storage::disk('uploads')->get('livewire-tmp/' . $this->upload->getFilename());
@@ -49,11 +62,18 @@ class ImportCatalogue extends Component
 
                     $importCount++;
         });
+
+        // $this->emit('refreshItems');
+
+        $this->iteration++;
+        $this->loaded = false;
+        $this->upload = null;
         
-
-        $this->reset();
-
-        $this->emit('refreshItems');
+        $this->dispatchBrowserEvent('swal', [
+            'title' => 'The Catalog has been imported',
+            'text'  => $importCount . ' items were updated from the CSV',
+            'icon'  => 'success',
+        ]);
 
     }
 
