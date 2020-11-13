@@ -139,7 +139,7 @@
 
     <script>
         function copyShare() {
-            navigator.clipboard.writeText('{{ Illuminate\Support\Facades\URL::signedRoute('allocation.shared',$allocation) }}')
+            navigator.clipboard.writeText('{{ $shared_url }}')
                 .then(() => { alert(`Copied the link to your clipboard`) })
                 .catch((error) => { alert(`Copy failed! ${error}`) })
         }

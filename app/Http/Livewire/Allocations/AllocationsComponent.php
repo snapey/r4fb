@@ -7,6 +7,7 @@ use App\Events\AllocationCompleteEvent;
 use App\Foodbank;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 use Livewire\Component;
 
 class AllocationsComponent extends Component
@@ -18,6 +19,7 @@ class AllocationsComponent extends Component
     public $status;
     public $created_by;
     public $statuses;
+    public $shared_url;
 
     public $editing;
     public $confirming;
@@ -39,6 +41,8 @@ class AllocationsComponent extends Component
             $alloc = new Allocation();
             $alloc->status = Allocation::START;
             $this->setAttr($alloc);
+        } else {
+            $this->shared_url = URL::signedRoute('allocation.shared',["allocation" => $this->allocation_id]);
         }
 
         $this->setStatuses();
