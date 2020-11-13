@@ -26,7 +26,7 @@ class ItemsPicker extends TableComponent
 
     public function query()
     {
-        return Item::query();
+        return Item::query()->recentForGuests();
     }
 
     public function itemAdded($id)

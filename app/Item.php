@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Item extends Model
 {
@@ -59,6 +60,14 @@ class Item extends Model
     public function getPoundsAttribute()
     {
         return number_format($this->each/100,2);
+    }
+
+    public function scopeRecentForGuests($query)
+    {
+        if(Auth::check()){
+            return;
+        }
+        return $query->where('updated_at','>',today()->subDays(22));
     }
 
 }
