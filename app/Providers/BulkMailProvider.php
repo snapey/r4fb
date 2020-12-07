@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Mail;
 
 class BulkMailProvider
 {
-    public $recipients = [];
-    public $users = [];
+    public $recipients;
+    public $users;
     public $subject = '';
     public $body = '';
     public $user;
@@ -21,6 +21,12 @@ class BulkMailProvider
     public $excelurl;
     public $csvurl;
     public $template = 'bulkmail';
+
+    public function __construct()
+    {
+        $this->users = collect();
+        $this->recipients = collect();
+    }
 
     public function subject(string $subject) 
     {

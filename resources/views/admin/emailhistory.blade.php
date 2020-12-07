@@ -35,18 +35,22 @@
                     <span x-show="open" x-cloak >{!! $email->markedbody !!}</span>
                 </td>
                 <td class="px-2 py-1">{{ $email->queued_at }}</td>
-                <td class="px-2 py-1 text-left"><a href="{{ $email->pdf }}" target="_blank">
-                    <svg  class="inline-block h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-                </svg></a>&nbsp;&nbsp;&nbsp;
-                @if($email->excel)
-                    <a href="{{ $email->excel }}" target="_blank">
-                    <svg class="inline-block h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg></a>
-                @endif
+                <td class="px-2 py-1 text-left">
+                    @if($email->pdf)
+                        <a href="{{ $email->pdf }}" target="_blank">
+                            <svg  class="inline-block h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                            </svg>
+                        </a>&nbsp;&nbsp;&nbsp;
+                    @endif
+                    @if($email->excel)
+                        <a href="{{ $email->excel }}" target="_blank">
+                        <svg class="inline-block h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg></a>
+                    @endif
                 </td>
                 <td class="px-2 py-1">{{ $email->user->name }}</td>
             </tr>

@@ -7,5 +7,5 @@
 @endif
 
 ----
-_message sent from R4FB operating platform by {{ $provider->user->name ?? '----'}}_
+_message sent from R4FB operating platform by {{ $provider->user->name ?? '----'}} <{{ $provider->user->email }}>_
 @endcomponent
