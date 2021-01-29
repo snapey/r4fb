@@ -21,6 +21,9 @@
                     <x-inputs.text-editable editing="{{ $editing }}" name="phone2" label="Alt. Phone:" half />
                     <x-inputs.text-editable editing="{{ $editing }}" name="email1" label="Email:" />
                     <x-inputs.text-editable editing="{{ $editing }}" name="email2" label="Alt. Email:" />
+                    <hr/>
+                    <x-inputs.select-editable editing="{{ $editing }}" name="researcher" label="Researcher:" :list="$researchers"
+                        :current="$researchers[$researcher] ?? ''" half />
 
                 </div>
             </div>
@@ -33,28 +36,29 @@
             
         </div>
         {{-- controls ------------------------------------------------- --}}
+        @can('Contacts.edit')
+            <div class="w-3/12 mt-8 text-center">
+                <div class="flex flex-col px-4 mt-4 space-y-3">
 
-        <div class="w-3/12 mt-8 text-center">
-            <div class="flex flex-col px-4 mt-4 space-y-3">
-
-                @if($editing)
-                    <x-button wire:click="save" class="w-24" active >Save</x-button>
-                @else
-                    <x-button wire:click="editMode" class="w-24">Edit</x-button>
-                @endif
-
-                <x-button wire:click="cancel" class="w-24">Cancel</x-button>
-                    
-                @if($exists)
-                    @if($confirming)
-                        <x-button wire:click="kill" class="w-24" danger active>You Sure ?</x-button>
+                    @if($editing)
+                        <x-button wire:click="save" class="w-24" active >Save</x-button>
                     @else
-                        <x-button wire:click="confirmDelete" class="w-24" danger >Delete</x-button>
+                        <x-button wire:click="editMode" class="w-24">Edit</x-button>
                     @endif
-                @endif
-                
+
+                    <x-button wire:click="cancel" class="w-24">Cancel</x-button>
+                        
+                    @if($exists)
+                        @if($confirming)
+                            <x-button wire:click="kill" class="w-24" danger active>You Sure ?</x-button>
+                        @else
+                            <x-button wire:click="confirmDelete" class="w-24" danger >Delete</x-button>
+                        @endif
+                    @endif
+                    
+                </div>
             </div>
-        </div>
+        @endcan
     </div>
 </div>
 

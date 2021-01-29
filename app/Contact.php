@@ -3,8 +3,10 @@
 namespace App;
 
 use App\ModelTraits\EncryptableTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Contact extends Model
@@ -24,6 +26,7 @@ class Contact extends Model
         'phone2',
         'email1',
         'email2',
+        'researcher_id',
     ];
 
     public $encryptable = [
@@ -78,5 +81,25 @@ class Contact extends Model
     public function suppliers()
     {
         return $this->morphedByMany('App\Supplier', 'contactable')->withPivot('relationship');
+    }
+
+    public function researcher()
+    {
+        return $this->belongsTo(User::class, 'researcher_id');
+    }
+
+    /**
+     * Scope the model, if you are a researcher, only returns contacts that you are associated with
+     *
+     * @return void
+     */
+    public function scopeMyContacts(Builder $builder)
+    {
+        if(Auth::user()->hasPermissionTo('ResearchContactsOnly')) {
+            return $builder->where('researcher_id',Auth::id());
+        }
+
+        return $builder;
+
     }
 }

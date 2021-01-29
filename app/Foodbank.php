@@ -3,8 +3,10 @@
 namespace App;
 
 use App\ModelTraits\FoodbankStatus;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Foodbank extends Model
@@ -75,5 +77,30 @@ class Foodbank extends Model
         if($filter) {
             $query->where('status',$filter);
         }
+    }
+
+    /**
+     * Scope the model, if you are a researcher, only returns foodbanks that have contacts that you are associated with
+     *
+     * @return void
+     */
+    public function scopeMyFoodbanks(Builder $builder)
+    {
+        if (Auth::user()->hasPermissionTo('ResearchContactsOnly')) {
+
+            $ids = Contact::query()
+                ->with('contactables')
+                ->where('researcher_id', Auth::id())
+                ->get()
+                ->map(function ($contact) {
+                    return $contact->contactables->where('contactable_type', 'App\Foodbank');
+                })
+                ->flatten()
+                ->pluck('contactable_id');
+
+            return $builder->whereIn('id', $ids);
+        }
+
+        return $builder;
     }
 }

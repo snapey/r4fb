@@ -75,7 +75,10 @@ class RoleController extends Controller
     public function edit(Role $role)
     {
         // user can only give permissions that they have themselves
-        $groupedPermissions = Auth::user()->getAllPermissions()->split(3);
+        // $groupedPermissions = Auth::user()->getAllPermissions()->sortBy('name')->split(3);
+
+        $groupedPermissions = Permission::all()->sortBy('name')->split(3);
+        
 
         return view('admin.role.edit')
             ->withRole($role)

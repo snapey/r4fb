@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Contact;
+use App\Exports\ContactsExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ContactController extends Controller
 {
@@ -23,4 +25,8 @@ class ContactController extends Controller
         return $this->show(new Contact);
     }
 
+    public function export()
+    {
+        return Excel::download(new ContactsExport, 'contacts.xlsx');
+    }
 }

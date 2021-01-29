@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Contacts;
 
 use App\Contact;
 use App\Contactable;
+use App\User;
 use Livewire\Component;
 
 class Newcontact extends Component
@@ -13,6 +14,8 @@ class Newcontact extends Component
     public $model_id;
     public $model_name;
     public $model_realname;
+    public $researchers;
+    public $researcher;
 
     public $forenames;
     public $surname;
@@ -40,6 +43,8 @@ class Newcontact extends Component
         ];
 
         $this->model_realname = (new $this->contactable['contactable_type'])::NAME;
+
+        $this->researchers = User::role('Researcher')->pluck('name', 'id')->toArray();
 
     }
 

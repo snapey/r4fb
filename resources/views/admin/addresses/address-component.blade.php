@@ -7,8 +7,10 @@
             Address
             @endif
         </h2>
-        <button wire:click="newAddress"
-            class="px-4 py-1 text-xs text-gray-800 bg-gray-100 border border-gray-500 rounded hover:bg-gray-300">+ Add Address</button>
+        @can('Addresses.edit')
+            <button wire:click="newAddress"
+                class="px-4 py-1 text-xs text-gray-800 bg-gray-100 border border-gray-500 rounded hover:bg-gray-300">+ Add Address</button>
+        @endcan
     </div>
 
     <table class="w-full text-sm bg-white">

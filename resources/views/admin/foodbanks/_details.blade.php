@@ -17,20 +17,22 @@
     
     </div>
 
-    <div class="w-1/12 mt-8 mr-4 space-y-2">
-        @if($editing)
-            <x-button wire:click="save" class="w-full" active >Save</x-button>
-        @else
-            <x-button wire:click="editMode" class="w-full">Edit</x-button>
-        @endif
-
-        @if(!$editing)
-            @if($confirming)
-                <x-button wire:click="kill()" class="w-full" danger active >Sure?</x-button>
+    @can('Foodbanks.edit')
+        <div class="w-1/12 mt-8 mr-4 space-y-2">
+            @if($editing)
+                <x-button wire:click="save" class="w-full" active >Save</x-button>
             @else
-                <x-button wire:click="confirmDelete()" class="w-full" danger>Delete</x-button>
+                <x-button wire:click="editMode" class="w-full">Edit</x-button>
             @endif
-        @endif
-    </div>
+
+            @if(!$editing)
+                @if($confirming)
+                    <x-button wire:click="kill()" class="w-full" danger active >Sure?</x-button>
+                @else
+                    <x-button wire:click="confirmDelete()" class="w-full" danger>Delete</x-button>
+                @endif
+            @endif
+        </div>
+    @endcan
 </div>
 

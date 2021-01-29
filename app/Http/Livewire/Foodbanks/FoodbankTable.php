@@ -41,7 +41,7 @@ class FoodbankTable extends TableComponent
 
     public function query()
     {
-        return Foodbank::query()->statusScope($this->statusFilter);
+        return Foodbank::query()->myFoodbanks()->statusScope($this->statusFilter);
     }
 
     public function rowClick($id)

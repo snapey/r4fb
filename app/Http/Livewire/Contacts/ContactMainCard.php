@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Contacts;
 
 use App\Contact;
 use App\Contactable;
+use App\User;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Livewire\Component;
 
@@ -15,6 +16,8 @@ class ContactMainCard extends Component
     public $contactable;
     public $model_id;
     public $confirming;
+    public $researchers;
+    public $researcher;
 
 
     public $forenames;
@@ -38,6 +41,9 @@ class ContactMainCard extends Component
         $this->phone2 = $contact->phone2;
         $this->email1 = $contact->email1;
         $this->email2 = $contact->email2;
+
+        $this->researchers = User::role('Researcher')->pluck('name', 'id')->toArray();
+        $this->researcher = $contact->researcher_id;
     }
 
 
@@ -91,6 +97,8 @@ class ContactMainCard extends Component
                 'phone2' => $this->phone2,
                 'email1' => $this->email1,
                 'email2' => $this->email2,
+                'researcher_id' => empty($this->researcher) ? 0 : $this->researcher,
+
             ]
         );
 

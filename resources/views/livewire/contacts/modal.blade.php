@@ -47,42 +47,46 @@
 
                     <hr />
                     
-                    <x-inputs.text-editable editing="{{ $editing }}" name="contactable.relationship" label="Relationship" placeholder="What relationship to this {{$model_realname}}" />
+                    <x-inputs.text-editable editing="{{ $editing }}" name="contactable.relationship" label="Relationship:" placeholder="What relationship to this {{$model_realname}}" />
+
+                    <hr />
+                    <x-inputs.select-editable editing="{{ $editing }}" name="researcher" label="Researcher:" :list="$researchers" :current="$researchers[$researcher] ?? ''" />
 
                 </div>
                 <!--Footer-->
-                <div  x-data="{ deleteMessage:false }">
-                    <div class="flex justify-end mt-3 space-x-4 border-t border-gray-300">
-                        @if($exists)
-                            <button x-on:click="deleteMessage=true"
-                                class="w-24 py-2 mt-4 text-xs font-bold text-center text-gray-700 border border-gray-400 rounded hover:bg-red-600 hover:text-white ">
-                                Delete
-                            </button>
-                        @endif
-                        <button wire:click.prevent="close()"
-                            class="w-24 py-2 mt-4 text-xs font-bold text-center text-gray-700 border border-gray-400 rounded ">Cancel</button>
-                        @if($editing)
-                        <button wire:click="save"
-                            class="w-24 py-2 mt-4 text-xs font-bold text-center text-white bg-teal-600 border border-gray-400 rounded hover:bg-teal-700">Save</button>
-                        @else
-                        <button wire:click="editMode"
-                            class="w-24 py-2 mt-4 text-xs font-bold text-center text-gray-700 border border-gray-400 rounded">Edit</button>
-                        @endif
+                @can('Contacts.edit')
+                    <div  x-data="{ deleteMessage:false }">
+                        <div class="flex justify-end mt-3 space-x-4 border-t border-gray-300">
+                            @if($exists)
+                                <button x-on:click="deleteMessage=true"
+                                    class="w-24 py-2 mt-4 text-xs font-bold text-center text-gray-700 border border-gray-400 rounded hover:bg-red-600 hover:text-white ">
+                                    Delete
+                                </button>
+                            @endif
+                            <button wire:click.prevent="close()"
+                                class="w-24 py-2 mt-4 text-xs font-bold text-center text-gray-700 border border-gray-400 rounded ">Cancel</button>
+                            @if($editing)
+                            <button wire:click="save"
+                                class="w-24 py-2 mt-4 text-xs font-bold text-center text-white bg-teal-600 border border-gray-400 rounded hover:bg-teal-700">Save</button>
+                            @else
+                            <button wire:click="editMode"
+                                class="w-24 py-2 mt-4 text-xs font-bold text-center text-gray-700 border border-gray-400 rounded">Edit</button>
+                            @endif
+                        </div>
+                        <div    x-show="deleteMessage" 
+                                x-transition:enter="transition ease-out duration-300"
+                                x-transition:enter-start="opacity-100 transform scale-y-50"
+                                x-transition:enter-end="opacity-100 transform scale-y-100"
+                                class="p-4 mt-4 text-sm leading-relaxed text-center text-gray-100 bg-gray-800 rounded">
+                                    Pressing delete only removes the Contact's association with this {{ $contactable['contactable_type']::NAME }}. To remove the contact completely, visit the 
+                                    Contacts admin area. 
+                            <a href="#" 
+                                wire:click.prevent="detachContact" 
+                                class="text-yellow-300 underline hover:bg-gray-900">
+                                Detach this contact</a>
+                        </div>
                     </div>
-                    <div    x-show="deleteMessage" 
-                            x-transition:enter="transition ease-out duration-300"
-                            x-transition:enter-start="opacity-100 transform scale-y-50"
-                            x-transition:enter-end="opacity-100 transform scale-y-100"
-                            class="p-4 mt-4 text-sm leading-relaxed text-center text-gray-100 bg-gray-800 rounded">
-                                Pressing delete only removes the Contact's association with this {{ $contactable['contactable_type']::NAME }}. To remove the contact completely, visit the 
-                                Contacts admin area. 
-                        <a href="#" 
-                            wire:click.prevent="detachContact" 
-                            class="text-yellow-300 underline hover:bg-gray-900">
-                            Detach this contact</a>
-                    </div>
-                </div>
-    
+                @endcan
             </div>
         </div>
     </div>

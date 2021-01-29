@@ -46,29 +46,32 @@
 
                 </div>
                 <!--Footer-->
-                <div x-data="{ deleteMessage:false }">
-                    <div class="flex justify-end mt-3 space-x-4 border-t border-gray-300">
-                        @if(!is_null($address_id))
-                        <x-button x-on:click="deleteMessage=true" class="w-24 mt-4" danger>Delete</x-button>
-                        @endif
-                        <x-button wire:click.prevent="$set('modalShowing',false)" class="w-24 mt-4 ">Cancel</x-button>
-                        @if($editing)
-                            <x-button wire:click="save" class="w-24 mt-4" active >Save</x-button>
-                        @else
-                            <x-button wire:click="editMode" class="w-24 mt-4" >Edit</x-button>
-                        @endif
+                @can('Addresses.edit')
+                    <div x-data="{ deleteMessage:false }">
+                        <div class="flex justify-end mt-3 space-x-4 border-t border-gray-300">
+                            @if(!is_null($address_id))
+                            <x-button x-on:click="deleteMessage=true" class="w-24 mt-4" danger>Delete</x-button>
+                            @endif
+                            <x-button wire:click.prevent="$set('modalShowing',false)" class="w-24 mt-4 ">Cancel</x-button>
+                            @if($editing)
+                                <x-button wire:click="save" class="w-24 mt-4" active >Save</x-button>
+                            @else
+                                <x-button wire:click="editMode" class="w-24 mt-4" >Edit</x-button>
+                            @endif
+                        </div>
+                        <div x-show="deleteMessage" x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="opacity-100 transform scale-y-50"
+                            x-transition:enter-end="opacity-100 transform scale-y-100"
+                            class="p-4 mt-4 text-sm leading-relaxed text-center text-gray-100 bg-gray-800 rounded">
+                            Please confirm that you want to permanently delete this address. Yes,
+                            <a href="#" wire:click.prevent="deleteAddress"
+                                class="text-yellow-300 underline hover:bg-gray-900">
+                                delete this address</a>
+                        </div>
                     </div>
-                    <div x-show="deleteMessage" x-transition:enter="transition ease-out duration-300"
-                        x-transition:enter-start="opacity-100 transform scale-y-50"
-                        x-transition:enter-end="opacity-100 transform scale-y-100"
-                        class="p-4 mt-4 text-sm leading-relaxed text-center text-gray-100 bg-gray-800 rounded">
-                        Please confirm that you want to permanently delete this address. Yes,
-                        <a href="#" wire:click.prevent="deleteAddress"
-                            class="text-yellow-300 underline hover:bg-gray-900">
-                            delete this address</a>
-                    </div>
-                </div>
-
+                @else
+                    <div class="py-2 mx-auto my-2 italic text-center text-gray-500 border-t">Insufficient rights to edit</div>
+                @endcan
             </div>
         </div>
     </div>

@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Contacts;
 
 use App\Contact;
 use App\Contactable;
+use App\Researcher;
+use App\User;
 use Livewire\Component;
 
 class Modal extends Component
@@ -13,6 +15,8 @@ class Modal extends Component
     public $model_id;
     public $model_name;
     public $model_realname;
+    public $researchers;
+    public $researcher;
 
     public $forenames;
     public $surname;
@@ -40,6 +44,10 @@ class Modal extends Component
         $this->email2 = $model->email2;
 
         $this->contactable = $contactable;
+        $this->researchers = User::role('Researcher')->pluck('name','id')->toArray();
+
+        $this->researcher = $model->researcher_id;
+
     }
 
     public function render()
@@ -78,6 +86,7 @@ class Modal extends Component
             'phone2' => $this->phone2,
             'email1' => $this->email1,
             'email2' => $this->email2,
+            'researcher_id' => empty($this->researcher) ? 0 : $this->researcher,
         ]);
 
         Contactable::UpdateOrCreate(
@@ -106,6 +115,7 @@ class Modal extends Component
         $this->email1 = null;
         $this->email2 = null;
         $this->relationship = null;
+        $this->researcher = null;
     }
 
     public function detachContact()

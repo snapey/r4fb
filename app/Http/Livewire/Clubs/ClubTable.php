@@ -18,7 +18,7 @@ class ClubTable extends TableComponent
 
     public function query()
     {
-        return Club::with('foodbanks');
+        return Club::myResearchClubs()->with('foodbanks');
     }
 
     public function mount()

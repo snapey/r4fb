@@ -16,7 +16,7 @@ class ContactTable extends TableComponent
 
     public function query()
     {
-        return Contact::query();
+        return Contact::query()->myContacts();
     }
 
     public function mount()

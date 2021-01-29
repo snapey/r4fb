@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Permission;
 use App\Role;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
@@ -26,6 +27,13 @@ class RoleForm extends FormRequest
      */
     public function rules()
     {
+        if($this->user()->hasRole('Super Admin')) {
+            return [
+                'name' => 'required|min:4',
+                'permissions.*' => Rule::in(Permission::all()->modelKeys()),
+            ];
+        }
+
         return [
             'name' =>'required|min:4',
             'permissions.*' => Rule::in($this->user()->getAllPermissions()->modelKeys()),

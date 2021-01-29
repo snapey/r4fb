@@ -24,7 +24,9 @@
             x-transition:enter-end="opacity-100 transform scale-y-100" x-transition:leave="transition ease-in duration-200"
             x-transition:leave-end="opacity-0 transform scale-y-50"
         >
-            <li><a href="{{ route('alertSubscriptions.index') }}" class="block w-full px-5 py-2 text-left text-gray-800 rounded hover:bg-teal-300"><x-svg.bell class="h-4 text-teal-700 align-top" />Alert&nbsp;Subscriptions</a></li>
+            @can('Subscriptions.edit')
+                <li><a href="{{ route('alertSubscriptions.index') }}" class="block w-full px-5 py-2 text-left text-gray-800 rounded hover:bg-teal-300"><x-svg.bell class="h-4 text-teal-700 align-top" />Alert&nbsp;Subscriptions</a></li>
+            @endcan
             <li><a href="{{ route('logout') }}" class="block w-full px-5 py-2 text-left text-gray-800 rounded hover:bg-teal-300" 
                 onclick="event.preventDefault();document.getElementById('logout-form').submit();"><x-svg.logout class="h-4 text-teal-700 align-top" />{{ __('Logout') }}</a>
             </li>
