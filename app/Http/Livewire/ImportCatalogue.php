@@ -49,18 +49,24 @@ class ImportCatalogue extends Component
 
             if(count($row) < 6) return;
 
+            // might be a bug here in that if the item is unchanged then the database is not updated
+            // and the updated_at timestamp remains the same.
             Item::updateOrCreate(
-                    ['code' => $row[0]],
-                    [
-                        'description'=> $row[1],
-                        'category'=> $row[2],
-                        'uom' => $row[3],
-                        'case_quantity' => $row[4],
-                        'each' => intval(strval($row[5]*100)),
-                        'generic' => false,
-                    ]);
+                [
+                    'code' => $row[0]
+                ],
+                [
+                    'description'=> $row[1],
+                    'category'=> $row[2],
+                    'uom' => $row[3],
+                    'case_quantity' => $row[4],
+                    'each' => intval(strval($row[5]*100)),
+                    'generic' => false,
+                    'updated_at' => now(),
+                ]
+            );
 
-                    $importCount++;
+            $importCount++;
         });
 
         // $this->emit('refreshItems');

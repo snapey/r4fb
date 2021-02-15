@@ -23,7 +23,8 @@ class Item extends Model
         'each',
         'pounds',
         'category',
-        'case_quantity'
+        'case_quantity',
+        'updated_at',
     ];
 
     /**
