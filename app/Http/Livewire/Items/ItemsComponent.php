@@ -17,6 +17,9 @@ class ItemsComponent extends Component
     public $durability;
     public $generic;
     public $pounds;
+    public $net_pounds;
+    public $vatrate;
+    public $approved;
 
     public $editing;
     public $confirming;
@@ -66,6 +69,9 @@ class ItemsComponent extends Component
         $this->durability = $item->durability;
         $this->generic = $item->generic ?? 0;
         $this->pounds = $item->pounds;
+        $this->net_pounds = $item->netPounds;
+        $this->vatrate = $item->vatrate;
+        $this->approved = $item->approved;
     }
 
     public function editMode()
@@ -78,7 +84,12 @@ class ItemsComponent extends Component
     public function updated($name, $value)
     {
         $this->$name = trim($value);        // ensures all inputs are trimmed
+
+        $this->vatrate = $this->vatrate > 0 ? $this->vatrate : 0;
+
+        $this->pounds = number_format($this->net_pounds * (100+$this->vatrate)/100,2);
     }
+
 
     public function save()
     {
@@ -111,15 +122,29 @@ class ItemsComponent extends Component
             'weight' => 'nullable|numeric',
             'description' => 'required|max:100',
             'durability' => 'max:20',
-            'generic' => 'boolean',
-            'pounds' => 'required|numeric'
+            'net_pounds' => 'required|numeric',
+            'pounds' => 'required|numeric',
+            'vatrate' => 'required|numeric',
+
             ]);
 
         $item = is_null($this->item_id)
             ? new Item()
             : Item::find($this->item_id);
 
-        $item->fill($data);
+        $item->code         = $this->code;
+        $item->sku          = $this->sku;
+        $item->uom          = $this->uom;
+        $item->weight       = $this->weight;
+        $item->description  = $this->description;
+        $item->durability   = $this->durability;
+        $item->approved     = $this->approved;
+        $item->net_pounds   = $this->net_pounds;
+        $item->pounds       = $this->pounds;
+        $item->vatrate      = $this->vatrate;
+        $item->approved     = $this->approved ==1 ? 1:0;
+        $item->generic      = false;
+
         $item->save();
 
         return $item;

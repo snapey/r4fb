@@ -6,7 +6,7 @@
             type="checkbox" 
             wire:model.lazy="{{ $name }}" 
             name="{{ $name }}"
-            class="@if($editing) border-teal-600 @endif rounded"
+            class="@if($editing) border-teal-600 @endif rounded my-2"
         />
     @else
         @if($checked)

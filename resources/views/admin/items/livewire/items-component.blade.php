@@ -5,8 +5,7 @@
         <a href="{{ route('admin.items.index')}}"
             class="px-4 py-1 text-sm bg-gray-100 border rounded hover:bg-gray-300">Return to Index</a>
     </div>
-
-    <div class="flex flex-row border-t-2 border-gray-400" wire:poll.20s>
+    <div class="flex flex-row border-t-2 border-gray-400">
 
         <div class="w-3/4 my-4 border-r-2 border-gray-400">
 
@@ -15,12 +14,14 @@
 
                     <x-inputs.text-editable editing="{{ $editing }}" name="code" label="Code" half />
                     <x-inputs.text-editable editing="{{ $editing }}" name="description" label="Description" />
-                    <x-inputs.text-editable editing="{{ $editing }}" name="pounds" label="Latest Cost Each" half />
-                    <x-inputs.text-editable editing="{{ $editing }}" name="sku" label="SKU" half />
+                    <x-inputs.text-editable editing="{{ $editing }}" name="net_pounds" label="Net Cost Each" half />
+                    <x-inputs.text-editable editing="{{ $editing }}" name="vatrate" label="VAT" half />
+                    <x-inputs.text-editable editing="0" name="pounds" label="Gross Cost Each" half />
+                    {{-- <x-inputs.text-editable editing="{{ $editing }}" name="sku" label="SKU" half /> --}}
                     <x-inputs.text-editable editing="{{ $editing }}" name="uom" label="UOM" half />
                     <x-inputs.text-editable editing="{{ $editing }}" name="weight" label="Weight" half />
                     <x-inputs.text-editable editing="{{ $editing }}" name="durability" label="Durability" half />
-                    <x-inputs.checkbox-editable editing="{{ $editing }}" name="generic" label="Generic" checked="{{$generic}}"/>
+                    <x-inputs.checkbox-editable editing="{{ $editing }}" name="approved" label="Approved" value="1" checked="{{$approved}}"/>
 
                 </div>
 

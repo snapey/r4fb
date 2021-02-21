@@ -6,7 +6,7 @@
     <div class="flex items-center justify-between w-full">
         <h1 class="text-xl font-bold text-teal-800">Items</h1>
         @can('Items.add')
-        <a href="{{ route('admin.items.create') }}"><button class="w-48 positive-button">+ Create New Item</button></a>
+        <a href="{{ route('admin.items.create') }}"><button class="w-48 mr-2 positive-button">+ Create New Item</button></a>
         @endcan
     </div>
 

@@ -58,9 +58,19 @@ class Item extends Model
         $this->each = strval($value*100);
     }
 
+    public function setNetPoundsAttribute($value)
+    {
+        $this->net = strval($value * 100);
+    }
+
     public function getPoundsAttribute()
     {
         return number_format($this->each/100,2);
+    }
+
+    public function getNetPoundsAttribute()
+    {
+        return number_format($this->net/100,2);
     }
 
     public function scopeRecentForGuests($query)
@@ -71,4 +81,20 @@ class Item extends Model
         return $query->where('updated_at','>',today()->subDays(22));
     }
 
+
+    public function scopeApproved($query)
+    {
+        return $query->where('approved', true);
+    }
+
+    public function itemStatuses()
+    {
+        return [
+            'approved' => 'Approved',
+            'approvedvatless' =>'Approved,No VAT',
+            'vatapproved' => 'Approved with VAT',
+            'unapproved' => 'Unapproved',
+            'newtoday' => 'New Today',
+        ];
+    }
 }

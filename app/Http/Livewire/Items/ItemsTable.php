@@ -18,12 +18,52 @@ class ItemsTable extends TableComponent
     public $clickable_row = true;
     public $sort_attribute = 'code';
     public $sort_direction = 'asc';
+    public $header_view = 'admin.items._header';
+    public $statuses;
+    public $statusFilter;
     public $per_page = 50;
     // public $header_view = 'admin.contacts._header';
 
+
+    public function mount()
+    {
+        $this->statuses = (new Item)->itemStatuses();
+        $this->statusFilter = session()->get('itemStatusFilter');
+    }
+
+    public function updatedStatusFilter()
+    {
+        session()->put('itemStatusFilter',$this->statusFilter);
+        dump('saved');
+    }
+
     public function query()
     {
-        return Item::query();
+        $query = Item::query();
+
+        switch ($this->statusFilter) {
+            case 'unapproved':
+                $query->where('approved', false);
+                break;
+
+            case 'vatapproved':
+                $query->where('vatrate','>',0)->where('approved',true);
+                break;
+
+            case 'approved':
+                $query->where('approved',true);
+                break;
+
+            case 'approvedvatless':
+                $query->where('approved',true)->where('vatrate',0);
+                break;
+
+            case 'newtoday':
+                $query->whereDate('created_at',today());
+                break;
+        }
+
+        return $query;
     }
 
 
@@ -36,8 +76,9 @@ class ItemsTable extends TableComponent
             Column::make('Category', 'category'),
             Column::make('UOM', 'uom'),
             Column::make('QTY', 'case_quantity'),
+            Column::make('VAT', 'vatrate'),
             Column::make('Latest £', 'each'),
-            // Column::make('Generic', 'generic'),
+            Column::make('APP', 'approved')->sortable(),
             Column::make('Last Update','updated_at')->sortable(),
         ];
     }
@@ -52,6 +93,8 @@ class ItemsTable extends TableComponent
         if ($attribute == 'generic') return 'text-center';
         if ($attribute == 'uom') return 'text-center';
         if ($attribute == 'each') return 'text-right';
+        if ($attribute == 'vatrate') return 'text-center';
+        if ($attribute == 'approved') return 'text-center';
         if ($attribute == 'updated_at') return 'text-xs';
         if ($attribute == 'case_quantity') return 'text-center';
 
@@ -64,8 +107,10 @@ class ItemsTable extends TableComponent
         if ($attribute == 'code') return 'text-left';
         if ($attribute == 'sku') return 'text-center';
         if ($attribute == 'each') return 'w-1/12 text-right';
-        if ($attribute == 'uom') return 'w-1/12 text-center';
-        if ($attribute == 'case_quantity') return 'w-1/12 text-center';
+        if ($attribute == 'vatrate') return 'w-16 text-center';
+        if ($attribute == 'uom') return 'w-16 text-center';
+        if ($attribute == 'case_quantity') return 'w-16 text-center';
+        if ($attribute == 'approved') return 'w-24 text-center';
         if ($attribute == 'description') return 'w-4/12 text-left';
         if ($attribute == 'generic') return 'text-center';
 
@@ -77,6 +122,7 @@ class ItemsTable extends TableComponent
         if ($attribute == 'generic') return  $value ? 'Yes' : '';
         if ($attribute == 'each') return  '£' . number_format($value/100,2) ? : '';
         if ($attribute == 'updated_at') return Carbon::parse($value)->format('H:i d/m/Y');
+        if ($attribute == 'approved') return $value ? '&#10004;' : '-';
 
         return $value;
     }

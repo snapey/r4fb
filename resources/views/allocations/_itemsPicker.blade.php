@@ -11,6 +11,7 @@
                     <p class="text-2xl font-bold">Select Items</p>
                     <div class="z-50 modal-close"><a href="#" x-on:click.prevent="picker=false"><x-svg.x class="w-5" /></a></div>
                 </div>
+                <p class="text-gray-800 "><span class="inline-block px-2 py-1 -ml-2 bg-yellow-100">Only R4FB approved items are listed. Price includes VAT if applicable.</span></p>
 
                 <!--Body-->
                 @livewire('items.items-picker',['exists'=> Illuminate\Support\Arr::pluck($stocks,'item_id')])
