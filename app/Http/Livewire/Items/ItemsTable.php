@@ -34,7 +34,6 @@ class ItemsTable extends TableComponent
     public function updatedStatusFilter()
     {
         session()->put('itemStatusFilter',$this->statusFilter);
-        dump('saved');
     }
 
     public function query()
