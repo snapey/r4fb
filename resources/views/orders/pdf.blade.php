@@ -62,6 +62,8 @@
                         <th class="py-1 text-sm text-left">Code</th>
                         <th class="py-1 text-sm text-left">Description</th>
                         <th class="py-1 text-sm text-left">UOM</th>
+                        <th class="py-1 text-sm text-right">Net</th>
+                        <th class="py-1 text-sm text-center">VAT</th>
                         <th class="py-1 text-sm text-right">Each</th>
                         <th class="py-1 text-sm text-center">Qty</th>
                         <th class="py-1 text-sm text-right">Line Total</th>
@@ -73,13 +75,15 @@
                             <td class="py-1 bg-gray-300 border-2 border-white ">{{ $line->code }}</td>
                             <td class="py-1 bg-gray-300 border-2 border-white ">{{ $line->description }}</td>
                             <td class="py-1 bg-gray-300 border-2 border-white ">{{ $line->uom }}</td>
+                            <td class="py-2 text-right bg-gray-300 border-2 border-white"><x-pp v="{{ $line->item->net }}" /></td>
+                            <td class="py-2 text-center bg-gray-300 border-2 border-white">{{ $line->item->vatrate }}</td>
                             <td class="py-1 text-right bg-gray-300 border-2 border-white"><x-pp v="{{ $line->each }}" /></td>
                             <td class="px-2 text-center bg-gray-300 border-2 border-white">{{ $line->qty }}</td>
                             <td class="py-1 text-right bg-gray-300 border-2 border-white"><x-pp v="{{ $line->total }}" /></td>
                         </tr>
                     @endforeach
                     <tr>
-                        <td class="py-1 font-bold text-right" colspan="5">Total:</td>
+                        <td class="py-1 font-bold text-right" colspan="7">Total:</td>
                         <td class="py-1 text-right border-2 border-b-0 border-l-0 border-r-0 border-gray-700"><x-pp v="{{$order->orderlines->sum('total')}}" /></td>
                     </tr>
                 </tbody>

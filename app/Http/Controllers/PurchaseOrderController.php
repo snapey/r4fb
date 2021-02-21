@@ -20,7 +20,7 @@ class PurchaseOrderController extends Controller
 
     public function show(Order $order)
     {
-        $order->load('orderlines', 'shipto.addressable', 'supplier.addresses');
+        $order->load('orderlines.item', 'shipto.addressable', 'supplier.addresses');
 
         return view('orders.show')
             ->withOrder($order);
@@ -28,7 +28,7 @@ class PurchaseOrderController extends Controller
 
     public function pdf(Order $order)
     {
-        $order->load('orderlines', 'shipto.addressable', 'supplier.addresses','notes');
+        $order->load('orderlines.item', 'shipto.addressable', 'supplier.addresses','notes');
 
         $pdf = SnappyPdf::loadView('orders.pdf', compact('order'));
 

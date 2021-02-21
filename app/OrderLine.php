@@ -24,4 +24,9 @@ class OrderLine extends Model
     {
         return number_format($this->total / 100, 2,".","");
     }
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class,'code','code');
+    }
 }
