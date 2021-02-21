@@ -72,7 +72,7 @@ Route::middleware(['auth', 'nocache'])->group(function () {
     Route::get('prepareOrders', 'PrepareOrdersController@show')->name('prepare-orders');
     Route::get('prepareorders/{allocation}/single', 'PrepareOrdersController@single')->name('prepare.orders.single');
 
-    Route::get('shipment', 'ShipmentController@index')->name('shipment.index');//->middleware('permission:Shipments.view');
+    Route::get('shipment', 'ShipmentController@index')->name('shipment.index')->middleware('permission:Shipments.view');
     Route::get('shipment/multi', 'ShipmentController@multi')->name('shipment.multi');
     Route::get('shipment/{shipment}', 'ShipmentController@show')->name('shipment.show')->middleware('permission:Shipments.view');;
     Route::get('shipment/{allocation}/create', 'ShipmentController@create')->name('shipment.create');
