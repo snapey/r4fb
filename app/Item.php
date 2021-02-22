@@ -12,20 +12,7 @@ class Item extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'code',
-        'sku',
-        'uom',
-        'weight',
-        'description',
-        'durability',
-        'generic',
-        'each',
-        'pounds',
-        'category',
-        'case_quantity',
-        'updated_at',
-    ];
+    protected $guarded=[];
 
     /**
      * The attributes that should be cast to native types.

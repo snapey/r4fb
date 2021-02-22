@@ -43,35 +43,58 @@ class ImportCatalogue extends Component
 
         $file->shift();  // lose the headers
 
-        $file->each(function($row) use(&$importCount){
 
-            $row = explode(',',$row);
+        try {
+            $file->each(function($row) use(&$importCount){
 
-            if(count($row) < 6) return;
+                $row = explode(',',$row);
 
-            if($row[0] == "") return;
+                if(count($row) < 6) return;
 
-            $item = Item::firstOrNew([
-                    'code' => $row[0]
-                ]);
+                if($row[0] == "") return;
 
-            $item->fill([
-                    'description'=> $row[1],
-                    'category'=> $row[2],
-                    'uom' => $row[3],
-                    'case_quantity' => $row[4],
-                    'net' => intval(strval($row[5]*100)),
+                $item = Item::firstOrNew([
+                        'code' => $row[0]
+                    ]);
+
+                // $item->fill([
+                //     'description' => $row[1],
+                //     'category' => $row[2],
+                //     'uom' => $row[3],
+                //     'case_quantity' => $row[4],
+                //     'net' => intval(strval($row[5] * 100)),
+                //     'generic' => false,
+                //     'updated_at' => now(),
+                // ]);
+
+                $item->fill([
+                    'description' => $row[1],
+                    'uom' => $row[2],
+                    'case_quantity' => $row[3],
+                    'net' => intval(strval($row[4] * 100)),
                     'generic' => false,
                     'updated_at' => now(),
                 ]);
 
-            $item->each = $item->net * (100+$item->vatrate)/100;
 
-            $item->save();
+                $item->each = $item->net * (100+$item->vatrate)/100;
 
-            $importCount++;
-        });
+                $item->save();
 
+                $importCount++;
+            });
+
+        } catch (\Throwable $th) {
+            $this->dispatchBrowserEvent('swal', [
+                'text' => 'There was a problem with the catalog import on line ' . $importCount,
+                'title' => 'Import Failed',
+                'icon'  => 'warning',
+            ]);
+            $this->loaded = false;
+            $this->upload = null;
+
+            return;
+        }
         // $this->emit('refreshItems');
 
         $this->iteration++;
