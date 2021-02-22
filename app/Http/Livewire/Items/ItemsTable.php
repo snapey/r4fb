@@ -2,10 +2,12 @@
 
 namespace App\Http\Livewire\Items;
 
+use App\Exports\CatalogExport;
 use App\Item;
 use Carbon\Carbon;
 use Kdion4891\LaravelLivewireTables\Column;
 use Kdion4891\LaravelLivewireTables\TableComponent;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ItemsTable extends TableComponent
 {
@@ -125,4 +127,5 @@ class ItemsTable extends TableComponent
 
         return $value;
     }
+
 }
