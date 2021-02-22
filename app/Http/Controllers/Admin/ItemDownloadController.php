@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class ItemDownloadController extends Controller
 {
 
-    public function download($filter)
+    public function download($filter = null)
     {
         return Excel::download(new CatalogExport($filter), 'R4FBItems.' . today()->format('Ymd') . '.xlsx');
     }
