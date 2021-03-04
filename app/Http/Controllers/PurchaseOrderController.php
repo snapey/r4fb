@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Address;
 use App\Allocation;
+use App\Exports\MorrisonsOrderExport;
 use App\Order;
 use App\Stock;
+use App\User;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PurchaseOrderController extends Controller
 {
@@ -36,6 +39,13 @@ class PurchaseOrderController extends Controller
         $pdf->setOption('margin-right', 15);
 
         return $pdf->download("R4FB-Order-{$order->id}.pdf");
+    }
+
+    public function csv(Order $order)
+    {
+        $order->load('orderlines');
+
+        return Excel::download(new MorrisonsOrderExport($order), "R4FB-order-{$order->id}.csv");
     }
 
     public function create(Request $request)

@@ -41,6 +41,7 @@
         </div>
 
         <div>
+            <a href="{{ route('orders.csv',$order) }}"><x-button class="px-4 rounded-lg">Download CSV</x-button></a>
             <a href="{{ route('orders.pdf',$order) }}"><x-button class="px-4 rounded-lg">Download PDF</x-button></a>
         </div>
     </div>

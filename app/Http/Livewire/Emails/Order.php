@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Emails;
 
 use App\Providers\BulkMailProvider;
 use App\Template;
+use App\User;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
@@ -40,7 +41,11 @@ class Order extends Component
         
         $this->rcount = collect($this->recipients)->filter()->count() + collect($this->users)->filter()->count();
 
-        return view('orders.livewire.emails');
+        return view('orders.livewire.emails')
+            ->withUserRecipients(User::get()->reject(function($user){
+                    return $user->hasRole('Researcher');
+                })
+            );
     }
 
     public function updatedTemplateId()

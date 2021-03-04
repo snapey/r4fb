@@ -85,6 +85,7 @@ Route::middleware(['auth', 'nocache'])->group(function () {
     Route::get('orders', 'PurchaseOrderController@index')->name('orders.index')->middleware('permission:Orders.view');
     Route::get('orders/{order}', 'PurchaseOrderController@show')->name('orders.show');
     Route::get('orders/{order}/pdf', 'PurchaseOrderController@pdf')->name('orders.pdf');
+    Route::get('orders/{order}/csv', 'PurchaseOrderController@csv')->name('orders.csv');
     Route::post('purchase/create', 'PurchaseOrderController@create')->name('orders.create');
     Route::patch('purchase/{order}/marksent', 'PurchaseOrderController@marksent')->name('orders.marksent');
 

@@ -31,8 +31,7 @@
                         @each('orders.livewire._contact',$order->supplier->contacts,'contact')
 
                         <h3 class="my-4 text-xl font-bold">Send a copy to user:</h3>
-                        @each('orders.livewire._user',App\User::all(),'user')
-
+                        @each('orders.livewire._user',$userRecipients,'user')
 
                     </div>
 
