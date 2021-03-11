@@ -33,6 +33,7 @@ class MorrisonsOrderExport implements FromCollection, WithHeadings, WithMapping,
     */
     public function collection()
     {
+        $this->order->orderlines->load('item');
         return ($this->order->orderlines);
     }
 
@@ -43,7 +44,7 @@ class MorrisonsOrderExport implements FromCollection, WithHeadings, WithMapping,
             $row->description,
             $row->uom,
             $row->case_quantity,
-            $row->eachPounds,
+            $row->item->netPounds ?? 0,
             $row->qty,
         ];
     }
@@ -51,7 +52,7 @@ class MorrisonsOrderExport implements FromCollection, WithHeadings, WithMapping,
     public function headings(): array
     {
         return [
-            ['Product ID', 'Product Description', 'Quantity Type','Case Size','Price','Quantity'],
+            ['Product ID', 'Product Description', 'Quantity Type','Case Size','Net Price','Quantity'],
         ];
     }
 
