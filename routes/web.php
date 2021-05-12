@@ -22,6 +22,7 @@ Route::get('/orderdownload/{order}','ExportOrderController@show')->name('order.d
 //protected routes (must be logged in, but can cache)
 Route::middleware(['auth'])->group(function () {
     Route::get('admin/contacts/export', 'Admin\ContactController@export');
+    Route::get('admin/foodbankcontacts/export', 'Admin\ContactController@foodbankContacts');
     Route::get('admin/foodbanks/export', 'Admin\FoodbankController@export');
 });
 

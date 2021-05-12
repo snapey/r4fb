@@ -12,5 +12,10 @@ class Contactable extends Pivot
     public function contact()
     {
         return $this->belongsTo(Contact::class);
-    }   
+    }
+
+    public function foodbank()
+    {
+        return $this->belongsTo(Foodbank::class, 'contactable_id');
+    }
 }
