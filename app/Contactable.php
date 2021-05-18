@@ -18,4 +18,9 @@ class Contactable extends Pivot
     {
         return $this->belongsTo(Foodbank::class, 'contactable_id');
     }
+
+    public function club()
+    {
+        return $this->belongsTo(Club::class, 'contactable_id');
+    }
 }

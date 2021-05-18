@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Contact;
+use App\Contactable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 class ContactsExport implements FromCollection
@@ -12,6 +13,7 @@ class ContactsExport implements FromCollection
     */
     public function collection()
     {
-        return Contact::all();
+        return Contactable::with('contact', 'club')->where('contactable_type', 'App\Club')->get();
+
     }
 }
