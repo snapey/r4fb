@@ -6,8 +6,9 @@ use App\Contact;
 use App\Contactable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
 
-class ContactsExport implements FromCollection, WithHeadings
+class ContactsExport implements FromCollection, WithHeadings, WithMapping
 {
     /**
     * @return \Illuminate\Support\Collection
