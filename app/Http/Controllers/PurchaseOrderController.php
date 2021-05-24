@@ -99,6 +99,7 @@ class PurchaseOrderController extends Controller
         $allocations->each(function($allocation) use($order) {
             $allocation->status = Allocation::INPROGRESS;
             $allocation->save();
+            $order->allocations()->attach($allocation);
         });
 
 

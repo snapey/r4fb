@@ -21,7 +21,7 @@ class OrdersTable extends TableComponent
 
     public function query()
     {
-        return Order::query()->with('supplier','shipto.addressable');
+        return Order::query()->with('supplier','shipto.addressable','allocations');
     }
 
 
@@ -31,6 +31,7 @@ class OrdersTable extends TableComponent
             Column::make('ID','id')->searchable()->sortable(),
             Column::make('Supplier','supplier.name'),
             Column::make('Ship To','shipto.addressable.name'),
+            Column::make('Alloc.','allocations'),
             Column::make('Status')->sortable(),
             Column::make('Total','cost'),
             Column::make('Updated At')->sortable(),
@@ -51,12 +52,12 @@ class OrdersTable extends TableComponent
 
     public function thClass($attribute)
     {
-        if ($attribute == 'cost') return 'text-right w-1/12';
         if ($attribute == 'id') return 'w-1/12';
         if ($attribute == 'supplier') return 'w-2/12';
         if ($attribute == 'shipto.addressable.name') return 'w-3/12';
-        if ($attribute == 'status') return 'w-2/12';
-        if ($attribute == 'total') return 'w-2/12';
+        if ($attribute == 'allocations') return 'w-2/12';
+        if ($attribute == 'status') return 'w-1/12';
+        if ($attribute == 'total') return 'w-1/12 text-right';
         if ($attribute == 'created_at') return 'w-2/12';
 
         return null;
@@ -66,6 +67,14 @@ class OrdersTable extends TableComponent
     {
         if ($attribute == 'cost') return '£' .  number_format($value/100, 2);
         if ($attribute == 'updated_at') return Carbon::parse($value)->format('H:i D d.m.y');
+        if( $attribute == 'allocations') {
+            $value = collect($value)->pluck('id')->map(function($id){
+                return sprintf('<a class="text-indigo-700 underline" href="%s">%s</a>',
+                    route('allocations.show',$id),
+                    $id
+                );
+            })->implode(', ');
+        }
 
         return $value;
     }
